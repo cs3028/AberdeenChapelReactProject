@@ -11,3 +11,51 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #000000, #2d0284);
+  padding: 10px 20px;
+}
+
+.navbar-logo img {
+  height: 75px; 
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links li {
+  margin: 0;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+  color: #c0c0c0; 
+}
+
+.navbar-search .search-button {
+  background-color: transparent;
+  color: white;
+  border-radius: 30%;
+  border: 1px solid white;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-search .search-button:hover {
+  background-color: white;
+  color: black;
+}
