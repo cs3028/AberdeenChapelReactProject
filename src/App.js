@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <h1>Google Maps in React</h1>
+     
       <MapComponent />
     </div>
   );
