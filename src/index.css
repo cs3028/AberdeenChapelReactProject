@@ -18,16 +18,21 @@ code {
   align-items: center;
   background: linear-gradient(90deg, #000000, #2d0284);
   padding: 10px 20px;
+  border-radius: 20px;
+  margin: 10px;
+  max-width: 100%; 
+  box-sizing: border-box; 
 }
 
 .navbar-logo img {
-  height: 75px; 
+  height: 10vw; 
+  max-height: 75px; 
 }
 
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 2vw; /* space between links scaled with screen size */
 }
 
 .navbar-links li {
@@ -37,18 +42,18 @@ code {
 .navbar-links a {
   color: white;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1rem;
   transition: color 0.3s;
 }
 
 .navbar-links a:hover {
-  color: #c0c0c0; 
+  color: #c0c0c0;
 }
 
 .navbar-search .search-button {
   background-color: transparent;
   color: white;
-  border-radius: 30%;
+  border-radius: 30%; 
   border: 1px solid white;
   padding: 5px 10px;
   cursor: pointer;
@@ -58,4 +63,42 @@ code {
 .navbar-search .search-button:hover {
   background-color: white;
   color: black;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; 
+    padding: 15px; 
+  }
+
+  .navbar-logo img {
+    height: 12vw; /* adjusted for smaller screens */
+  }
+
+  .navbar-links {
+    gap: 4vw; /* gap increased between links on smaller devices */  
+  }
+
+  .navbar-links a {
+    font-size: 0.9rem; /* font size adjusted for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px; /* padding adjusted for smaller screens */
+    border-radius: 10px; /* less rounding on smaller screens */
+  }
+
+  .navbar-logo img {
+    height: 15vw; /* scaling abdn logo */
+  }
+
+  .navbar-links a {
+    font-size: 0.9rem; /* font size adjusted */
+  }
+
+  .navbar-search .search-button {
+    padding: 8px 12px;
+  }
 }
