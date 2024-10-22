@@ -3,23 +3,24 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 // Define container size and style
 const containerStyle = {
-  width: '100%',
+  width: '80%',
   height: '600px',
+  margin: '20px auto',
+  border: '5px solid black',
 };
 
 // Set default location (latitude and longitude)
 const center = {
-  lat: 57.1657,
-  lng: -2.1017,
+  lat: 57.164154,
+  lng: -2.101510,
 };
-
 
 //Coordinates to isolate the Chapel
 const bounds = {
-  north: 57.164250, //North latitude boundary
-  south: 57.163938, //South latitude boundary
-  east: -2.100914,  //East longitude boundary
-  west:  -2.101950,  //West longitude boundary
+  north: 57.164415, //North latitude boundary
+  south: 57.163648, //South latitude boundary
+  east: -2.100420,  //East longitude boundary
+  west:  -2.102165,  //West longitude boundary
 };
 
 //Options for the map
@@ -30,11 +31,14 @@ const options = {
   },
 };
 
-//Test marker
-const testMarkerPosition = {
-  lat: 57.164133,  
-  lng: -2.101531,  
+const customIcon = {
+  url: '/images/s-1400.jpg', // Custom icon URL
+  //scaledSize: new window.google.maps.Size(100, 100), // Scaled size of the icon (width, height)
+  //origin: new window.google.maps.Point(0, 0), // The origin point (0, 0) corresponds to the top-left corner
+  //anchor: new window.google.maps.Point(25, 50), // The anchor point, placed at the bottom center
 };
+
+
 
 function MapComponent() {
   return (
@@ -46,10 +50,11 @@ function MapComponent() {
         options={options}
       >
         { /* You can add markers or other components here */ }
-        <Marker
-          position={testMarkerPosition} //Position of the marker
-          title="Test Marker"          //Tooltip title when hovering over the marker
+        <Marker 
+        position={{lat: 57.164133, lng: -2.101531}}
+        icon={customIcon}
         />
+
       </GoogleMap>
     </LoadScript>
   );
