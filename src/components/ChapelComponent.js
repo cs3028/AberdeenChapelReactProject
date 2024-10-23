@@ -29,6 +29,24 @@ const options = {
     latLngBounds: bounds, //Restrict the map to the boundary
     strictBounds: true, //Set true to restrict the boundary
   },
+  styles: [
+    {
+      featureType: 'poi',
+      elementType: 'labels', 
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'transit', 
+      elementType: 'labels.icon', 
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'road', 
+      elementType: 'labels.icon', 
+      stylers: [{ visibility: 'off' }],
+    },
+  ],
+  disableDefaultUI: true,
 };
 
 const customIcon = {
