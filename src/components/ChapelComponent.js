@@ -98,7 +98,7 @@ function MapComponent() {
         });
         
         const customIcon = {
-          url: 'images/SpiderMan.png',
+          url: 'images/Car.png',
           scaledSize: new window.google.maps.Size(100, 100), // Size of the icon (optional)
         };
 
