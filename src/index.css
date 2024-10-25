@@ -18,16 +18,23 @@ code {
   align-items: center;
   background: linear-gradient(90deg, #000000, #2d0284);
   padding: 10px 20px;
+  border-radius: 20px;
+  margin: 10px;
+  max-width: 100%; 
+  box-sizing: border-box; 
+  position: relative ;
 }
 
 .navbar-logo img {
-  height: 75px; 
+  height: 10vw; 
+  max-height: 75px; 
 }
 
+/* for laptops computers etc */
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 2vw; /* space between links scaled with screen size */
 }
 
 .navbar-links li {
@@ -37,18 +44,18 @@ code {
 .navbar-links a {
   color: white;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1rem;
   transition: color 0.3s;
 }
 
 .navbar-links a:hover {
-  color: #c0c0c0; 
+  color: #c0c0c0;
 }
 
 .navbar-search .search-button {
   background-color: transparent;
   color: white;
-  border-radius: 30%;
+  border-radius: 30%; 
   border: 1px solid white;
   padding: 5px 10px;
   cursor: pointer;
@@ -58,4 +65,94 @@ code {
 .navbar-search .search-button:hover {
   background-color: white;
   color: black;
+}
+
+
+/* hamburger icon (for mobile) */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  position: absolute;
+  right :10%;
+  top :50%;
+  transform: translateY(-50%);
+}
+
+.menu-icon-bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+.menu-icon:hover .menu-icon-bar {
+  background-color: #c0c0c0;
+}
+
+/* navbar links for mobile users  */
+.navbar-links.mobile {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 70px; /* possibly need to be changed based on the navbar height (needs to be tested on mobile) */
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.navbar-links.mobile.active {
+  display: flex;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; 
+  }
+/* hiding the regular navbar links when viewed on mobile (or a screen that is less than 768px)*/
+  .navbar-links:not(.mobile) {
+    display: none; 
+  }
+  .menu-icon{
+    display : flex;
+  }
+  .navbar-logo img {
+    height: 12vw; /* adjusted for smaller screens */
+  }
+
+  .navbar-links.mobile a {
+    font-size : 0.9rem; /* gap increased between links on smaller devices */  
+  }
+
+}
+
+@media (max-width: 480px) {
+  /*for smaller screens*/
+  .navbar {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .navbar-logo img {
+    height: 15vw; /* scale the logo for small screens */
+  }
+
+  .navbar-links.mobile a {
+    font-size: 0.9rem;
+  }
+
+  .navbar-search .search-button {
+    padding: 8px 12px;
+  }
 }
