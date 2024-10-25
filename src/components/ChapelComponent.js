@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+
 // Define container size and style for the map
 const containerStyle = {
   width: '80%',
   height: '650px',
   margin: '20px auto',
-  border: '3px solid black',
+  border: '10px solid black',
 };
 
 //Set the default center location (latitude and longitude)
@@ -24,8 +25,8 @@ const bounds = {
 
 // Coordinates for the test marker
 const testMarkerPosition = {
-  lat: 57.164154,  // Latitude for the test marker
-  lng: -2.101510,  // Longitude for the test marker
+  lat: 57.164154,  //Latitude for marker
+  lng: -2.101510,  //Longitude for marker
 };
 
 //Function to load all needed Google Maps script
@@ -50,14 +51,15 @@ function MapComponent() {
   const mapRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
+  const testInfoWindowRef = useRef(null);  //Creates a reference for the InfoWindow to track state
 
   useEffect(() => {
     async function initMap() {
       try {
-        // Load the Google Maps API script dynamically
+        //Loads the Google Maps API script dynamically
         await loadGoogleMapsScript(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
-        // Ensure the `google` object is available
+        //Ensures the `google` object is available
         if (!window.google) {
           throw new Error('Google Maps not available');
         }
@@ -68,7 +70,7 @@ function MapComponent() {
           { lat: bounds.north, lng: bounds.east }  
         );
 
-        //Initialize the map with the restriction options
+        //Initializes the map with the restriction options
         const map = new window.google.maps.Map(mapRef.current, {
           center: center,
           zoom: 16,     
@@ -76,7 +78,7 @@ function MapComponent() {
             latLngBounds: chapelBounds, 
             strictBounds: true,       
           },
-          //Get rid of points of interest
+          //Gets rid of points of interest
           styles: [
             {
               featureType: 'poi',
@@ -97,17 +99,46 @@ function MapComponent() {
           disableDefaultUI: true,
         });
         
+        //Creation of custom icon for markers
         const customIcon = {
           url: 'images/Car.png',
-          scaledSize: new window.google.maps.Size(100, 100), // Size of the icon (optional)
+          scaledSize: new window.google.maps.Size(50, 50), // Size of the icon (optional)
         };
 
-        // Add a test marker to the map
+        //Adds the test marker to the map
         const marker = new window.google.maps.Marker({
         position: testMarkerPosition,  // Position of the marker (same as chapel center)
         map: map,                      // Attach the marker to the map
         title: 'Test Marker',          // Tooltip title when hovering over the marker
         icon: customIcon,
+        });
+
+        //Define the testInfoWindow content
+        const testInfoWindowContent = `
+          <div style="font-size: 14px; color: black;">
+            <img src="images/Car.png" height=30px >
+            <h3>Cool Mclaren I Found</h3>
+            <p>Test Marker Test Marker</p>
+            <a href="./app.js">Click Here</a>
+          </div>
+        `;
+
+        // Create an InfoWindow
+        const testInfoWindow = new window.google.maps.InfoWindow({
+          content: testInfoWindowContent,
+        });
+
+        // Add a click event listener to open the InfoWindow on marker click
+        marker.addListener('click', () => {
+          testInfoWindow.open(map, marker);
+        });
+        testInfoWindowRef.current = testInfoWindow;  // Store the InfoWindow in the ref
+
+        // Add a click event listener on the map to close the InfoWindow when clicking anywhere on the map
+        map.addListener('click', () => {
+          if (testInfoWindowRef.current) {
+            testInfoWindowRef.current.close();
+          }
         });
 
 
