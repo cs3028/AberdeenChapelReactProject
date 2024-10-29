@@ -116,7 +116,7 @@ code {
   font-size: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .navbar {
     flex-direction: column; 
   }
@@ -128,7 +128,7 @@ code {
     display : flex;
   }
   .navbar-logo img {
-    height: 12vw; /* adjusted for smaller screens */
+    height: 12; /* adjusted for smaller screens */
   }
 
   .navbar-links.mobile a {
@@ -137,22 +137,3 @@ code {
 
 }
 
-@media (max-width: 480px) {
-  /*for smaller screens*/
-  .navbar {
-    padding: 10px;
-    border-radius: 10px;
-  }
-
-  .navbar-logo img {
-    height: 15vw; /* scale the logo for small screens */
-  }
-
-  .navbar-links.mobile a {
-    font-size: 0.9rem;
-  }
-
-  .navbar-search .search-button {
-    padding: 8px 12px;
-  }
-}
