@@ -3,10 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 
 // Define container size and style for the map
 const containerStyle = {
-  width: '80%',
-  height: '650px',
+  width: '90%',
+  height: '540px',
   margin: '20px auto',
-  border: '10px solid black',
+  border: '0.2px solid rgba(0, 0, 0, 0.4)',
+  borderRadius: '30px',
 };
 
 //Set the default center location (latitude and longitude)
