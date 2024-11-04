@@ -49,9 +49,12 @@ function loadGoogleMapsScript(apiKey) {
 //Main Map Component
 function MapComponent() {
   const mapRef = useRef(null);
+  const mapInstanceRef = useRef(null);  //Create variable to store state of user location
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
   const testInfoWindowRef = useRef(null);  //Creates a reference for the InfoWindow to track state
+  const [userLocation, setUserLocation] = useState(center); //Create variable to track user location
+  const userMarkerRef = useRef(null);  //Reference for the user location icon
 
   useEffect(() => {
     async function initMap() {
@@ -72,12 +75,13 @@ function MapComponent() {
 
         //Initializes the map with the restriction options
         const map = new window.google.maps.Map(mapRef.current, {
-          center: center,
+          center: userLocation,
           zoom: 16,     
-          restriction: {
-            latLngBounds: chapelBounds, 
-            strictBounds: true,       
-          },
+          //restriction: {
+            //latLngBounds: chapelBounds, 
+            //strictBounds: true,       
+          //},
+
           //Gets rid of points of interest
           styles: [
             {
@@ -98,6 +102,8 @@ function MapComponent() {
           ],
           disableDefaultUI: true,
         });
+
+        mapInstanceRef.current = map;
         
         //Creation of custom icon for markers
         const customIcon = {
@@ -123,7 +129,7 @@ function MapComponent() {
           </div>
         `;
 
-        // Create an InfoWindow
+        //Creation of a test InfoWindow
         const testInfoWindow = new window.google.maps.InfoWindow({
           content: testInfoWindowContent,
         });
@@ -132,7 +138,7 @@ function MapComponent() {
         marker.addListener('click', () => {
           testInfoWindow.open(map, marker);
         });
-        testInfoWindowRef.current = testInfoWindow;  // Store the InfoWindow in the ref
+        testInfoWindowRef.current = testInfoWindow;  //Store the InfoWindow in the ref
 
         // Add a click event listener on the map to close the InfoWindow when clicking anywhere on the map
         map.addListener('click', () => {
@@ -148,9 +154,52 @@ function MapComponent() {
         setError('Failed to load Google Maps.');
       }
     }
+    initMap();  // Initialize the map once on mount
+  }, []);  // Empty array to ensure this only runs once
 
-    initMap();
-  }, []);  //Empty array ensures this effect runs only once when the component mounts
+
+  //Constantly updates centre of map for user location
+  useEffect(() => {
+    if (mapInstanceRef.current && userLocation) {
+      //Center the map on the user's location 
+      mapInstanceRef.current.setCenter(userLocation);
+
+      // Remove existing user marker if it exists
+      if (userMarkerRef.current) {
+        userMarkerRef.current.setMap(null);
+      }
+
+      // Define custom icon for the user marker
+      const userIcon = {
+        url: 'images/userMarker.png',  // Path to your custom user icon image
+        scaledSize: new window.google.maps.Size(40, 40), // Adjust size as needed
+      };
+
+      userMarkerRef.current = new window.google.maps.Marker({
+        position: userLocation,
+        map: mapInstanceRef.current,
+        icon: userIcon,
+      });
+
+    }
+  }, [userLocation]);  //Only re-runs when user moves
+
+  //If browser supports geolocation, ask for user location
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.warn("Sorry, your location is needed for this experience");
+        }
+      );
+    }
+  }, []);  // Empty array to run this only once
 
   if (error) {
     return <div>{error}</div>; //Display error if loading fails
