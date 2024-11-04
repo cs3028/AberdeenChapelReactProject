@@ -54,6 +54,7 @@ function MapComponent() {
   const [error, setError] = useState(null);
   const testInfoWindowRef = useRef(null);  //Creates a reference for the InfoWindow to track state
   const [userLocation, setUserLocation] = useState(center); //Create variable to track user location
+  const [heading, setHeading] = useState(null);  //Creates state for users device orientation
   const userMarkerRef = useRef(null);  //Reference for the user location icon
 
   useEffect(() => {
@@ -158,21 +159,21 @@ function MapComponent() {
   }, []);  // Empty array to ensure this only runs once
 
 
-  //Constantly updates centre of map for user location
+  //Use Effect to Constantly update centre of the map for user's location
   useEffect(() => {
     if (mapInstanceRef.current && userLocation) {
-      //Center the map on the user's location 
+      //Centers the map on the user's location 
       mapInstanceRef.current.setCenter(userLocation);
 
-      // Remove existing user marker if it exists
+      //Removes existing user marker if it exists
       if (userMarkerRef.current) {
         userMarkerRef.current.setMap(null);
       }
 
-      // Define custom icon for the user marker
+      //Define custom icon for the user marker
       const userIcon = {
-        url: 'images/userMarker.png',  // Path to your custom user icon image
-        scaledSize: new window.google.maps.Size(40, 40), // Adjust size as needed
+        url: 'images/userMarker.png',  
+        scaledSize: new window.google.maps.Size(40, 40), 
       };
 
       userMarkerRef.current = new window.google.maps.Marker({
@@ -184,7 +185,7 @@ function MapComponent() {
     }
   }, [userLocation]);  //Only re-runs when user moves
 
-  //If browser supports geolocation, ask for user location
+  //Use effect to check if browser supports geolocation, ask for user location
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -200,6 +201,26 @@ function MapComponent() {
       );
     }
   }, []);  // Empty array to run this only once
+
+  //Use effect listens for device orientation events for heading updates
+  useEffect(() => {
+    function handleOrientation(event) {
+      //Use of `event.alpha` to get heading, normalized between 0 - 360 degrees
+      if (event.alpha !== null) {
+        setHeading(event.alpha);
+      }
+    }
+
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', handleOrientation, true);
+    } else {
+      console.warn("Device orientation not supported.");
+    }
+
+    return () => {
+      window.removeEventListener('deviceorientation', handleOrientation);
+    };
+  }, []);
 
   if (error) {
     return <div>{error}</div>; //Display error if loading fails
