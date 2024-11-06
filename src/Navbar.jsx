@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
 const Navbar = () => {
-    const [isNavMenuOpen, setNavMenuOpen] = useState(false); // State to toggle mobile menu
+
+    const [isNavMenuOpen, setNavMenuOpen] = useState(false);
+
     const navMenu = [
         { label: 'Study', link: '#study' },
         { label: 'About', link: '#about' },
@@ -12,15 +14,18 @@ const Navbar = () => {
     ];
 
     const toggleNavMenu = () => {
-        setNavMenuOpen(!isNavMenuOpen);
+
+        setNavMenuOpen(prevState => !prevState);  // Toggle the menu state
     };
 
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-                <img src="/images/logo.png" alt="University of Aberdeen" />
+
+                <img src="/images/UoA2.png" alt="University of Aberdeen" />
             </div>
-    
+
+
             <ul className="navbar-links">
                 {navMenu.map((item, index) => (
                     <li key={index}><a href={item.link}>{item.label}</a></li>
@@ -30,21 +35,26 @@ const Navbar = () => {
                 </div>
             </ul>
 
-            
+
             <div className="menu-icon" onClick={toggleNavMenu}>
                 <span className="menu-icon-bar"></span>
                 <span className="menu-icon-bar"></span>
                 <span className="menu-icon-bar"></span>
             </div>
 
-            
-            <ul className={`navbar-links mobile ${isNavMenuOpen ? 'active' : ''}`}>
-                {navMenu.map((item, index) => (
-                    <li key={index}>
-                        <a href={item.link}>{item.label}</a>
-                    </li>
-                ))}
-            </ul>
+            {/* Conditionally render the mobile menu */}
+            {isNavMenuOpen && (
+                <ul className="navbar-links mobile active">
+                    {navMenu.map((item, index) => (
+                        <li key={index}>
+                            <a href={item.link} onClick={toggleNavMenu}>
+                                {item.label}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            )}
+
         </nav>
     );
 };
