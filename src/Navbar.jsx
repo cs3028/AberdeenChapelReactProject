@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const Navbar = () => {
     const [isNavMenuOpen, setNavMenuOpen] = useState(false);
+
     const navMenu = [
         { label: 'Study', link: '#study' },
         { label: 'About', link: '#about' },
@@ -12,7 +13,7 @@ const Navbar = () => {
     ];
 
     const toggleNavMenu = () => {
-        setNavMenuOpen(!isNavMenuOpen);
+        setNavMenuOpen(prevState => !prevState);  // Toggle the menu state
     };
 
     return (
@@ -30,20 +31,25 @@ const Navbar = () => {
                 </div>
             </ul>
 
+            {/*Hamburger icon toggles the menu*/}
             <div className="menu-icon" onClick={toggleNavMenu}>
                 <span className="menu-icon-bar"></span>
                 <span className="menu-icon-bar"></span>
                 <span className="menu-icon-bar"></span>
             </div>
 
-            {/* Corrected the mobile navbar class */}
-            <ul className={`navbar-links mobile ${isNavMenuOpen ? 'active' : ''}`}>
-                {navMenu.map((item, index) => (
-                    <li key={index}>
-                        <a href={item.link}>{item.label}</a>
-                    </li>
-                ))}
-            </ul>
+            {/* Conditionally render the mobile menu */}
+            {isNavMenuOpen && (
+                <ul className="navbar-links mobile active">
+                    {navMenu.map((item, index) => (
+                        <li key={index}>
+                            <a href={item.link} onClick={toggleNavMenu}>
+                                {item.label}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </nav>
     );
 };
