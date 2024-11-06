@@ -1,13 +1,16 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-logo">
                
-               <img src="/images/logo.png" alt="University of Aberdeen" />
+             <Link to="/"><img src="/images/logo.png" alt="University of Aberdeen" /></Link>
             </div>
             <ul className="navbar-links">
-                <li><a href="#study">Study</a></li>
-                <li><a href="#about">About</a></li>
+                <li><Link to="/info">Info</Link></li>
+                <li><Link to="/about">About</Link></li>
                 <li><a href="#research">Research</a></li>
                 <li><a href="#alumni">Alumni & Giving</a></li>
                 <li><a href="#business">Business</a></li>
@@ -18,6 +21,6 @@ const Navbar = () => {
             </div>
         </nav>
     );
-};
+}
 
 export default Navbar;
