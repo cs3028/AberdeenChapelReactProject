@@ -59,8 +59,8 @@ code {
   background-color: transparent;
   color: white;
   border-radius: 30%; 
-  border: 1px solid white;
-  padding: 5px 10px;
+  border: 1px solid black;
+  padding: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -73,17 +73,8 @@ code {
 
 /* hamburger icon (for mobile) */
 .menu-icon {
-  display: flex;
-  cursor: pointer;
-  flex-direction: column;
-  gap: 5px;
-  position: absolute;
-  right: 5%; 
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 10px; /* Increases the clickable area around the icon */
-  /*border-radius: 50%; /* Optional: gives a circular clickable area */
-  background-color: transparent; /* Keeps it invisible */
+  display : none;
+  
 }
 
 .menu-icon-bar {
@@ -94,16 +85,13 @@ code {
   border-radius: 5px;
 }
 
-.menu-icon:hover .menu-icon-bar {
+.menu-icon:hover {
   background-color: #c0c0c0;
 }
 
 /* navbar links for mobile users  */
-/* Navbar links for mobile users */
-/* Navbar links for mobile users */
-/* Navbar links for mobile users */
 .navbar-links.mobile {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 20px;
   position: fixed;
@@ -111,10 +99,10 @@ code {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: white; /* Black background */
+  background-color: white;
   padding: 20px;
-  padding-top: 60px; /* Adjust this value to move links down */
-  z-index: 10;  
+  padding-top: 80px; /* Adjust this value to move links down */
+  z-index: 100;  
   opacity: 0; /* Start hidden */
   transform: translateY(0px); /* Start slightly above */
   transition: opacity 0.2s ease, transform 0.9s ease; /* Smooth transition */
@@ -126,7 +114,7 @@ code {
   opacity: 1;
   transform: translateY(0); /* Slide down */
 }
-.navbar-links.mobile.exiting {
+.navbar-links.mobile.exiting { 
   opacity: 0;
   transform: translateY(0px); /* Slide up for exit */
 }
@@ -165,9 +153,18 @@ code {
   .navbar-links:not(.mobile) {
     display: none; 
   }
+
   .menu-icon{
-    display : flex;
+    position: fixed;
+    display :flex ;
+    top: 20px; 
+    right: 20px;
+    z-index: 110; 
+    cursor: pointer;
+    flex-direction : column;
+    gap : 5px;
   }
+
   .navbar-logo img {
     height: 12; /* adjusted for smaller screens */
   }

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 
 const Navbar = () => {
-    const [isNavMenuOpen, setNavMenuOpen] = useState(false); // State to toggle mobile menu
-    const [isExiting, setExiting] = useState(false); // State for slide-out animation
-
+    const [isNavMenuOpen, setNavMenuOpen] = useState(false);
     const navMenu = [
         { label: 'Study', link: '#study' },
         { label: 'About', link: '#about' },
@@ -14,23 +12,15 @@ const Navbar = () => {
     ];
 
     const toggleNavMenu = () => {
-        if (isNavMenuOpen) {
-            setExiting(true); // Trigger slide-out animation
-            setTimeout(() => {
-                setNavMenuOpen(false);
-                setExiting(false); // Reset for next opening
-            }, 300); // Match this timeout to the CSS transition duration
-        } else {
-            setNavMenuOpen(true); // Show menu immediately
-        }
+        setNavMenuOpen(!isNavMenuOpen);
     };
 
     return (
-        <nav className="navbar" style={{ marginBottom: '25px' }}>
+        <nav className="navbar">
             <div className="navbar-logo">
                 <img src="/images/UoA2.png" alt="University of Aberdeen" />
             </div>
-    
+
             <ul className="navbar-links">
                 {navMenu.map((item, index) => (
                     <li key={index}><a href={item.link}>{item.label}</a></li>
@@ -46,9 +36,8 @@ const Navbar = () => {
                 <span className="menu-icon-bar"></span>
             </div>
 
-            {/* Mobile Menu */}
-            <ul className={`navbar-links mobile ${isNavMenuOpen ? 'active' : ''} ${isExiting ? 'exiting' : ''}`}>
-                <button className="close-button" onClick={toggleNavMenu}><img src="/images/X.png" alt="Close" /></button>
+            {/* Corrected the mobile navbar class */}
+            <ul className={`navbar-links mobile ${isNavMenuOpen ? 'active' : ''}`}>
                 {navMenu.map((item, index) => (
                     <li key={index}>
                         <a href={item.link}>{item.label}</a>
