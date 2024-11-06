@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const Navbar = () => {
+
     const [isNavMenuOpen, setNavMenuOpen] = useState(false);
 
     const navMenu = [
@@ -13,14 +14,17 @@ const Navbar = () => {
     ];
 
     const toggleNavMenu = () => {
+
         setNavMenuOpen(prevState => !prevState);  // Toggle the menu state
     };
 
     return (
         <nav className="navbar">
             <div className="navbar-logo">
+
                 <img src="/images/UoA2.png" alt="University of Aberdeen" />
             </div>
+
 
             <ul className="navbar-links">
                 {navMenu.map((item, index) => (
@@ -31,7 +35,7 @@ const Navbar = () => {
                 </div>
             </ul>
 
-            {/*Hamburger icon toggles the menu*/}
+
             <div className="menu-icon" onClick={toggleNavMenu}>
                 <span className="menu-icon-bar"></span>
                 <span className="menu-icon-bar"></span>
@@ -50,6 +54,7 @@ const Navbar = () => {
                     ))}
                 </ul>
             )}
+
         </nav>
     );
 };
