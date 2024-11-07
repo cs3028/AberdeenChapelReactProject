@@ -119,7 +119,6 @@ function MapComponent() {
         title: 'Test Marker',          // Tooltip title when hovering over the marker
         icon: customIcon,
         });
-
         //Define the testInfoWindow content
         const testInfoWindowContent = `
           <div style="font-size: 14px; color: black;">
@@ -172,8 +171,12 @@ function MapComponent() {
 
       //Define custom icon for the user marker
       const userIcon = {
-        url: 'images/userMarker.png',  
-        scaledSize: new window.google.maps.Size(40, 40), 
+        path: window.google.maps.SymbolPath.CIRCLE,
+          fillColor: "#4285F4",  // Google's blue color
+          fillOpacity: 1,
+          scale: 10,
+          strokeColor: "#ffffff",
+          strokeWeight: 2,
       };
 
       userMarkerRef.current = new window.google.maps.Marker({
