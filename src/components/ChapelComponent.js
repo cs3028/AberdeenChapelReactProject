@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-
-// Define container size and style for the map
+//Define container size and style for the map
 const containerStyle = {
   width: '90%',
   height: '540px',
@@ -10,7 +9,7 @@ const containerStyle = {
   borderRadius: '30px',
 };
 
-//Set the default center location (latitude and longitude)
+//Set the center location of the Chapel
 const center = {
   lat: 57.164154,  
   lng: -2.101510, 
@@ -18,16 +17,16 @@ const center = {
 
 //Coordinates to isolate the Chapel
 const bounds = {
-  north: 57.164415, //North latitude boundary
-  south: 57.163648, //South latitude boundary
-  east: -2.100420,  //East longitude boundary
-  west:  -2.102165,  //West longitude boundary
+  north: 57.164415, // North latitude boundary
+  south: 57.163648, // South latitude boundary
+  east: -2.100420,  // East longitude boundary
+  west: -2.102165,  // West longitude boundary
 };
 
-// Coordinates for the test marker
+//Coordinates for test marker
 const testMarkerPosition = {
-  lat: 57.164154,  //Latitude for marker
-  lng: -2.101510,  //Longitude for marker
+  lat: 57.164154,  // Latitude for marker
+  lng: -2.101510,  // Longitude for marker
 };
 
 //Function to load all needed Google Maps script
@@ -41,24 +40,23 @@ function loadGoogleMapsScript(apiKey) {
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
     script.async = true;
-    script.onerror = () => reject(new Error('Google Maps script could not be loaded.'));
-    script.onload = () => resolve();
     script.defer = true; //Fix to ensure script loads in order
+    script.onload = () => resolve();
     script.onerror = () => reject(new Error('Google Maps script could not be loaded.'));
     document.head.appendChild(script);
   });
 }
 
-//Main Map Component
+// Main Map Component
 function MapComponent() {
   const mapRef = useRef(null);
-  const mapInstanceRef = useRef(null);  //Create variable to store state of user location
+  const mapInstanceRef = useRef(null);  //Creates variable to store state of user location
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
   const testInfoWindowRef = useRef(null);  //Creates a reference for the InfoWindow to track state
-  const [userLocation, setUserLocation] = useState(center); //Create variable to track user location
-  const [heading, setHeading] = useState(null);  //Creates state for users device orientation
-  const userMarkerRef = useRef(null);  //Reference for the user location icon
+  const [userLocation, setUserLocation] = useState(center); //Creates variable to track user location
+  const [heading, setHeading] = useState(null);  //Creates state for user's device orientation
+  const userMarkerRef = useRef(null);  // Reference for the user location icon
 
   useEffect(() => {
     async function initMap() {
@@ -71,22 +69,17 @@ function MapComponent() {
           throw new Error('Google Maps not available');
         }
 
-        // Define the restricted bounds using the chapel coordinates
+        //Defines the restricted bounds using the chapel coordinates
         const chapelBounds = new window.google.maps.LatLngBounds(
           { lat: bounds.south, lng: bounds.west },  
           { lat: bounds.north, lng: bounds.east }  
         );
 
-        //Initializes the map with the restriction options
+        //Initialises the map with the restriction options
         const map = new window.google.maps.Map(mapRef.current, {
           center: userLocation,
           zoom: 16,     
-          //restriction: {
-            //latLngBounds: chapelBounds, 
-            //strictBounds: true,       
-          //},
-
-          //Gets rid of points of interest
+          disableDefaultUI: true,
           styles: [
             {
               featureType: 'poi',
@@ -104,25 +97,24 @@ function MapComponent() {
               stylers: [{ visibility: 'off' }],
             },
           ],
-          disableDefaultUI: true,
         });
 
         mapInstanceRef.current = map;
         
-        //Creation of custom icon for markers
+        //Custom icon for marker
         const customIcon = {
           url: 'images/StainedWindowNoBackground.png',
-          scaledSize: new window.google.maps.Size(50, 50), // Size of the icon (optional)
+          scaledSize: new window.google.maps.Size(50, 50),
         };
 
         //Adds the test marker to the map
         const marker = new window.google.maps.Marker({
-        position: testMarkerPosition,  // Position of the marker (same as chapel center)
-        map: map,                      // Attach the marker to the map
-        title: 'Test Marker',          // Tooltip title when hovering over the marker
-        icon: customIcon,
+          position: testMarkerPosition,
+          map: map,
+          title: 'Test Marker',
+          icon: customIcon,
         });
-        //Define the testInfoWindow content
+
         const testInfoWindowContent = `
           <div style="font-size: 14px; color: black;">
             <img src="images/InsideChapelWindow.webp" height=200px >
@@ -132,57 +124,49 @@ function MapComponent() {
           </div>
         `;
 
-        //Creation of a test InfoWindow
         const testInfoWindow = new window.google.maps.InfoWindow({
           content: testInfoWindowContent,
         });
 
-        // Add a click event listener to open the InfoWindow on marker click
         marker.addListener('click', () => {
           testInfoWindow.open(map, marker);
         });
-        testInfoWindowRef.current = testInfoWindow;  //Store the InfoWindow in the ref
+        testInfoWindowRef.current = testInfoWindow;
 
-        // Add a click event listener on the map to close the InfoWindow when clicking anywhere on the map
         map.addListener('click', () => {
           if (testInfoWindowRef.current) {
             testInfoWindowRef.current.close();
           }
         });
 
-
-        setIsLoaded(true);  //Set the map as loaded
+        setIsLoaded(true);
       } catch (error) {
         console.error('Failed to load Google Maps:', error);
         setError('Failed to load Google Maps.');
       }
     }
-    initMap();  // Initialize the map once on mount
-  }, []);  // Empty array to ensure this only runs once
+    initMap();
+  }, []);
 
-
-  //Use Effect to Constantly update centre of the map for user's location
+  //Updates map center based on user's location
   useEffect(() => {
     if (mapInstanceRef.current && userLocation) {
-      //Centers the map on the user's location 
       mapInstanceRef.current.setCenter(userLocation);
 
-      //Removes existing user marker if it exists
       if (userMarkerRef.current) {
         userMarkerRef.current.setMap(null);
       }
 
-      //Define custom icon for the user marker
+      //Customer pointer user icon
       const userIcon = {
-        
         path: `M 0,-15 L 8,10 L 0,3 L -8,10 Z M 0,-10 L 4,5 L 0,2 L -4,5 Z`,
-        fillColor: '#000000',      // Blue color for the circle
-        fillOpacity: 1,     
-        scale: 1,                // Scaling factor
-        strokeColor: '#000000',    // White border around the circle
+        fillColor: '#000000',
+        fillOpacity: 1,
+        scale: 1,
+        strokeColor: '#000000',
         strokeWeight: 1,
-        rotation: heading || 0,    // Rotate the cone based on heading
-        anchor: new window.google.maps.Point(0, 0), // Center the icon
+        rotation: heading || 0,
+        anchor: new window.google.maps.Point(0, 0),
       };
 
       userMarkerRef.current = new window.google.maps.Marker({
@@ -190,11 +174,10 @@ function MapComponent() {
         map: mapInstanceRef.current,
         icon: userIcon,
       });
-
     }
-  }, [userLocation, heading]);  //Only re-runs when user moves
+  }, [userLocation, heading]);
 
-  //Use effect to check if browser supports geolocation, ask for user location
+  //Requests user location and updates the state
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -204,27 +187,39 @@ function MapComponent() {
             lng: position.coords.longitude,
           });
         },
-        (error) => {
+        () => {
           console.warn("Sorry, your location is needed for this experience");
         }
       );
     }
-  }, []);  // Empty array to run this only once
+  }, []);
 
-  //Use effect listens for device orientation events for heading updates
+  //Listens for device orientation and request permission on iOS specifically
   useEffect(() => {
     function handleOrientation(event) {
-      //Use of `event.alpha` to get heading, normalized between 0 - 360 degrees
       if (event.alpha !== null) {
         setHeading(event.alpha);
       }
     }
 
-    if (window.DeviceOrientationEvent) {
-      window.addEventListener('deviceorientation', handleOrientation, true);
-    } else {
-      console.warn("Device orientation not supported.");
+    //Requests users device orientation
+    async function requestPermission() {
+      if (
+        typeof DeviceOrientationEvent !== 'undefined' &&
+        typeof DeviceOrientationEvent.requestPermission === 'function'
+      ) {
+        const permission = await DeviceOrientationEvent.requestPermission();
+        if (permission === 'granted') {
+          window.addEventListener('deviceorientation', handleOrientation, true);
+        } else {
+          console.warn('Device orientation permission denied.');
+        }
+      } else {
+        window.addEventListener('deviceorientation', handleOrientation, true);
+      }
     }
+
+    requestPermission();
 
     return () => {
       window.removeEventListener('deviceorientation', handleOrientation);
@@ -232,13 +227,13 @@ function MapComponent() {
   }, []);
 
   if (error) {
-    return <div>{error}</div>; //Display error if loading fails
+    return <div>{error}</div>;
   }
 
   return (
     <div>
-      {!isLoaded && <p>Loading map...</p>} {/* Show loading message */}
-      <div ref={mapRef} style={containerStyle} /> {/* Map container */}
+      {!isLoaded && <p>Loading map...</p>}
+      <div ref={mapRef} style={containerStyle} />
     </div>
   );
 }
