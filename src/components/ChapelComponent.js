@@ -45,13 +45,6 @@ function loadGoogleMapsScript(apiKey) {
     script.onload = () => resolve();
     script.defer = true; //Fix to ensure script loads in order
     script.onerror = () => reject(new Error('Google Maps script could not be loaded.'));
-    script.onload = () => {
-      if (window.google && window.google.maps) {
-        resolve();
-      } else {
-        reject(new Error('Google Maps did not fully load.'));
-      }
-    };
     document.head.appendChild(script);
   });
 }
@@ -181,12 +174,15 @@ function MapComponent() {
 
       //Define custom icon for the user marker
       const userIcon = {
-        path: window.google.maps.SymbolPath.CIRCLE,
-          fillColor: "#4285F4",  // Google's blue color
-          fillOpacity: 1,
-          scale: 10,
-          strokeColor: "#ffffff",
-          strokeWeight: 2,
+        
+        path: `M 0,-15 L 8,10 L 0,3 L -8,10 Z M 0,-10 L 4,5 L 0,2 L -4,5 Z`,
+        fillColor: '#000000',      // Blue color for the circle
+        fillOpacity: 1,     
+        scale: 1,                // Scaling factor
+        strokeColor: '#000000',    // White border around the circle
+        strokeWeight: 1,
+        rotation: heading || 0,    // Rotate the cone based on heading
+        anchor: new window.google.maps.Point(0, 0), // Center the icon
       };
 
       userMarkerRef.current = new window.google.maps.Marker({
@@ -196,7 +192,7 @@ function MapComponent() {
       });
 
     }
-  }, [userLocation]);  //Only re-runs when user moves
+  }, [userLocation, heading]);  //Only re-runs when user moves
 
   //Use effect to check if browser supports geolocation, ask for user location
   useEffect(() => {
