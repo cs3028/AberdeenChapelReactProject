@@ -43,6 +43,15 @@ function loadGoogleMapsScript(apiKey) {
     script.async = true;
     script.onerror = () => reject(new Error('Google Maps script could not be loaded.'));
     script.onload = () => resolve();
+    script.defer = true; //Fix to ensure script loads in order
+    script.onerror = () => reject(new Error('Google Maps script could not be loaded.'));
+    script.onload = () => {
+      if (window.google && window.google.maps) {
+        resolve();
+      } else {
+        reject(new Error('Google Maps did not fully load.'));
+      }
+    };
     document.head.appendChild(script);
   });
 }
