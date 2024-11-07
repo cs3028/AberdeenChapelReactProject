@@ -118,7 +118,7 @@ function MapComponent() {
         
         //Creation of custom icon for markers
         const customIcon = {
-          url: 'images/Car.png',
+          url: 'images/StainedWindowNoBackground.png',
           scaledSize: new window.google.maps.Size(50, 50), // Size of the icon (optional)
         };
 
@@ -132,10 +132,10 @@ function MapComponent() {
         //Define the testInfoWindow content
         const testInfoWindowContent = `
           <div style="font-size: 14px; color: black;">
-            <img src="images/Car.png" height=30px >
-            <h3>Cool Mclaren I Found</h3>
-            <p>Test Marker Test Marker</p>
-            <a href="./app.js">Click Here</a>
+            <img src="images/InsideChapelWindow.webp" height=200px >
+            <h3>The Chapel's Amazing Stained Glass Windows</h3>
+            <p>(Short Description of Marker Information)</p>
+            <a href="./app.js">Click Here For More Information</a>
           </div>
         `;
 
