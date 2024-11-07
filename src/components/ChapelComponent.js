@@ -34,7 +34,7 @@ function loadGoogleMapsScript(apiKey) {
     }
 
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.49&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap&libraries=places`;
     script.async = false;
     script.onload = () => resolve();
     script.onerror = () => reject(new Error('Google Maps script could not be loaded.'));
