@@ -57,6 +57,7 @@ function MapComponent() {
   const [userLocation, setUserLocation] = useState(center); //Creates variable to track user location
   const [heading, setHeading] = useState(null);  //Creates state for user's device orientation
   const userMarkerRef = useRef(null);  // Reference for the user location icon
+  const [permissionGranted, setPermissionGranted] = useState(false);
 
   useEffect(() => {
     async function initMap() {
@@ -194,33 +195,38 @@ function MapComponent() {
     }
   }, []);
 
-  //Listens for device orientation and request permission on iOS specifically
-  useEffect(() => {
-    function handleOrientation(event) {
-      if (event.alpha !== null) {
-        setHeading(event.alpha);
-      }
-    }
-
-    //Requests users device orientation
-    async function requestPermission() {
-      if (
-        typeof DeviceOrientationEvent !== 'undefined' &&
-        typeof DeviceOrientationEvent.requestPermission === 'function'
-      ) {
+  //Handles device orientation permission request
+  const handlePermissionRequest = async () => {
+    if (
+      typeof DeviceOrientationEvent !== 'undefined' &&
+      typeof DeviceOrientationEvent.requestPermission === 'function'
+    ) {
+      try {
         const permission = await DeviceOrientationEvent.requestPermission();
         if (permission === 'granted') {
+          setPermissionGranted(true);
           window.addEventListener('deviceorientation', handleOrientation, true);
         } else {
           console.warn('Device orientation permission denied.');
         }
-      } else {
-        window.addEventListener('deviceorientation', handleOrientation, true);
+      } catch (error) {
+        console.error('Error requesting device orientation permission:', error);
       }
+    } else {
+      setPermissionGranted(true);
+      window.addEventListener('deviceorientation', handleOrientation, true);
     }
+  };
 
-    requestPermission();
+  //Handle orientation event
+  const handleOrientation = (event) => {
+    if (event.alpha !== null) {
+      setHeading(event.alpha);
+    }
+  };
 
+  //Cleanup orientation listener
+  useEffect(() => {
     return () => {
       window.removeEventListener('deviceorientation', handleOrientation);
     };
@@ -233,6 +239,9 @@ function MapComponent() {
   return (
     <div>
       {!isLoaded && <p>Loading map...</p>}
+      {!permissionGranted && (
+        <button onClick={handlePermissionRequest}>Enable Compass</button>
+      )}
       <div ref={mapRef} style={containerStyle} />
     </div>
   );
