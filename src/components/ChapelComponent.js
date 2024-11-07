@@ -125,7 +125,9 @@ function MapComponent() {
   };
 
   useEffect(() => {
-    window.initMap = initMap; // Set the global callback function for the Google Maps script
+    window.initMap = () => {
+      setTimeout(initMap, 100); // Delay map initialization by 100ms
+    };
     loadGoogleMapsScript(process.env.REACT_APP_GOOGLE_MAPS_API_KEY).catch((error) => {
       console.error('Failed to load Google Maps:', error);
       setError('Failed to load Google Maps.');
