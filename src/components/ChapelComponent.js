@@ -205,7 +205,8 @@ function MapComponent() {
 
   const handleOrientation = (event) => {
     if (event.alpha !== null) {
-      setHeading(event.alpha);
+      const correctedHeading = 360 - event.alpha;
+      setHeading(correctedHeading);
     }
   };
 
