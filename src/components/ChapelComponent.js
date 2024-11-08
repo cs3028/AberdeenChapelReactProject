@@ -67,7 +67,7 @@ function MapComponent() {
 
     const map = new window.google.maps.Map(mapRef.current, {
       center: center,
-      zoom: 16,
+      zoom: 10,
       disableDefaultUI: true,
       restriction: {
         latLngBounds: chapelBounds, 
