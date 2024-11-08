@@ -18,6 +18,15 @@ const testMarkerPosition = {
   lng: -2.101510,
 };
 
+//Coordinates to isolate the Chapel
+const bounds = {
+  north: 57.164415, //North latitude boundary
+  south: 57.163648, //South latitude boundary
+  east: -2.100420,  //East longitude boundary
+  west:  -2.102165,  //West longitude boundary
+};
+
+
 // Function to load Google Maps script with callback
 function loadGoogleMapsScript(apiKey) {
   return new Promise((resolve, reject) => {
@@ -42,7 +51,6 @@ function MapComponent() {
   const [error, setError] = useState(null);
   const [userLocation, setUserLocation] = useState(center);
   const [heading, setHeading] = useState(0);
-  const [initialOrientationOffset, setInitialOrientationOffset] = useState(null);
   const userMarkerRef = useRef(null);
 
   const initMap = () => {
@@ -51,10 +59,20 @@ function MapComponent() {
       return;
     }
 
+    // Define the restricted bounds using the chapel coordinates
+    const chapelBounds = new window.google.maps.LatLngBounds(
+      { lat: bounds.south, lng: bounds.west },  
+      { lat: bounds.north, lng: bounds.east }  
+    );
+
     const map = new window.google.maps.Map(mapRef.current, {
-      center: userLocation,
+      center: center,
       zoom: 16,
       disableDefaultUI: true,
+      restriction: {
+        latLngBounds: chapelBounds, 
+        strictBounds: true,       
+      },
       styles: [
         {
           featureType: 'poi',
@@ -167,14 +185,7 @@ function MapComponent() {
 
   const handleOrientation = (event) => {
     if (event.alpha !== null) {
-      const deviceOrientation = event.alpha;
-
-      if (initialOrientationOffset === null) {
-        setInitialOrientationOffset(deviceOrientation);
-      }
-
-      const adjustedHeading = (360 + deviceOrientation - initialOrientationOffset) % 360;
-      setHeading(adjustedHeading);
+      setHeading(360 - event.alpha); // Adjust heading for true north
     }
   };
 
