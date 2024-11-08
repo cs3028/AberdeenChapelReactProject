@@ -42,6 +42,7 @@ function MapComponent() {
   const [error, setError] = useState(null);
   const [userLocation, setUserLocation] = useState(center);
   const [heading, setHeading] = useState(0);
+  const [initialOrientationOffset, setInitialOrientationOffset] = useState(null);
   const userMarkerRef = useRef(null);
 
   const initMap = () => {
@@ -166,7 +167,14 @@ function MapComponent() {
 
   const handleOrientation = (event) => {
     if (event.alpha !== null) {
-      setHeading(360 - event.alpha); // Adjust heading for true north
+      const deviceOrientation = event.alpha;
+
+      if (initialOrientationOffset === null) {
+        setInitialOrientationOffset(deviceOrientation);
+      }
+
+      const adjustedHeading = (360 + deviceOrientation - initialOrientationOffset) % 360;
+      setHeading(adjustedHeading);
     }
   };
 
