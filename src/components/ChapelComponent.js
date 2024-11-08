@@ -51,7 +51,7 @@ function MapComponent() {
   const [userLocation, setUserLocation] = useState(center);
   const [heading, setHeading] = useState(null);
   const userMarkerRef = useRef(null);
-  const [permissionGranted, setPermissionGranted] = useState(false);
+  //const [permissionGranted, setPermissionGranted] = useState(false);
 
   //Separate function to initialize the map
   const initMap = () => {
@@ -181,26 +181,28 @@ function MapComponent() {
     }
   }, []);
 
-  useEffect(() => {
-    const requestPermissionAndSetupOrientation = async () => {
-      if (
-        typeof DeviceOrientationEvent !== 'undefined' &&
-        typeof DeviceOrientationEvent.requestPermission === 'function'
-      ) {
-        try {
-          const permission = await DeviceOrientationEvent.requestPermission();
-          if (permission === 'granted') {
-            window.addEventListener('deviceorientation', handleOrientation, true);
-          }
-        } catch (error) {
-          console.error('Error requesting device orientation permission:', error);
+  const requestDeviceOrientationPermission = async () => {
+    if (
+      typeof DeviceOrientationEvent !== 'undefined' &&
+      typeof DeviceOrientationEvent.requestPermission === 'function'
+    ) {
+      try {
+        const permission = await DeviceOrientationEvent.requestPermission();
+        if (permission === 'granted') {
+          window.addEventListener('deviceorientation', handleOrientation, true);
+        } else {
+          console.warn('Device orientation permission denied.');
         }
-      } else {
-        window.addEventListener('deviceorientation', handleOrientation, true);
+      } catch (error) {
+        console.error('Error requesting device orientation permission:', error);
       }
-    };
+    } else {
+      window.addEventListener('deviceorientation', handleOrientation, true);
+    }
+  };
 
-    requestPermissionAndSetupOrientation();
+  useEffect(() => {
+    requestDeviceOrientationPermission();
 
     return () => {
       window.removeEventListener('deviceorientation', handleOrientation);
