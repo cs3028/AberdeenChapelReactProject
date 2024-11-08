@@ -1,12 +1,20 @@
 import React from 'react';
-import MapComponent from './components/ChapelComponent'; // Adjust the path as necessary
+import MapComponent from './components/ChapelComponent';
 import Navbar from './Navbar';
+import './App.css';
+import ARViewer from './components/ar'; // Ensure the ARViewer component is imported correctly
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <MapComponent />
+
+      {/* AR Component Section */}
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <h2>Augmented Reality Experience</h2>
+        <ARViewer /> {/* Replace placeholder with the actual ARViewer component */}
+      </div>
 
       {/* Footer segment below the map */}
       <div style={footerStyle}>
@@ -16,7 +24,6 @@ function App() {
         <div style={contentContainerStyle}>
           {/* Text Section */}
           <div style={textContainerStyle}>
-            {/* First section with tighter spacing */}
             <div style={tightSpacingStyle}>
               <p>University of Aberdeen</p>
               <p>King's College,</p>
@@ -24,7 +31,6 @@ function App() {
               <p style={postcodeStyle}>AB24 3FX</p>
             </div>
 
-            {/* Second section with normal spacing */}
             <div style={normalSpacingStyle}>
               <p>Tel: <span style={highlightStyle}>+44 (0)1224 272000</span></p>
               <p style={highlightStyle}>Contacts</p>
@@ -42,7 +48,8 @@ function App() {
   );
 }
 
-// Define footer styles
+// Define footer styles and other styles here as needed
+
 const footerStyle = {
   backgroundColor: '#272727',
   color: 'white',
@@ -55,53 +62,45 @@ const footerStyle = {
   paddingLeft: '20px',
 };
 
-// Define logo styles
 const logoStyle = {
   display: 'block',
   margin: '40px auto 30px',
   height: '50px',
 };
 
-// Define styles for content container to align text and image
 const contentContainerStyle = {
   display: 'flex',
-  flexDirection: 'column', // Stack items vertically
+  flexDirection: 'column',
   position: 'relative',
 };
 
-// Define style to shift only the text slightly to the right
 const textContainerStyle = {
-  marginLeft: '20px', // Shift text content to the right
+  marginLeft: '20px',
 };
 
-// Define tight line spacing for the first section
 const tightSpacingStyle = {
   lineHeight: '0.2',
 };
 
-// Define normal line spacing for the second section
 const normalSpacingStyle = {
   lineHeight: '1.0',
   marginTop: '10px',
 };
 
-// Define highlight color and bold style for specific text
 const highlightStyle = {
   color: '#FFD414',
   fontWeight: 600,
 };
 
-// Define specific spacing for postcode
 const postcodeStyle = {
   marginBottom: '25px',
 };
 
-// Define UK image styles for right alignment
 const ukImageStyle = {
   position: 'absolute',
   right: '20px',
-  top: '0px', // Adjust as needed for vertical position
-  height: '220px', // Adjust height as needed
+  top: '0px',
+  height: '220px',
   filter: 'grayscale(100%)',
 };
 
