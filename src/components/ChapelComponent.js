@@ -69,10 +69,10 @@ function MapComponent() {
       center: center,
       zoom: 10,
       disableDefaultUI: true,
-      restriction: {
-        latLngBounds: chapelBounds, 
-        strictBounds: true,       
-      },
+      //restriction: {
+        //latLngBounds: chapelBounds, 
+        //strictBounds: true,       
+      //},
       styles: [
         {
           featureType: 'poi',
