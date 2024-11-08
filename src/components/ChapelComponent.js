@@ -13,19 +13,12 @@ const center = {
   lng: -2.101510, 
 };
 
-const bounds = {
-  north: 57.164415, 
-  south: 57.163648, 
-  east: -2.100420,  
-  west: -2.102165,  
-};
-
 const testMarkerPosition = {
   lat: 57.164154,
   lng: -2.101510,
 };
 
-//Function to load Google Maps script with callback
+// Function to load Google Maps script with callback
 function loadGoogleMapsScript(apiKey) {
   return new Promise((resolve, reject) => {
     if (typeof window.google === 'object' && window.google.maps) {
@@ -47,13 +40,10 @@ function MapComponent() {
   const mapInstanceRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
-  const testInfoWindowRef = useRef(null);
   const [userLocation, setUserLocation] = useState(center);
-  const [heading, setHeading] = useState(null);
+  const [heading, setHeading] = useState(0);
   const userMarkerRef = useRef(null);
-  //const [permissionGranted, setPermissionGranted] = useState(false);
 
-  //Separate function to initialize the map
   const initMap = () => {
     if (!window.google || !window.google.maps) {
       setError('Google Maps not available');
@@ -97,36 +87,12 @@ function MapComponent() {
       icon: customIcon,
     });
 
-    const testInfoWindowContent = `
-      <div style="font-size: 14px; color: black;">
-        <img src="images/InsideChapelWindow.webp" height=200px >
-        <h3>The Chapel's Amazing Stained Glass Windows</h3>
-        <p>(Short Description of Marker Information)</p>
-        <a href="./app.js">Click Here For More Information</a>
-      </div>
-    `;
-
-    const testInfoWindow = new window.google.maps.InfoWindow({
-      content: testInfoWindowContent,
-    });
-
-    marker.addListener('click', () => {
-      testInfoWindow.open(map, marker);
-    });
-    testInfoWindowRef.current = testInfoWindow;
-
-    map.addListener('click', () => {
-      if (testInfoWindowRef.current) {
-        testInfoWindowRef.current.close();
-      }
-    });
-
     setIsLoaded(true);
   };
 
   useEffect(() => {
     window.initMap = () => {
-      setTimeout(initMap, 100); //Delay map initialization by 100ms for Safari Browser
+      setTimeout(initMap, 100); // Delay map initialization by 100ms
     };
     loadGoogleMapsScript(process.env.REACT_APP_GOOGLE_MAPS_API_KEY).catch((error) => {
       console.error('Failed to load Google Maps:', error);
@@ -134,7 +100,7 @@ function MapComponent() {
     });
 
     return () => {
-      window.initMap = undefined; //Cleanup the global callback after component unmounts
+      window.initMap = undefined;
     };
   }, []);
 
@@ -153,7 +119,7 @@ function MapComponent() {
         scale: 1,
         strokeColor: '#000000',
         strokeWeight: 1,
-        rotation: heading || 0,
+        rotation: heading,
         anchor: new window.google.maps.Point(0, 0),
       };
 
@@ -165,7 +131,7 @@ function MapComponent() {
     }
   }, [userLocation, heading]);
 
-  useEffect(() => {
+  const requestLocationAndOrientation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -174,49 +140,39 @@ function MapComponent() {
             lng: position.coords.longitude,
           });
         },
-        () => {
-          console.warn("Sorry, your location is needed for this experience");
+        (error) => {
+          console.warn("Location access is needed for this experience", error);
+          setError("Unable to retrieve location");
         }
       );
-    }
-  }, []);
-
-  const requestDeviceOrientationPermission = async () => {
-    if (
-      typeof DeviceOrientationEvent !== 'undefined' &&
-      typeof DeviceOrientationEvent.requestPermission === 'function'
-    ) {
-      try {
-        const permission = await DeviceOrientationEvent.requestPermission();
-        if (permission === 'granted') {
-          window.addEventListener('deviceorientation', handleOrientation, true);
-        } else {
-          console.warn('Device orientation permission denied.');
-        }
-      } catch (error) {
-        console.error('Error requesting device orientation permission:', error);
-      }
     } else {
-      window.addEventListener('deviceorientation', handleOrientation, true);
+      console.warn("Geolocation not supported");
+      setError("Geolocation not supported");
+    }
+
+    if (typeof DeviceOrientationEvent !== 'undefined' &&
+        typeof DeviceOrientationEvent.requestPermission === 'function') {
+      DeviceOrientationEvent.requestPermission()
+        .then((permissionState) => {
+          if (permissionState === 'granted') {
+            window.addEventListener('deviceorientation', handleOrientation);
+          }
+        })
+        .catch((error) => console.error("Device orientation permission denied", error));
+    } else {
+      window.addEventListener('deviceorientation', handleOrientation);
     }
   };
-
-  useEffect(() => {
-    requestDeviceOrientationPermission();
-
-    return () => {
-      window.removeEventListener('deviceorientation', handleOrientation);
-    };
-  }, []);
 
   const handleOrientation = (event) => {
-    if (event.absolute && event.alpha !== null) {
-      const correctedHeading = 360 - event.alpha;
-      setHeading(correctedHeading);
+    if (event.alpha !== null) {
+      setHeading(360 - event.alpha); // Adjust heading for true north
     }
   };
 
   useEffect(() => {
+    requestLocationAndOrientation();
+
     return () => {
       window.removeEventListener('deviceorientation', handleOrientation);
     };
