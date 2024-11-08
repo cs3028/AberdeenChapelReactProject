@@ -66,8 +66,8 @@ function MapComponent() {
     );
 
     const map = new window.google.maps.Map(mapRef.current, {
-      center: center,
-      zoom: 10,
+      center: userLocation,
+      zoom: 16,
       disableDefaultUI: true,
       //restriction: {
         //latLngBounds: chapelBounds, 
@@ -107,41 +107,41 @@ function MapComponent() {
     });
 
     //Adds the test marker to the map
-        const marker = new window.google.maps.Marker({
-        position: testMarkerPosition,  // Position of the marker (same as chapel center)
-        map: map,                      // Attach the marker to the map
-        title: 'Test Marker',          // Tooltip title when hovering over the marker
-        icon: customIcon,
-        });
-        //Define the testInfoWindow content
-        const testInfoWindowContent = `
-          <div style="font-size: 14px; color: black;">
-            <img src="images/Car.png" height=30px >
-            <h3>Cool Mclaren I Found</h3>
-            <p>Test Marker Test Marker</p>
-            <a href="./app.js">Click Here</a>
-          </div>
-        `;
+    const marker = new window.google.maps.Marker({
+    position: testMarkerPosition,  // Position of the marker (same as chapel center)
+    map: map,                      // Attach the marker to the map
+    title: 'Test Marker',          // Tooltip title when hovering over the marker
+    icon: customIcon,
+    });
+    //Define the testInfoWindow content
+    const testInfoWindowContent = `
+      <div style="font-size: 14px; color: black;">
+        <img src="images/Car.png" height=30px >
+        <h3>Cool Mclaren I Found</h3>
+        <p>Test Marker Test Marker</p>
+        <a href="./app.js">Click Here</a>
+      </div>
+    `;
 
-        //Creation of a test InfoWindow
-        const testInfoWindow = new window.google.maps.InfoWindow({
-          content: testInfoWindowContent,
-        });
+    //Creation of a test InfoWindow
+    const testInfoWindow = new window.google.maps.InfoWindow({
+      content: testInfoWindowContent,
+    });
 
-        // Add a click event listener to open the InfoWindow on marker click
-        marker.addListener('click', () => {
-          testInfoWindow.open(map, marker);
-        });
-        testInfoWindowRef.current = testInfoWindow;  //Store the InfoWindow in the ref
+    // Add a click event listener to open the InfoWindow on marker click
+    marker.addListener('click', () => {
+      testInfoWindow.open(map, marker);
+    });
+    testInfoWindowRef.current = testInfoWindow;  //Store the InfoWindow in the ref
 
-        // Add a click event listener on the map to close the InfoWindow when clicking anywhere on the map
-        map.addListener('click', () => {
-          if (testInfoWindowRef.current) {
-            testInfoWindowRef.current.close();
-          }
-        });
+    // Add a click event listener on the map to close the InfoWindow when clicking anywhere on the map
+    map.addListener('click', () => {
+      if (testInfoWindowRef.current) {
+        testInfoWindowRef.current.close();
+      }
+    });
 
-    setIsLoaded(true);
+  setIsLoaded(true);
   };
 
   useEffect(() => {
