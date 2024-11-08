@@ -126,7 +126,7 @@ function MapComponent() {
 
   useEffect(() => {
     window.initMap = () => {
-      setTimeout(initMap, 100); // Delay map initialization by 100ms
+      setTimeout(initMap, 100); //Delay map initialization by 100ms for Safari Browser
     };
     loadGoogleMapsScript(process.env.REACT_APP_GOOGLE_MAPS_API_KEY).catch((error) => {
       console.error('Failed to load Google Maps:', error);
@@ -134,7 +134,7 @@ function MapComponent() {
     });
 
     return () => {
-      window.initMap = undefined; // Cleanup the global callback after component unmounts
+      window.initMap = undefined; //Cleanup the global callback after component unmounts
     };
   }, []);
 
@@ -181,30 +181,34 @@ function MapComponent() {
     }
   }, []);
 
-  const handlePermissionRequest = async () => {
-    if (
-      typeof DeviceOrientationEvent !== 'undefined' &&
-      typeof DeviceOrientationEvent.requestPermission === 'function'
-    ) {
-      try {
-        const permission = await DeviceOrientationEvent.requestPermission();
-        if (permission === 'granted') {
-          setPermissionGranted(true);
-          window.addEventListener('deviceorientation', handleOrientation, true);
-        } else {
-          console.warn('Device orientation permission denied.');
+  useEffect(() => {
+    const requestPermissionAndSetupOrientation = async () => {
+      if (
+        typeof DeviceOrientationEvent !== 'undefined' &&
+        typeof DeviceOrientationEvent.requestPermission === 'function'
+      ) {
+        try {
+          const permission = await DeviceOrientationEvent.requestPermission();
+          if (permission === 'granted') {
+            window.addEventListener('deviceorientation', handleOrientation, true);
+          }
+        } catch (error) {
+          console.error('Error requesting device orientation permission:', error);
         }
-      } catch (error) {
-        console.error('Error requesting device orientation permission:', error);
+      } else {
+        window.addEventListener('deviceorientation', handleOrientation, true);
       }
-    } else {
-      setPermissionGranted(true);
-      window.addEventListener('deviceorientation', handleOrientation, true);
-    }
-  };
+    };
+
+    requestPermissionAndSetupOrientation();
+
+    return () => {
+      window.removeEventListener('deviceorientation', handleOrientation);
+    };
+  }, []);
 
   const handleOrientation = (event) => {
-    if (event.alpha !== null) {
+    if (event.absolute && event.alpha !== null) {
       const correctedHeading = 360 - event.alpha;
       setHeading(correctedHeading);
     }
@@ -223,9 +227,6 @@ function MapComponent() {
   return (
     <div>
       {!isLoaded && <p>Loading map...</p>}
-      {!permissionGranted && (
-        <button onClick={handlePermissionRequest}>Enable Compass</button>
-      )}
       <div ref={mapRef} style={containerStyle} />
     </div>
   );
