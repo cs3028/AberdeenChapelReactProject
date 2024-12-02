@@ -108,7 +108,7 @@ code {
   transition: opacity 0.2s ease, transform 0.9s ease; /* Smooth transition */
 }
 
-/* Show mobile menu when active */
+/* Show mobile menu when active on a mobile device */
 .navbar-links.mobile.active {
   display: flex;
   opacity: 1;
