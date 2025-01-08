@@ -6,7 +6,7 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="navbar-logo">
                
-             <Link to="/"><img src="/images/logo.png" alt="University of Aberdeen" /></Link>
+             <Link to="/"><img src="/images/logo2.png" alt="University of Aberdeen" /></Link>
             </div>
             <ul className="navbar-links">
                 <li><Link to="/info">Info</Link></li>
