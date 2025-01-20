@@ -1,8 +1,8 @@
-/* Full-width carousel with advanced styling */
+
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 100vh; /* Full viewport height for an immersive effect */
+  height: 100%; 
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -10,13 +10,15 @@
 }
 
 .carousel-image {
-  width: 100%;
-  height: 50%;
-  object-fit: cover; /* Ensures the image fills the container while preserving aspect ratio */
-  transition: transform 0.5s ease-in-out; /* Smooth transition */
-  border-radius: 20px; /* Adjust the value for more or less curve */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow for depth */
-  border: 5px solid #f7e4e3;
+  width: 98.5%;
+  height: 820px;
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  border: 2px solid #3d3d3d;
+  
+  
 }
 
 .nav-button {
@@ -29,8 +31,8 @@
   cursor: pointer;
   transform: translateY(-50%);
   font-size: 24px;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition for hover effects */
-  border-radius: 50%; /* Circular buttons */
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+  border-radius: 50%; 
   width: 50px;
   height: 50px;
   display: flex;
@@ -39,12 +41,12 @@
 }
 
 .nav-button:hover {
-  background-color: rgba(0, 0, 0, 0.9); /* Darker background on hover */
-  transform: translateY(-50%) scale(1.1); /* Slightly scale up on hover */
+  background-color: rgba(0, 0, 0, 0.9); 
+  transform: translateY(-50%) scale(1.1); 
 }
 
 .nav-button.left {
-  left: 20px; /* Align button slightly inside */
+  left: 20px; 
 }
 
 .nav-button.right {
@@ -74,7 +76,7 @@
 }
 
 .carousel-indicator:hover {
-  background-color: rgba(255, 255, 255, 1); /* Brighter on hover */
+  background-color: rgba(255, 255, 255, 1); 
 }
 
 

@@ -17,13 +17,15 @@ code {
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(90deg, #fff, #fff);
-  padding: 10px 20px;
+  padding: 10px;
   border-radius: 20px;
   margin: 10px;
   max-width: 100%; 
   box-sizing: border-box; 
-  position: relative ;
-  border: 2px solid black; /* Bottom border only */
+  position: relative;
+  border: 2px solid black; 
+  
+
 }
 
 .navbar-logo img {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Carousel from '../Carousel';
 import "../info.css";
 
@@ -10,16 +10,52 @@ function Info() {
   ];
 
   const infoColumns = [
-    { title: "History", content: "This chapel has a rich history dating back to the 1800s." },
-    { title: "Architecture", content: "Features Gothic Revival design with intricate details." },
-    { title: "Events", content: "Hosts weddings, concerts, and community events throughout the year." },
+    { title: "History", content: "Around for many years" },
+    { title: "Architecture", content: "Old and sacred" },
+    { title: "Artifacts", content: "Artifacts from many different types of eras" },
   ];
 
+  // State to store the carousel's opacity
+  const [carouselOpacity, setCarouselOpacity] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      
+      const maxScroll = 100; 
+
+      
+      const scrolled = window.scrollY;
+
+      
+      let newOpacity = 1 - scrolled / maxScroll;
+
+      
+      if (newOpacity < 0.2) {
+        newOpacity = 0.2
+      }
+
+      setCarouselOpacity(newOpacity);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="info-container">
+    <div className="info-container" style={{ minHeight: '100vh' }}>
       {/* Top Carousel */}
-      <div className="carousel-container">
-        <Carousel images={images} interval={3000} />
+      <div
+        className="carousel-container"
+        style={{
+          opacity: carouselOpacity,
+          transition: 'opacity 0.2s ease-out' // smooth out opacity changes
+        }}
+      >
+        <Carousel images={images} interval={4000} />
       </div>
 
       {/* Information Columns */}
@@ -31,31 +67,13 @@ function Info() {
           </div>
         ))}
       </div>
-
-      {/* Left Candle */}
-      <div className="holder left">
-        <div className="candle">
-          <div className="blinking-glow"></div>
-          <div className="thread"></div>
-          <div className="glow"></div>
-          <div className="flame"></div>
-        </div>
-      </div>
-
-      {/* Right Candle */}
-      <div className="holder right">
-        <div className="candle">
-          <div className="blinking-glow"></div>
-          <div className="thread"></div>
-          <div className="glow"></div>
-          <div className="flame"></div>
-        </div>
-      </div>
     </div>
   );
 }
 
 export default Info;
+
+
 
 
 
