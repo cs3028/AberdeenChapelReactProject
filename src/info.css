@@ -58,7 +58,7 @@ body {
 }
 
 .service-item {
-  max-width: 200px;    /* Adjust as needed */
+  max-width: 300px;    /* Adjust as needed */
   text-align: center;
   color: #000;         /* If your background is black or very dark */
 }
@@ -72,6 +72,39 @@ body {
   object-fit: cover;      /* ensure image fits if not exact size */
 }
 
+/* Existing styles for .info-container, .info-columns, etc. */
+
+/* New two-column section */
+.two-column-section {
+  display: flex;
+  flex-wrap: wrap; /* allows wrapping on narrow screens */
+  gap: 2rem;       /* space between columns */
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.two-column-section .column {
+  flex: 1 1 0;
+  min-width: 200px; /* prevents columns from getting too skinny */
+}
+
+.two-column-section h2 {
+  color: #8A2F2F; /* example heading color */
+  margin-bottom: 1rem;
+}
+
+.two-column-section p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #333; /* text color; adjust if needed */
+}
+
+.priest {
+  height: 500px;
+  padding: 10px;
+}
   
  
 
