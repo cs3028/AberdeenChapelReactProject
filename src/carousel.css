@@ -7,16 +7,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: -100px;
+  
 }
 
 .carousel-image {
   width: 98.5%;
-  height: 820px;
+  height: 1020px;
   object-fit: cover;
   transition: transform 0.5s ease-in-out; 
   border-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   border: 2px solid #3d3d3d;
+  padding: 0;
   
   
 }
