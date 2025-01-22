@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '../Carousel';
 import "../info.css";
+import Footer from './Footer';
 
 function Info() {
   const images = [
@@ -8,14 +9,7 @@ function Info() {
     "/images/inside.jpg",
     "/images/right.jpg",
   ];
-
-  const infoColumns = [
-    { title: "History", content: "Around for many years" },
-    { title: "Architecture", content: "Old and sacred" },
-    { title: "Artifacts", content: "Artifacts from many different types of eras" },
-  ];
-
-  // Example new array for your circular “solutions” or “services”
+  
   const services = [
     {
       title: "Alter",
@@ -49,7 +43,7 @@ function Info() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const maxScroll = 100;
+      const maxScroll = 800;
       const scrolled = window.scrollY;
       let newOpacity = 1 - scrolled / maxScroll;
 
@@ -125,7 +119,11 @@ function Info() {
             <p>{service.content}</p>
           </div>
         ))}
-      </div>     
+      </div> 
+
+      <Footer /> 
+
+       
      
     </div>
   );

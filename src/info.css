@@ -6,79 +6,36 @@ body {
     padding: 0;
   }
 
-/* Main Content */
-.info-container {
-    position: relative;
-    width: auto;
-    margin: auto;
-    margin-bottom: 0;
-    text-align: center;
-  }
-  
-  /* Info Columns */
-.info-columns {
-    display: flex;
-    justify-content: space-around;
-    padding: 80px;
-    padding-bottom: 7px;
-        
-}
-  
-.info-column {
-    background-color: #fff5d9; /* Pale yellow */
-    color: #705c4d; /* Deep mocha */
-    flex: 1;
-    border: 2px solid #313131;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    margin: 0 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-  
-.info-column:hover {
-  transform: scale(1.05);
-}
-
-/* info.css */
-
-/* Existing .info-container, .info-columns, etc. go here... */
-
-/* New services section */
 .services-container {
   display: flex;
-  flex-wrap: wrap;         /* Allows wrapping if it doesn't fit in one row */
-  justify-content: center; /* Centers items horizontally */
-  gap: 2rem;               /* Space between each .service-item */
-  margin-top: 4rem;        /* Some space above this new section */
+  flex-wrap: wrap;         
+  justify-content: center; 
+  gap: 2rem;               
+  margin-top: 4rem;        
   padding: 20px;
   background-color: #efeeec ;
- 
+  padding-bottom: 0%;
 }
 
 .service-item {
-  max-width: 300px;    /* Adjust as needed */
+  max-width: 300px;    
   text-align: center;
-  color: #000;         /* If your background is black or very dark */
+  color: #000;         
 }
 
 .service-icon {
   width: 100px;
   height: 100px;
-  background-color: #999; /* fallback color if image fails to load */
-  border-radius: 50%;     /* make it circular */
+  background-color: #999; 
+  border-radius: 50%;     
   margin-bottom: 1rem;
-  object-fit: cover;      /* ensure image fits if not exact size */
+  object-fit: cover;      
 }
 
-/* Existing styles for .info-container, .info-columns, etc. */
-
-/* New two-column section */
 .two-column-section {
   display: flex;
-  flex-wrap: wrap; /* allows wrapping on narrow screens */
-  gap: 2rem;       /* space between columns */
+  flex-wrap: wrap; 
+  gap: 2rem;       
   margin-top: 3rem;
   margin-bottom: 3rem;
   width: 80%;
@@ -87,23 +44,26 @@ body {
 
 .two-column-section .column {
   flex: 1 1 0;
-  min-width: 200px; /* prevents columns from getting too skinny */
+  min-width: 200px; 
 }
 
 .two-column-section h2 {
-  color: #8A2F2F; /* example heading color */
+  color: #8A2F2F; 
   margin-bottom: 1rem;
 }
 
 .two-column-section p {
   line-height: 1.6;
   margin-bottom: 1rem;
-  color: #333; /* text color; adjust if needed */
+  color: #333; 
 }
 
 .priest {
   height: 500px;
   padding: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
   
  
