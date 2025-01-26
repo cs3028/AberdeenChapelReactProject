@@ -36,11 +36,10 @@ code {
   place-items: center;
 }
 
-/* for laptops computers etc */
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 2vw; /* space between links scaled with screen size */
+  gap: 2vw; 
 }
 
 .navbar-links li {
@@ -48,7 +47,7 @@ code {
 }
 
 .navbar-links a {
-  color: black;
+  color: #8A2F2F;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s;
@@ -70,5 +69,5 @@ code {
 
 .navbar-search .search-button:hover {
   background-color: white;
-  color: black;
+  color: #8A2F2F;
 }
