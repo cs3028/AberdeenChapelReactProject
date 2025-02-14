@@ -53,7 +53,7 @@ const footerStyle = {
 // Define logo styles
 const logoStyle = {
   display: 'block',
-  margin: '40px auto 30px',
+  margin: '20px',
   height: '50px',
 };
 
@@ -62,11 +62,13 @@ const contentContainerStyle = {
   display: 'flex',
   flexDirection: 'column', // Stack items vertically
   position: 'relative',
+  zIndex:1,
 };
 
 // Define style to shift only the text slightly to the right
 const textContainerStyle = {
   marginLeft: '20px', // Shift text content to the right
+  zIndex: 1, // Bring text to the front
 };
 
 // Define tight line spacing for the first section
@@ -84,6 +86,7 @@ const normalSpacingStyle = {
 const highlightStyle = {
   color: '#FFD414',
   fontWeight: 600,
+  zIndex: 1, // Bring text to the front
 };
 
 // Define specific spacing for postcode
@@ -94,10 +97,11 @@ const postcodeStyle = {
 // Define UK image styles for right alignment
 const ukImageStyle = {
   position: 'absolute',
-  right: '20px',
+  left: '20px',
   top: '0px', // Adjust as needed for vertical position
   height: '220px', // Adjust height as needed
   filter: 'grayscale(100%)',
+  zIndex: -0, // Send image to the back
 };
 
 export default Footer;

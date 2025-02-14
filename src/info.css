@@ -1,10 +1,10 @@
 body {
-    background: linear-gradient(to bottom, #fff); 
-    color: #333;
-    font-family: 'Georgia', serif;
-    margin: 0;
-    padding: 0;
-  }
+  background: linear-gradient(to bottom, #fff); 
+  color: #333;
+  font-family: 'Georgia', serif;
+  margin: 0;
+  padding: 0;
+}
 
 .services-container {
   display: flex;
@@ -13,7 +13,7 @@ body {
   gap: 2rem;               
   margin-top: 4rem;        
   padding: 20px;
-  background-color: #efeeec ;
+  background-color: #efeeec;
   padding-bottom: 0%;
 }
 
@@ -65,12 +65,78 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-  
- 
 
 
+.menu-icon {
+  position: none;
+  display: none;
+  top: 20px;
+  right: 20px;
+  z-index: 5;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
 
-  
-  
-  
-  
+
+.menu-icon-bar {
+  width: 26px;
+  height: 3px;
+  background-color: #1C4392;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+}
+
+.menu-icon:hover .menu-icon-bar {
+  background-color: #c0c0c0;
+}
+
+.menu-icon.active .menu-icon-bar {
+  background-color: #1C4392 !important;
+}
+
+.navbar {
+  display: fixed;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #fff, #fff);
+  border-radius: 10px;
+  max-width: 100vh; 
+  width : 100vh;
+  box-sizing: border-box; 
+  position: relative ;
+}
+
+/* for mobile screens */
+@media screen and (max-width: 768px) {
+  .menu-icon {
+      display: flex;
+  }
+
+  .navbar-links {
+      display: none;
+      flex-direction: column;
+      position: flex;
+      top: 60px;
+      right: 20px;
+      background: white;
+      width: 100vh;
+      height: 100vh;
+      padding: 10px;
+      border-radius: 5px;
+            
+  }
+
+  .navbar-links.active {
+      display: flex;
+  }
+
+  .navbar-links li {
+      padding: 10px 0;
+      text-align: center;
+  }
+
+    .navbar-search {
+        display: none; 
+    }
+}

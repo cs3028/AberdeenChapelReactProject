@@ -32,7 +32,7 @@ function Info() {
       icon: "/images/bible.jpg"
     },
     {
-      title: "Challace", 
+      title: "Chalice", 
       content: "The chalice is a consecrated cup used in Christian liturgy to hold wine, symbolizing the blood of Christ.",
       icon: "/images/challace.jpg"
     }

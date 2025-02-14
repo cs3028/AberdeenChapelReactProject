@@ -2,13 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-               
-             <Link to="/"><img src="/images/logo2.png" alt="University of Aberdeen" /></Link>
+                <Link to="/"><img src="/images/logo2.png" alt="University of Aberdeen" /></Link>
             </div>
-            <ul className="navbar-links">
+
+            {/* Add active class to menu-icon when clicked */}
+            <div className={`menu-icon ${isOpen ? "active" : ""}`} onClick={toggleMenu}>
+                <div className="menu-icon-bar"></div>
+                <div className="menu-icon-bar"></div>
+                <div className="menu-icon-bar"></div>
+            </div>
+
+            <ul className={`navbar-links ${isOpen ? "active" : ""}`}>
                 <li><Link to="/info">Info</Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><a href="#research">Research</a></li>
