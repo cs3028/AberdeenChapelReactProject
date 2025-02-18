@@ -24,6 +24,15 @@
   color: white;
 }
 
+.custom-hotspot {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  opacity: 0.7;
+  background: rgb(0, 47, 255);
+  cursor: grab;
+}
+
 .App-link {
   color: #61dafb;
 }
