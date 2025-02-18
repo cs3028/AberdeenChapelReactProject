@@ -32,6 +32,7 @@ function Footer() {
 
           {/* UK Flag Image positioned on the right */}
           <img src="/images/UK.png" alt="UK Flag" style={ukImageStyle} />
+          <img src="/images/pointer.png" alt="Pointer" style={PointerStyle} />
         </div>
       </div>
     </div>
@@ -97,12 +98,23 @@ const postcodeStyle = {
 // Define UK image styles for right alignment
 const ukImageStyle = {
   position: 'absolute',
-  left: '170px',
-  top: '0px', // Adjust as needed for vertical position
+  left: '130px',
+  top: '10px', // Adjust as needed for vertical position
   height: '220px', // Adjust height as needed
   filter: 'grayscale(100%)',
   zIndex: -0, // Send image to the back
 };
+
+const PointerStyle = {
+  position: 'absolute',
+  left: '260px',
+  top: '40px', // Adjust as needed for vertical position
+  height: '25px', // Adjust height as needed
+  width: '20px', // Adjust width if needed
+  filter: 'grayscale(100%)',
+  zIndex: 1, // Send image to the front
+};
+
 
 export default Footer;
 
