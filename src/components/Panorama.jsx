@@ -5,6 +5,7 @@ import ReactPannellum from "react-pannellum";
 
   
 function Panorama() {
+
   useEffect(() => {
     const addHotspot = () => {
         if (ReactPannellum.getCurrentScene() === "firstScene") {
@@ -37,17 +38,6 @@ function Panorama() {
       showControls: false,
     };
   
-  const hotspots=[{
-    pitch: 20,
-    yaw: 40,
-    cssClass: "custom-hotspot",
-    createTooltipArgs: "Hotspot 1",
-      createTooltipFunc: (hotspotDiv, args) => {
-          hotspotDiv.innerHTML = args; 
-      },
-    type: "info",
-  },
-  ];
 
 return (
   <div>
@@ -58,7 +48,6 @@ return (
         config={config}
         imageSource="images/chapelPanorama.jpg"
         style={style}
-        hotspots={hotspots}
       />
 
 
