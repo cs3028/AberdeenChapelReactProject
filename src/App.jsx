@@ -4,7 +4,7 @@ import MapComponent from './components/ChapelComponent'; // Adjust the path as n
 import Layout from './components/Layout';
 import Info from './components/Info';
 import About from './components/About';
-import login from './components/login';
+import login from './components/Login';
 
 
 
