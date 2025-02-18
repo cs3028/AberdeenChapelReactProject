@@ -4,7 +4,7 @@ import { Input } from "./ui/Input";
 import { Button } from "./ui/Button";
 import { Lock, Mail } from "lucide-react";
 
-import Footer from './Footer';
+import Footer from './ui/Footer';
 
 
 const LoginPage = () => {

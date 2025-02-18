@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '../Carousel';
 import "../info.css";
-import Footer from './Footer';
+import Footer from './ui/Footer';
 
 function Info() {
   const images = [

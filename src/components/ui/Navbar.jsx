@@ -15,7 +15,7 @@ const Navbar = () => {
                 <li><a href="#alumni">Alumni & Giving</a></li>
                 <li><a href="#business">Business</a></li>
                 <li><a href="#quicklinks">Quick Links</a></li>
-                <li><a href="/src/components/Login">login</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
             <div className="navbar-search">
                 <button className="search-button">Search</button>
