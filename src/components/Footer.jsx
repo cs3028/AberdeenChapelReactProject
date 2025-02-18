@@ -97,7 +97,7 @@ const postcodeStyle = {
 // Define UK image styles for right alignment
 const ukImageStyle = {
   position: 'absolute',
-  left: '20px',
+  left: '170px',
   top: '0px', // Adjust as needed for vertical position
   height: '220px', // Adjust height as needed
   filter: 'grayscale(100%)',
