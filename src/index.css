@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: white;
 }
 
 code {
@@ -17,16 +18,13 @@ code {
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(90deg, #fff, #fff);
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 20px;
   margin: 10px;
   max-width: 100%; 
   box-sizing: border-box; 
-  position: sticky;
-  top: 0;
-  border: 2px solid black; 
-  z-index: 2;
-  
+  position: relative ;
+  z-index: 5;
 }
 
 .navbar-logo img {
@@ -36,10 +34,11 @@ code {
   place-items: center;
 }
 
+/* for laptops computers etc */
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 2vw; 
+  gap: 2vw; /* space between links scaled with screen size */
 }
 
 .navbar-links li {
@@ -47,7 +46,7 @@ code {
 }
 
 .navbar-links a {
-  color: #8A2F2F;
+  color: white;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s;
@@ -69,5 +68,111 @@ code {
 
 .navbar-search .search-button:hover {
   background-color: white;
-  color: #8A2F2F;
+  color: black;
 }
+
+
+/* hamburger icon (for mobile) */
+.menu-icon {
+  display : none;
+  
+}
+
+.menu-icon-bar {
+  width: 26px;
+  height: 3px;
+  background-color: #1C4392;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+}
+
+.menu-icon:hover {
+  background-color: #c0c0c0;
+}
+
+/* navbar links for mobile users  */
+.navbar-links.mobile {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  padding: 20px;
+  padding-top: 80px; /* Adjust this value to move links down */
+  z-index: 5;  
+  opacity: 0; /* Start hidden */
+  transform: translateY(0px); /* Start slightly above */
+  transition: opacity 0.2s ease, transform 0.9s ease; /* Smooth transition */
+}
+
+/* Show mobile menu when active */
+.navbar-links.mobile.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0); /* Slide down */
+}
+.navbar-links.mobile.exiting { 
+  opacity: 0;
+  transform: translateY(0px); /* Slide up for exit */
+}
+
+/* Style for the close button */
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 18.5%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.close-button img {
+  width: 24px; /* Adjust size as needed */
+  height: 24px; /* Ensure consistent height */
+}
+
+.navbar-links a {
+  color: #1C4392;
+  text-decoration: none;
+  font-weight: 650;
+}
+
+.navbar-links.mobile li a {
+  font-size: 1.5rem; /* Adjust as needed */
+}
+
+@media (max-width: 850px) {
+  .navbar {
+    flex-direction: column; 
+  }
+/* hiding the regular navbar links when viewed on mobile (or a screen that is less than 768px)*/
+  .navbar-links:not(.mobile) {
+    display: none; 
+  }
+
+  .menu-icon{
+    position: fixed;
+    display :flex ;
+    top: 20px; 
+    right: 20px;
+    z-index: 5; 
+    cursor: pointer;
+    flex-direction : column;
+    gap : 5px;
+  }
+
+  .navbar-logo img {
+    height: 12; /* adjusted for smaller screens */
+  }
+
+  .navbar-links.mobile a {
+    font-size : 0.9rem; /* gap increased between links on smaller devices */  
+  }
+
+}
+
