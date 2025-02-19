@@ -5,7 +5,8 @@ import Layout from './components/Layout';
 import Info from './components/Info';
 import About from './components/About';
 import Login from './components/Login';
-
+import Dashboard from './components/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -42,6 +43,17 @@ function App() {
                 </Layout>
             }
             />
+            {/* 🔹 Login Page (no Layout, so it’s a clean login screen) */}
+            <Route path="/login" element={<Login />} />
+
+            {/* 🔹 Protected Route (Only logged-in users can see this) */}
+            <Route path="/dashboard" element={
+                <ProtectedRoute>
+                    <Layout>
+                        <Dashboard />
+                    </Layout>
+                </ProtectedRoute>
+            } />
         </Routes>
       </Router>
   );
