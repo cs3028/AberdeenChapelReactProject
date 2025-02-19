@@ -8,8 +8,8 @@ const Dashboard = () => {
             <button
                 className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
                 onClick={() => {
-                    localStorage.removeItem("token"); // Remove token
-                    window.location.href = "/login"; // Redirect to login
+                    localStorage.removeItem("token"); // remove token
+                    window.location.href = "/login"; // redirect to log in
                 }}
             >
                 Logout

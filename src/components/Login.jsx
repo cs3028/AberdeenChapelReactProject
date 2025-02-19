@@ -4,11 +4,7 @@ import { Card, CardContent } from "./ui/Card";
 import { Input } from "./ui/Input";
 import { Button } from "./ui/Button";
 import { Lock, Mail } from "lucide-react";
-
 import Footer from './ui/Footer';
-
-// Redirect if already logged in
-
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
