@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "./ui/Card";
 import { Input } from "./ui/Input";
 import { Button } from "./ui/Button";
@@ -6,15 +7,24 @@ import { Lock, Mail } from "lucide-react";
 
 import Footer from './ui/Footer';
 
+// Redirect if already logged in
+
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            navigate("/dashboard");  // Redirect if token exists
+        }
+    }, [navigate]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
         console.log("Logging in with", email, password); // Debug log
-
         try {
             const response = await fetch("http://localhost:5001/login", {
                 method: "POST",

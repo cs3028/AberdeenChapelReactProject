@@ -2,9 +2,9 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-    const token = localStorage.getItem("token"); // Get token from localStorage
+    const token = localStorage.getItem("token"); // get token from local storage
 
-    return token ? children : <Navigate to="/login" />; // Redirect if not logged in
+    return token ? children : <Navigate to="/login" />; // redirect if not logged in
 };
 
 export default ProtectedRoute;
