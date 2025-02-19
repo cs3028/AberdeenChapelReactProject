@@ -43,10 +43,10 @@ function App() {
                 </Layout>
             }
             />
-            {/* 🔹 Login Page (no Layout, so it’s a clean login screen) */}
+            {/* login page - no layout, so it’s a clean login screen */}
             <Route path="/login" element={<Login />} />
 
-            {/* 🔹 Protected Route (Only logged-in users can see this) */}
+            {/* protected route - only logged-in users can see this */}
             <Route path="/dashboard" element={
                 <ProtectedRoute>
                     <Layout>
