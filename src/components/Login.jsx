@@ -11,10 +11,35 @@ const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        console.log("Logging in with", email, password);
-        // Add authentication logic here
+        console.log("Logging in with", email, password); // Debug log
+
+        try {
+            const response = await fetch("http://localhost:5001/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            console.log("Response received:", response); // Debug log
+
+            const data = await response.json();
+            console.log("Response data:", data); // Debug log
+
+            if (data.success) {
+                localStorage.setItem("token", data.token);
+                alert("Login successful!");
+                window.location.href = "/dashboard"; // Redirect after successful login
+            } else {
+                alert("Invalid email or password");
+            }
+        } catch (err) {
+            console.error("Login request failed:", err);
+            alert("Server error, please try again later.");
+        }
     };
 
     return (
