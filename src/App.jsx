@@ -13,11 +13,6 @@ function App() {
         <Routes>
           <Route path="/" element={
             <Layout>
-            </Layout>
-           }
-          />
-          <Route path="/info" element={
-            <Layout>
               <Info />
             </Layout>
            }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Carousel from '../Carousel';
 import "../info.css";
 import Footer from './Footer';
+import { Link } from "react-router-dom";
 
 function Info() {
   const images = [
@@ -9,6 +10,13 @@ function Info() {
     "/images/inside.jpg",
     "/images/right.jpg",
   ];
+
+  //button to start the tour (just a link to the panorma page)
+  function StartTour(){
+    return(
+    <Link to = "/panorama" className = "Start-Tour-Button">Tour Start</Link>
+  );
+  }
   
   const services = [
     {
@@ -69,7 +77,9 @@ function Info() {
       >
         <Carousel images={images} interval={3200} />
       </div>
-
+      <div className = "Start-Tour">
+      <StartTour/>
+      </div>
       {/* New Two-Column Section */}
       <div className="two-column-section">
         <div className="column">
