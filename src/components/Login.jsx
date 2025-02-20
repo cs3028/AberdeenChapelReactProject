@@ -12,10 +12,14 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            navigate("/dashboard");  // Redirect if token exists
-        }
+        fetch("http://localhost:5001/dashboard", { credentials: "include" })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    navigate("/dashboard"); // redirect if authenticated
+                }
+            })
+        .catch((err) => console.error("Authentication check failed", err));
     }, [navigate]);
 
     const handleLogin = async (e) => {
@@ -24,9 +28,8 @@ const LoginPage = () => {
         try {
             const response = await fetch("http://localhost:5001/login", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({ email, password }),
             });
 
@@ -36,9 +39,8 @@ const LoginPage = () => {
             console.log("Response data:", data); // Debug log
 
             if (data.success) {
-                localStorage.setItem("token", data.token);
                 alert("Login successful!");
-                window.location.href = "/dashboard"; // Redirect after successful login
+                navigate("/dashboard"); // Redirect after successful login
             } else {
                 alert("Invalid email or password");
             }
