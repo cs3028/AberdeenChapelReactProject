@@ -111,7 +111,7 @@ const PointerStyle = {
   top: '40px', // Adjust as needed for vertical position
   height: '25px', // Adjust height as needed
   width: '20px', // Adjust width if needed
-  filter: 'grayscale(100%)',
+  filter: 'grayscale(0%)',
   zIndex: 1, // Send image to the front
 };
 
