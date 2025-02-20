@@ -22,7 +22,6 @@ const Navbar = () => {
             </div>
 
             <ul className={`navbar-links ${isOpen ? "active" : ""}`}>
-                <li><Link to="/info">Info</Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><a href="#research">Research</a></li>
                 <li><a href="#alumni">Alumni & Giving</a></li>

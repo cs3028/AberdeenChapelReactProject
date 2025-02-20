@@ -4,6 +4,7 @@ import MapComponent from './components/ChapelComponent'; // Adjust the path as n
 import Layout from './components/Layout';
 import Info from './components/Info';
 import About from './components/About';
+import Landing from './components/Landing';
 
 
 
@@ -13,13 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <Layout>
-              <MapComponent />
-            </Layout>
-           }
-          />
-          <Route path="/info" element={
-            <Layout>
-              <Info />
+              <Landing />
             </Layout>
            }
           />
