@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Footer() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Show the button when scrolling down 100px
+  const handleScroll = () => {
+    if (document.documentElement.scrollTop > 100 || document.body.scrollTop > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // Smooth scrolling effect
+    });
+  };
+
+  // Add scroll event listener
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div className="Footer">
-
       {/* Footer segment below the map */}
       <div style={footerStyle}>
         <img src="/images/UoA.svg" alt="University of Aberdeen" style={logoStyle} />
@@ -35,6 +61,14 @@ function Footer() {
           <img src="/images/pointer.png" alt="Pointer" style={PointerStyle} />
         </div>
       </div>
+
+      {/* Back to Top Button */}
+      {isVisible && (
+        <button onClick={scrollToTop} style={backToTopButtonStyle}>
+          {/* Name of button */}
+          Top Of Page    
+        </button>
+      )}
     </div>
   );
 }
@@ -63,7 +97,7 @@ const contentContainerStyle = {
   display: 'flex',
   flexDirection: 'column', // Stack items vertically
   position: 'relative',
-  zIndex:1,
+  zIndex: 1,
 };
 
 // Define style to shift only the text slightly to the right
@@ -115,6 +149,20 @@ const PointerStyle = {
   zIndex: 1, // Send image to the front
 };
 
+// Define styles for the Back to Top button
+const backToTopButtonStyle = {
+  position: 'fixed',
+  bottom: '20px',
+  right: '20px',
+  backgroundColor: '#007bff',
+  color: 'white',
+  border: 'none',
+  padding: '10px 15px',
+  fontSize: '16px',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  zIndex: 2,
+};
 
 export default Footer;
 
