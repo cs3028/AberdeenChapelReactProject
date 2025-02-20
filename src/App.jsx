@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from './components/Layout';
 import Info from './components/Info';
 import About from './components/About';
+import Panorama from './components/Panorama';
 
 
 
@@ -13,18 +14,20 @@ function App() {
           <Route path="/" element={
             <Layout>
 
-            </Layout>
-           }
-          />
-          <Route path="/info" element={
-            <Layout>
               <Info />
+
             </Layout>
            }
           />
           <Route path="/about" element={
             <Layout>
               <About />
+            </Layout>
+           }
+          />
+          <Route path="/panorama" element={
+            <Layout>
+              <Panorama />
             </Layout>
            }
           />
