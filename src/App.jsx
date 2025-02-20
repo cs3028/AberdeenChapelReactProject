@@ -13,7 +13,9 @@ function App() {
         <Routes>
           <Route path="/" element={
             <Layout>
+
               <Info />
+
             </Layout>
            }
           />
