@@ -10,14 +10,17 @@ function Panorama() {
 
   const [stainedGlassPopupVisible, setStainedGlassPopupVisible] = useState(false);
   const [organPopupVisible, setOrganPopupVisible] = useState(false);
+  const [roodScreenPopupVisible, setRoodScreenPopupVisible] = useState(false);
+  const [warMemorialPopupVisible, setWarMemorialPopupVisible] = useState(false);
+  const [smallPulpitPopupVisible, setSmallPulpitPopupVisible] = useState(false);
 
   useEffect(() => {
     const addHotspot = () => {
         if (ReactPannellum.getCurrentScene() === "firstScene") {
             ReactPannellum.addHotSpot(
                 {
-                    pitch: 30,  //Vertical position (-90 to 90)
-                    yaw: 0,    //Horizontal position (-180 to 180)
+                    pitch: 30,  //Vertical position 0 to 359
+                    yaw: 0,    //Horizontal position 0 to 359
                     scale: 10.0,  //Size of hotspot
                     type: "custom",
                     cssClass: "stainedGlassHotspot",
@@ -35,7 +38,7 @@ function Panorama() {
             ReactPannellum.addHotSpot(
               {
                 pitch: 0,
-                yaw: 50,
+                yaw: 90,
                 type: "custom",
                 cssClass: "organHotspot",
                 createTooltipFunc: (hotspotDiv) => {
@@ -45,6 +48,57 @@ function Panorama() {
                   hotspotDiv.onclick = () => {
                       
                     setOrganPopupVisible(true);
+                  };
+                },
+              },
+            );
+            ReactPannellum.addHotSpot(
+              {
+                pitch: 0,
+                yaw: 180,
+                type: "custom",
+                cssClass: "roodScreenHotspot",
+                createTooltipFunc: (hotspotDiv) => {
+                  hotspotDiv.style.cursor = "pointer";
+
+                  // Add click event listener
+                  hotspotDiv.onclick = () => {
+                      
+                    setRoodScreenPopupVisible(true);
+                  };
+                },
+              },
+            );
+            ReactPannellum.addHotSpot(
+              {
+                pitch: 0,
+                yaw: 270,
+                type: "custom",
+                cssClass: "warMemorialHotspot",
+                createTooltipFunc: (hotspotDiv) => {
+                  hotspotDiv.style.cursor = "pointer";
+
+                  // Add click event listener
+                  hotspotDiv.onclick = () => {
+                      
+                    setWarMemorialPopupVisible(true);
+                  };
+                },
+              },
+            );
+            ReactPannellum.addHotSpot(
+              {
+                pitch: 0,
+                yaw: 0,
+                type: "custom",
+                cssClass: "smallPulpitHotspot",
+                createTooltipFunc: (hotspotDiv) => {
+                  hotspotDiv.style.cursor = "pointer";
+
+                  // Add click event listener
+                  hotspotDiv.onclick = () => {
+                      
+                    setSmallPulpitPopupVisible(true);
                   };
                 },
               },
@@ -84,7 +138,7 @@ return (
       <div className="popup">
           <div className="stainedGlass">
               <h2>StainedGlass</h2>
-              <p> Stained Glass</p>
+              <p> Info On Stained Glass</p>
               <button onClick={() => setStainedGlassPopupVisible(false)}>Close</button>
           </div>
       </div>
@@ -100,6 +154,36 @@ return (
               </div>
           </div>
           )}
+
+    {roodScreenPopupVisible && (
+      <div className="popup">
+          <div className="roodScreen">
+              <h2>The Rood Screen</h2>
+              <p>Info On Rood Screen</p>
+              <button onClick={() => setRoodScreenPopupVisible(false)}>Close</button>
+          </div>
+      </div>
+      )}
+
+    {warMemorialPopupVisible && (
+      <div className="popup">
+          <div className="warMemorial">
+              <h2>The War Memorial</h2>
+              <p>Info On War Memorial</p>
+              <button onClick={() => setWarMemorialPopupVisible(false)}>Close</button>
+          </div>
+      </div>
+      )}
+
+    {smallPulpitPopupVisible && (
+      <div className="popup">
+          <div className="smallPulpit">
+              <h2>The Small Pulpit</h2>
+              <p>Info On The Small Pulpit</p>
+              <button onClick={() => setSmallPulpitPopupVisible(false)}>Close</button>
+          </div>
+      </div>
+      )}
 
 
   </div>

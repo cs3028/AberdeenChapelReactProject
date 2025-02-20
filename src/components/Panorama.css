@@ -40,3 +40,33 @@
     background-position: center;
     cursor: pointer;
 }
+
+.roodScreenHotspot {
+    width: 150px; 
+    height: 150px;
+    background-image: url("RoodScreen.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.warMemorialHotspot {
+    width: 250px; 
+    height: 250px;
+    background-image: url("warMemorial-2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.smallPulpitHotspot {
+    width: 150px; 
+    height: 150px;
+    background-image: url("smallPulpit.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
