@@ -1,41 +1,55 @@
+/* carousel.css */
 
+/* Carousel container */
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 750px; 
+  height: 850px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -100px;
-  
+  margin-top: -150px;
 }
 
+/* Wrapper for images */
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
+}
+
+/* Individual image styling */
 .carousel-image {
-  width: 98.5%;
-  height: 1020px;
+  width: 100%;  /* Each image takes up full width of the container */
+  height: 100px;
   object-fit: cover;
-  transition: transform 0.5s ease-in-out; 
-  border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.3s ease-in-out; /* Keep the transition for image change */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border: 2px solid #3d3d3d;
   padding: 0;
-  
-  
 }
 
+.chapel-video {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover; /* Ensures it fills the container without distortion */
+  margin-top: -50px;
+}
+
+/* Navigation buttons */
 .nav-button {
   position: absolute;
   top: 50%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.15);
   color: white;
   border: none;
   padding: 15px;
   cursor: pointer;
   transform: translateY(-50%);
   font-size: 24px;
-  transition: background-color 0.3s ease, transform 0.3s ease; 
-  border-radius: 50%; 
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 50%;
   width: 50px;
   height: 50px;
   display: flex;
@@ -44,18 +58,20 @@
 }
 
 .nav-button:hover {
-  background-color: rgba(0, 0, 0, 0.9); 
-  transform: translateY(-50%) scale(1.1); 
+  background-color: #8A2F2F;
+  transform: translateY(-50%) scale(1.1);
 }
 
 .nav-button.left {
-  left: 20px; 
+  left: 20px;
+  z-index: 80;
 }
 
 .nav-button.right {
   right: 20px;
 }
 
+/* Indicators for the carousel */
 .carousel-indicators {
   position: absolute;
   bottom: 20px;
@@ -79,8 +95,34 @@
 }
 
 .carousel-indicator:hover {
-  background-color: rgba(255, 255, 255, 1); 
+  background-color: rgba(255, 255, 255, 1);
 }
 
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .carousel-container {
+    height: 500px; /* Adjust height for smaller screens */
+    margin-top: 0;
+  }
 
-  
+  .carousel-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .nav-button {
+    padding: 10px;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-indicators {
+    bottom: 15px;
+  }
+
+  .carousel-indicator {
+    width: 10px;
+    height: 10px;
+  }
+}

@@ -92,29 +92,26 @@ code {
 
 /* navbar links for mobile users  */
 .navbar-links.mobile {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 20px;
   position: fixed;
-  top: 0;
+  top: -100vh; /* Start completely hidden above */
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: black;
   padding: 20px;
-  padding-top: 80px; /* Adjust this value to move links down */
-  z-index: 5;  
-  opacity: 0; /* Start hidden */
-  transform: translateY(0px); /* Start slightly above */
-  transition: opacity 0.2s ease, transform 0.9s ease; /* Smooth transition */
+  padding-top: 80px;
+  z-index: 5;
+  transition: top 0.5s ease-in-out; /* Smooth drop-down effect */
 }
 
 /* Show mobile menu when active */
 .navbar-links.mobile.active {
-  display: flex;
-  opacity: 1;
-  transform: translateY(0); /* Slide down */
+  top: 0; /* Moves it down into view */
 }
+
 .navbar-links.mobile.exiting { 
   opacity: 0;
   transform: translateY(0px); /* Slide up for exit */
@@ -136,10 +133,13 @@ code {
   height: 24px; /* Ensure consistent height */
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 .navbar-links a {
   color: #1C4392;
   text-decoration: none;
-  font-weight: 650;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
 }
 
 .navbar-links.mobile li a {
@@ -155,16 +155,29 @@ code {
     display: none; 
   }
 
-  .menu-icon{
+  .menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
-    display :flex ;
-    top: 20px; 
+    top: 20px;
     right: 20px;
-    z-index: 5; 
+    z-index: 10;
+    width: 80px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    flex-direction : column;
-    gap : 5px;
   }
+
+  /* Remove old hamburger lines */
+.menu-icon-bar {
+  display: none;
+}
 
   .navbar-logo img {
     height: 12; /* adjusted for smaller screens */

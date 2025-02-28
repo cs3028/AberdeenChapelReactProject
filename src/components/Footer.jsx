@@ -154,7 +154,7 @@ const backToTopButtonStyle = {
   position: 'fixed',
   bottom: '20px',
   right: '20px',
-  backgroundColor: '#007bff',
+  backgroundColor: '#8A2F2F',
   color: 'white',
   border: 'none',
   padding: '10px 15px',

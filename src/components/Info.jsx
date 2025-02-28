@@ -1,28 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Carousel from '../Carousel';
 import "../info.css";
 import Footer from './Footer';
 import { Link } from "react-router-dom";
+import eyeIcon from './eye.png';
+import menuArrow from './arrow-icon.png';
 
 function Info() {
-  const images = [
-    "/images/chapel_1.jpg",
-    "/images/inside.jpg",
-    "/images/right.jpg",
-  ];
+  const videoSrc = "/chapel.mp4";
 
-  //button to start the tour (just a link to the panorma page)
-  function StartTour(){
-    return(
-    <Link to = "/panorama" className = "Start-Tour-Button">Tour Start</Link>
-  );
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [carouselImages, setCarouselImages] = useState([]);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
+  // Update screen size (mobile vs desktop)
+  const updateScreenSize = useCallback(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
+  useEffect(() => {
+    updateScreenSize();
+    window.addEventListener('resize', updateScreenSize);
+
+    return () => {
+      window.removeEventListener('resize', updateScreenSize);
+    };
+  }, [updateScreenSize]);
+
+  // Button to start the tour
+  function StartTour() {
+    return (
+      <Link to="/panorama" className="Start-Tour-Button">
+        Start Tour
+        <img src={eyeIcon} alt="Eye Icon" className="eye-icon" />
+      </Link>
+    );
   }
-  
+
   const services = [
     {
       title: "Alter",
       content: "The altar is a sacred table used for worship or sacrifice, typically serving as the focal point during religious rites such as the Eucharist.",
-      icon: "/images/alter.jpg" 
+      icon: "/images/alter.jpg"
     },
     {
       title: "Cross",
@@ -40,117 +63,112 @@ function Info() {
       icon: "/images/bible.jpg"
     },
     {
-      title: "Chalice", 
+      title: "Chalice",
       content: "The chalice is a consecrated cup used in Christian liturgy to hold wine, symbolizing the blood of Christ.",
       icon: "/images/challace.jpg"
     }
   ];
 
-  // State to store the carousel's opacity
-  const [carouselOpacity, setCarouselOpacity] = useState(1);
+  const updateCarouselImages = useCallback(() => {
+    if (window.innerWidth <= 768) {
+      setCarouselImages([
+        "/images/chapel1M.png",
+        "/images/chapel2M.png",
+        "/images/chapel3M.png"
+      ]);
+    } else {
+      setCarouselImages([
+        "/images/chapel1.png",
+        "/images/chapel2.png",
+        "/images/chapel3.png"
+      ]);
+    }
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const maxScroll = 800;
-      const scrolled = window.scrollY;
-      let newOpacity = 1 - scrolled / maxScroll;
+    updateCarouselImages();
+    window.addEventListener('resize', updateCarouselImages);
 
-      if (newOpacity < 0.2) {
-        newOpacity = 0.2;
-      }
-      setCarouselOpacity(newOpacity);
+    return () => {
+      window.removeEventListener('resize', updateCarouselImages);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [updateCarouselImages]);
 
   return (
     <div className="info-container" style={{ minHeight: '150vh' }}>
-      {/* Top Carousel */}
-      <div
-        className="carousel-container"
-        style={{
-          opacity: carouselOpacity,
-          transition: 'opacity 0.2s ease-out'
-        }}
-      >
-        <Carousel images={images} interval={3200} />
+      <div className={`menu-icon ${menuOpen ? "active" : ""}`} onClick={toggleMenu}>
+        <img src={menuArrow} alt="Menu Arrow" className="menu-arrow" />
       </div>
-      <div className = "Start-Tour">
-      <StartTour/>
+
+      {/* Navigation Menu */}
+      <nav className={`navbar-links ${menuOpen ? "active" : ""}`}>
+        <ul>
+          <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+          <li><Link to="/gallery" onClick={toggleMenu}>Gallery</Link></li>
+          <li><Link to="/map" onClick={toggleMenu}>Map</Link></li>
+          <li><Link to="/tour" onClick={toggleMenu}>Tour</Link></li>
+          <li><Link to="/audio" onClick={toggleMenu}>Audio</Link></li>
+          <li><Link to="/info" onClick={toggleMenu}>Info</Link></li>
+        </ul>
+      </nav>
+
+      {/* Conditional rendering of video or carousel based on screen size */}
+      {isMobile ? (
+        // Show Carousel (Slideshow) for mobile
+        <div className="carousel-container">
+          <Carousel images={carouselImages} />
+        </div>
+      ) : (
+        // Show Video for larger screens
+        <div className="video-container">
+          <video autoPlay muted loop className="video-background" style={{ width: '100%', height: 'auto' }}>
+            <source src={videoSrc} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
+
+      <div className="Start-Tour">
+        <StartTour />
       </div>
-      {/* New Two-Column Section */}
+
+      {/* Two-Column Section */}
       <div className="two-column-section">
         <div className="column">
-          <h2>KING'S COLLAGE DESIGN</h2>
+          <h2>KING'S COLLEGE DESIGN</h2>
           <p>
             The Chapel sanctuary which sits beneath the Tower is a space of beauty, tranquillity, and peace.
-            Worship services are held every Wednesday during the academic term in King's College Chapel. This service starts at 5.15pm unless otherwise indicated. There are also daily services and important annual services such as Remembrance and Founders' Day held in the Chapel throughout the year.
-            Find out all you need to know about our Worship services as well as occasional services, recitals, tours and other events. Please contact us should you be planning a significant service for yourself or someone you love. 
+            Worship services are held every Wednesday during the academic term in King's College Chapel. This service starts at 5.15pm unless otherwise indicated.
+            Find out all you need to know about our Worship services as well as occasional services, recitals, tours and other events. Please contact us should you be planning a significant service for yourself or someone you love.
           </p>
           <p>
-            Aberdeen’s King’s College, founded in 1495 by William Elphinstone, is at the heart of the University of Aberdeen—one of Scotland’s oldest and most distinguished universities. Often cited for its striking medieval architecture, the campus is centered on the famous Crown Tower, a unique feature said to symbolize the unity of church and state in Scotland. 
-            Over the centuries, King’s College has served as a hub of scholarship and religious study, eventually merging with nearby Marischal College in 1860 to form the modern University of Aberdeen.
-            Today, the historic King’s College Chapel stands as a living testament to early Scottish Gothic design. Its intricate carved choir stalls and commemorative plaques tell the story of generations of students, faculty, and alumni who passed through its halls. 
-            Beyond the chapel, the idyllic cobblestone streets and manicured courtyards of Old Aberdeen offer a window into the past, inviting visitors to explore centuries of academic tradition. From theological pursuits to groundbreaking scientific research, King’s College has consistently embraced innovation while honoring its medieval roots, making it both an architectural landmark and a respected center of learning on the global stage
-            The chaplaincy at King’s College provides a warm and inclusive space for students, staff, and visitors seeking solace, spiritual guidance, or simply a quiet place to reflect. 
-            Situated near the historic chapel, the chaplaincy’s dedicated team offers pastoral care, organizes community events, and fosters interfaith dialogue. 
-            Whether offering a listening ear to those wrestling with academic pressures, leading prayer services, or hosting social gatherings to strengthen bonds between diverse faith groups, the chaplaincy remains an important pillar of support on campus. 
-            Through its blend of tradition and open-minded engagement, the chaplaincy serves as a vibrant reminder of King’s College’s commitment to nurturing both the intellectual and spiritual well-being of everyone who walks its centuries-old corridors.
+            Aberdeen’s King’s College, founded in 1495 by William Elphinstone, is at the heart of the University of Aberdeen—one of Scotland’s oldest and most distinguished universities.
           </p>
         </div>
 
         <div className="column">
-          <h2>KING'S COLLAGE EVENTS</h2>
+          <h2>KING'S COLLEGE EVENTS</h2>
           <p>
-            King's College Chapel is a beautiful place to be married and holds great significance for many people. And contrary to urban myth, there is no waiting list!
-            The Chapel is an ancient and beautiful building, the perfect setting for your ceremony. It is a private Chapel of the University and remains a place of worship in daily use.
-            The Chapel is available for weddings to:
-            University of Aberdeen staff and students
-            University of Aberdeen graduates
-            The Robert Gordon University staff, students, and graduates
-            Children, grandchildren, parents or grandparents of above or resident of Aberdeen City and Aberdeenshire
+            King's College Chapel is a beautiful place to be married and holds great significance for many people. The Chapel is an ancient and beautiful building, the perfect setting for your ceremony.
           </p>
-          <img className = "priest" src ="/images/priest.jpg" alt = "priest" />
+          <img className="priest" src="/images/priest.jpg" alt="priest" />
         </div>
-      </div>  
+      </div>
 
-       {/* New services section */}
-       <div className="services-container">
+      {/* Services Section */}
+      <div className="services-container">
         {services.map((service, i) => (
           <div key={i} className="service-item">
-            <img
-              src={service.icon}
-              alt={service.title}
-              className="service-icon"
-            />
+            <img src={service.icon} alt={service.title} className="service-icon" />
             <h3>{service.title}</h3>
             <p>{service.content}</p>
           </div>
         ))}
-      </div> 
+      </div>
 
-      <Footer /> 
-
-       
-     
+      <Footer />
     </div>
   );
 }
 
 export default Info;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
