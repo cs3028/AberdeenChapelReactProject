@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, CardContent } from "./ui/Card";
-import { Input } from "./ui/Input";
-import { Button } from "./ui/Button";
+import { Card, CardContent } from "./Card";
+import { Input } from "./Input";
+import { Button } from "./Button";
 import { Lock, Mail } from "lucide-react";
-import Footer from './ui/Footer';
+import Footer from './Footer';
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
