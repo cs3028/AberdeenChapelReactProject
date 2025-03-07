@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Footer() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Show the button when scrolling down 100px
+  const handleScroll = () => {
+    if (document.documentElement.scrollTop > 100 || document.body.scrollTop > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // Smooth scrolling effect
+    });
+  };
+
+  // Add scroll event listener
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div className="Footer">
-
       {/* Footer segment below the map */}
       <div style={footerStyle}>
         <img src="/images/UoA.svg" alt="University of Aberdeen" style={logoStyle} />
@@ -32,8 +58,17 @@ function Footer() {
 
           {/* UK Flag Image positioned on the right */}
           <img src="/images/UK.png" alt="UK Flag" style={ukImageStyle} />
+          <img src="/images/pointer.png" alt="Pointer" style={PointerStyle} />
         </div>
       </div>
+
+      {/* Back to Top Button */}
+      {isVisible && (
+        <button onClick={scrollToTop} style={backToTopButtonStyle}>
+          {/* Name of button */}
+          Top Of Page    
+        </button>
+      )}
     </div>
   );
 }
@@ -53,7 +88,7 @@ const footerStyle = {
 // Define logo styles
 const logoStyle = {
   display: 'block',
-  margin: '40px auto 30px',
+  margin: '20px',
   height: '50px',
 };
 
@@ -62,11 +97,13 @@ const contentContainerStyle = {
   display: 'flex',
   flexDirection: 'column', // Stack items vertically
   position: 'relative',
+  zIndex: 1,
 };
 
 // Define style to shift only the text slightly to the right
 const textContainerStyle = {
   marginLeft: '20px', // Shift text content to the right
+  zIndex: 1, // Bring text to the front
 };
 
 // Define tight line spacing for the first section
@@ -84,6 +121,7 @@ const normalSpacingStyle = {
 const highlightStyle = {
   color: '#FFD414',
   fontWeight: 600,
+  zIndex: 1, // Bring text to the front
 };
 
 // Define specific spacing for postcode
@@ -94,10 +132,36 @@ const postcodeStyle = {
 // Define UK image styles for right alignment
 const ukImageStyle = {
   position: 'absolute',
-  right: '20px',
-  top: '0px', // Adjust as needed for vertical position
+  left: '130px',
+  top: '10px', // Adjust as needed for vertical position
   height: '220px', // Adjust height as needed
   filter: 'grayscale(100%)',
+  zIndex: -0, // Send image to the back
+};
+
+const PointerStyle = {
+  position: 'absolute',
+  left: '260px',
+  top: '40px', // Adjust as needed for vertical position
+  height: '25px', // Adjust height as needed
+  width: '20px', // Adjust width if needed
+  filter: 'grayscale(0%)',
+  zIndex: 1, // Send image to the front
+};
+
+// Define styles for the Back to Top button
+const backToTopButtonStyle = {
+  position: 'fixed',
+  bottom: '20px',
+  right: '20px',
+  backgroundColor: '#007bff',
+  color: 'white',
+  border: 'none',
+  padding: '10px 15px',
+  fontSize: '16px',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  zIndex: 2,
 };
 
 export default Footer;
