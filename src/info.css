@@ -111,13 +111,23 @@ body {
   margin: 20px ;
 }
 
-.Start-Tour-Button{
-display: inline-block;
-padding : 50px 75px;
-background-color:#1C4392;
-color:white;
-font-size : 50px;
-border-radius: 10px;
+.Start-Tour-Button {
+  display: flex; /* Enables flexbox for alignment */
+  align-items: center; /* Centers items vertically */
+  justify-content: center; /* Centers items horizontally */
+  padding: 20px 40px; /* Adjust padding */
+  background-color: #8A2F2F;
+  color: white;
+  font-size: 24px;
+  border-radius: 40px;
+  text-decoration: none; /* Removes underline */
+  height: auto; /* Removes fixed height */
+  gap: 10px; /* Adds space between text and image */
+}
+
+.eye-icon {
+  width: 30px; /* Ensures correct image size */
+  height: 30px;
 }
 
 /* for mobile screens */
