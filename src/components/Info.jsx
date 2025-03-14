@@ -4,6 +4,7 @@ import "../info.css";
 import Footer from './Footer';
 import { Link } from "react-router-dom";
 
+
 function Info() {
   const images = [
     "/images/chapel_1.jpg",
@@ -14,7 +15,9 @@ function Info() {
   //button to start the tour (just a link to the panorma page)
   function StartTour(){
     return(
-    <Link to = "/panorama" className = "Start-Tour-Button">Tour Start</Link>
+    <Link to = "/panorama" className = "Start-Tour-Button">Tour Start
+      <img src="/images/eye.png" alt = "Eye Icon" className = "eye-icon"/>
+      </Link>
   );
   }
   
