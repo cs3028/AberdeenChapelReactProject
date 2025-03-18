@@ -3,16 +3,11 @@ import Footer from './Footer';
 import { useNavigate } from "react-router-dom";
 import "./moreInfo.css";
 
-
-  
-
-
-
-function SmallPulpit() {
+function LargePulpit() {
   const navigate = useNavigate() ;
   return (
-    <div className="SmallPulpit">
-      <h1>Small Pulpit</h1>
+    <div className="largePulpit">
+      <h1>The Main Chapel Pulpit</h1>
       <button className="backButton" onClick={() => navigate(-1)}>
         Back to Tour
       </button>
@@ -23,6 +18,6 @@ function SmallPulpit() {
 
 
 
-export default SmallPulpit;
+export default LargePulpit;
 
 

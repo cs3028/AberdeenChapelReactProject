@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ReactPannellum from "react-pannellum";
-import "./Panorama.css"; // Import the CSS file
+import "./Panorama.css"; 
 import { Link } from "react-router-dom";
 
-//import Carousel from '../Carousel';
 
 
   
@@ -20,9 +19,9 @@ function Panorama() {
         if (ReactPannellum.getCurrentScene() === "firstScene") {
             ReactPannellum.addHotSpot(
                 {
-                    pitch: 30,  //Vertical position 0 to 359
-                    yaw: 0,    //Horizontal position 0 to 359
-                    scale: 10.0,  //Size of hotspot
+                    pitch: 30, 
+                    yaw: 0,    
+                    scale: 10.0,  
                     type: "custom",
                     cssClass: "stainedGlassHotspot",
                     createTooltipFunc: (hotspotDiv) => {

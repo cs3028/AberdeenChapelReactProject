@@ -4,15 +4,11 @@ import { useNavigate } from "react-router-dom";
 import "./moreInfo.css";
 
 
-  
-
-
-
-function SmallPulpit() {
+function ChapelCeiling() {
   const navigate = useNavigate() ;
   return (
-    <div className="SmallPulpit">
-      <h1>Small Pulpit</h1>
+    <div className="chapelCeiling">
+      <h1>The Chapel Ceiling</h1>
       <button className="backButton" onClick={() => navigate(-1)}>
         Back to Tour
       </button>
@@ -23,6 +19,6 @@ function SmallPulpit() {
 
 
 
-export default SmallPulpit;
+export default ChapelCeiling;
 
 
