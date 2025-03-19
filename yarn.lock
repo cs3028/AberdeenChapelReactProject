@@ -4016,9 +4016,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.5.73:
-  version "1.5.108"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.108.tgz#5a83c99d01d391a6d6b5bb658cb645985a717f53"
-  integrity sha512-tiGxpQmvXBEzrfU5ertmbCV/nG5yqCkC1G4T1SIKP335Y5rjXzPWmijR6XcoGXZvVoo4dknfdNe4Tl7lcIROLg==
+  version "1.5.109"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.109.tgz#905a573d2b4cbb31412a2de6267fb22cf45e097e"
+  integrity sha512-AidaH9JETVRr9DIPGfp1kAarm/W6hRJTPuCnkF+2MqhF4KaAgRIcBc8nvjk+YMXZhwfISof/7WG29eS4iGxQLQ==
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -6808,7 +6808,7 @@ multicast-dns@^7.2.5:
     "@testing-library/jest-dom" "^5.17.0"
     "@testing-library/react" "^13.4.0"
     "@testing-library/user-event" "^13.5.0"
-    my-app "file:../../../Library/Caches/Yarn/v6/npm-my-app-0.1.0-4447a05c-1de7-419a-97a9-b8646ab615d6-1740708480504/node_modules/my-app"
+    my-app "file:../../../Library/Caches/Yarn/v6/npm-my-app-0.1.0-86bb9da0-6138-4631-ac0e-4559c3160ca6-1740772900656/node_modules/my-app"
     react "^18.3.1"
     react-dom "^18.3.1"
     react-pannellum "^0.2.16"
