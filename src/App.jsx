@@ -8,6 +8,7 @@ import SmallPulpit from './components/SmallPulpit' ;
 import WarMemorial from './components/WarMemorial' ;
 import RoodScreen from './components/RoodScreen' ;
 import Panorama from './components/Panorama';
+import AnteChapel from './components/anteChapel';
 
 
 
@@ -39,6 +40,14 @@ function App() {
             <Layout>
 
               <Organ />
+
+            </Layout>
+           }
+          />
+          <Route path="/anteChapel" element={
+            <Layout>
+
+              <AnteChapel />
 
             </Layout>
            }

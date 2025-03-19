@@ -13,6 +13,7 @@ function Panorama() {
   const [roodScreenPopupVisible, setRoodScreenPopupVisible] = useState(false);
   const [warMemorialPopupVisible, setWarMemorialPopupVisible] = useState(false);
   const [smallPulpitPopupVisible, setSmallPulpitPopupVisible] = useState(false);
+  const [anteChapelPopupVisible, setAnteChapelPopupVisible] = useState(false);
 
   useEffect(() => {
     const addHotspot = () => {
@@ -37,8 +38,8 @@ function Panorama() {
             );
             ReactPannellum.addHotSpot(
               {
-                pitch: 0,
-                yaw: 90,
+                pitch: 40,
+                yaw: 180,
                 type: "custom",
                 cssClass: "organHotspot",
                 createTooltipFunc: (hotspotDiv) => {
@@ -48,6 +49,22 @@ function Panorama() {
                   hotspotDiv.onclick = () => {
                       
                     setOrganPopupVisible(true);
+                  };
+                },
+              },
+            );
+            ReactPannellum.addHotSpot(
+              {
+                pitch: 0,
+                yaw: 100,
+                type: "custom",
+                cssClass: "anteChapelHotspot",
+                createTooltipFunc: (hotspotDiv) => {
+                  hotspotDiv.style.cursor = "pointer";
+
+                  hotspotDiv.onclick = () => {
+                      
+                    setAnteChapelPopupVisible(true);
                   };
                 },
               },
@@ -71,8 +88,8 @@ function Panorama() {
             );
             ReactPannellum.addHotSpot(
               {
-                pitch: 0,
-                yaw: 270,
+                pitch: -10,
+                yaw: 300,
                 type: "custom",
                 cssClass: "warMemorialHotspot",
                 createTooltipFunc: (hotspotDiv) => {
@@ -88,8 +105,8 @@ function Panorama() {
             );
             ReactPannellum.addHotSpot(
               {
-                pitch: 0,
-                yaw: 0,
+                pitch: 35,
+                yaw: 320,
                 type: "custom",
                 cssClass: "smallPulpitHotspot",
                 createTooltipFunc: (hotspotDiv) => {
@@ -155,6 +172,17 @@ return (
               </div>
           </div>
           )}
+      
+    {anteChapelPopupVisible && (
+        <div className="popup">
+            <div className="anteChapel-content">
+                <h2>The Ante-Chapel</h2>
+                <p></p>
+                <Link to = "/anteChapel" className = "AnteChapel-info">More Information</Link>
+                <button onClick={() => setAnteChapelPopupVisible(false)}>Close</button>
+            </div>
+        </div>
+        )}
 
     {roodScreenPopupVisible && (
       <div className="popup">
