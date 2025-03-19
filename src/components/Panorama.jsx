@@ -56,7 +56,7 @@ function Panorama() {
             ReactPannellum.addHotSpot(
               {
                 pitch: 0,
-                yaw: 100,
+                yaw: 0,
                 type: "custom",
                 cssClass: "anteChapelHotspot",
                 createTooltipFunc: (hotspotDiv) => {
@@ -177,7 +177,7 @@ return (
         <div className="popup">
             <div className="anteChapel-content">
                 <h2>The Ante-Chapel</h2>
-                <p></p>
+                <p>The Antechapel serves as a space to honor University members who lost their lives in World War I and II, with a commemorative window and names displayed around the room. While its structure has remained largely unchanged, it has become smaller due to the addition of the Rood Screen. The Antechapel now welcomes visitors into the Chapel, where services and events continue to be held.</p>
                 <Link to = "/anteChapel" className = "AnteChapel-info">More Information</Link>
                 <button onClick={() => setAnteChapelPopupVisible(false)}>Close</button>
             </div>
