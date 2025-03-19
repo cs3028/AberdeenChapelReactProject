@@ -130,7 +130,7 @@ return (
       id="1"
       sceneId="firstScene"
       config={config}
-      imageSource="images/chapelPanorama.jpg"
+      imageSource="images/AnteChapel.jpg"
       style={style}
     />
 
