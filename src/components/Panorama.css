@@ -1,72 +1,141 @@
-.popup {
+.fixed-header {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    z-index: 9999;
 }
 
+.panorama-page {
+    overflow: hidden; /* Prevent scrolling */
+    position: fixed; /* Fixes it in place */
+    top: 5;
+    left: 0;
+    width: 100%; 
+    height: 100vh; /* 100% of the viewport height */
+    background-color: #FFF;
+}
+
+
+/* Panorama Container */
+.panorama-container {
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    
+}
+
+/* Popup Styling */
+.popup {
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%; /* Custom width */
+    background: rgba(255, 255, 255, 0.903);
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid #C9C9C9;
+    z-index: 1000;
+    font-family: 'Inter', sans-serif; /* Use Inter font */
+}
+
+/* Popup Content */
 .popup-content {
     text-align: center;
 }
 
-.popup button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
+.popup h2 {
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 10px;
 }
 
+.popup p {
+    font-size: 16px;
+    color: #333;
+}
 
-.stainedGlassHotspot {
-    width: 100px; 
-    height: 100px;
-    background-image: url("StainedWindowNoBackground.png");
+/* Popup Buttons Container */
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Close Button (Red) */
+.popup button {
+    padding: 8px 16px;
+    font-size: 16px; /* Match Learn More button size */
+    background-color: #8A2F2F;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.popup button:hover {
+    background-color: #7a7373;
+}
+
+/* Learn More Button (Grey) */
+.info-button {
+    padding: 8px 16px;
+    font-size: 16px; /* Match Close button size */
+    background-color: #ccc;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.info-button:hover {
+    background-color: #bbb;
+}
+
+/* Hotspot Styling */
+.stainedGlassHotspot,
+.organHotspot,
+.roodScreenHotspot,
+.warMemorialHotspot,
+.smallPulpitHotspot {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
+}
+
+.stainedGlassHotspot {
+    width: 100px;
+    height: 100px;
+    background-image: url("StainedWindowNoBackground.png");
 }
 
 .organHotspot {
-    width: 200px; 
+    width: 200px;
     height: 200px;
     background-image: url("OrganImagePopUp.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
 }
 
 .roodScreenHotspot {
-    width: 150px; 
+    width: 150px;
     height: 150px;
     background-image: url("RoodScreen.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
 }
 
 .warMemorialHotspot {
-    width: 250px; 
+    width: 250px;
     height: 250px;
     background-image: url("warMemorial-2.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
 }
 
 .smallPulpitHotspot {
-    width: 150px; 
+    width: 150px;
     height: 150px;
     background-image: url("smallPulpit.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
 }
