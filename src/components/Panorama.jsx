@@ -50,7 +50,7 @@ function Panorama() {
     
   
       const [currentScene, setCurrentScene] = useState("firstScene");
-      const [currentImage, setCurrentImage] = useState("/images/chapelPanorama.jpg");
+      const [currentImage, setCurrentImage] = useState("/images/AnteChapel.jpg");
 
 
 
@@ -157,7 +157,7 @@ function Panorama() {
             pitch: 0,
             yaw: 0,
             type: "equirectangular",
-            imageSource: "/images/AnteChapel.jpg",
+            imageSource: "/images/choirStallsSection.jpg",
           });
 
           addNewScene("thirdScene",{
@@ -167,7 +167,7 @@ function Panorama() {
             pitch: 0,
             yaw: 0,
             type: "equirectangular",
-            imageSource: "/images/thirdScene.jpg",
+            imageSource: "/images/sanctuary.jpg",
           })
         }, 1000); // 1-second delay to make sure Pannellum is initialized
       }, []);
