@@ -1,15 +1,3 @@
-.organHotspot,
-.roodScreenHotspot,
-.warMemorialHotspot,
-.anteChapelHotspot,
-.smallPulpitHotspot,
-.graffitiHotspot,
-.choirStallsHotspot,
-.stainedGlassHotspot,
-.largePulpitHotspot,
-.elphinstoneGraveHotspot,
-.chapelCeilingHotspot,
-
 .fixed-header {
     position: fixed;
     top: 0;
@@ -235,38 +223,4 @@
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    pointer-events: auto !important; 
-    z-index: 1000;
 }
-
-/* 📱 Mobile-specific styles */
-@media (max-width: 768px) {
-    .organHotspot,
-    .roodScreenHotspot,
-    .warMemorialHotspot,
-    .anteChapelHotspot,
-    .smallPulpitHotspot,
-    .graffitiHotspot,
-    .choirStallsHotspot,
-    .stainedGlassHotspot,
-    .largePulpitHotspot,
-    .elphinstoneGraveHotspot,
-    .chapelCeilingHotspot,
-    .maryHotspot {
-        width: 50px; /* Increase size for better visibility */
-        height: 50px;
-    }
-}
-
-@media (max-width: 768px) {
-    .stainedGlassHotspot {
-        width: 60px;
-        height: 60px;
-    }
-}
-
-
-
-
