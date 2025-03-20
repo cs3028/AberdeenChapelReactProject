@@ -471,13 +471,36 @@ function Panorama() {
           );
 
         }
+        setTimeout(() => {
+          let hotspots = document.querySelectorAll(".pnlm-hotspot");
+          if (hotspots.length === 0) {
+            console.warn("Hotspots missing, retrying...");
+            addHotspot(); // Try adding again
+          } else {
+            console.log("Hotspots successfully added!");
+          }
+        }, 1000);
     };
 
     const ensureHotspotsLoad = () => {
-      setTimeout(() => {
-        addHotspot();
-      }, 1000); // Slight delay to make sure Pannellum is fully initialized
+      let attempts = 0;
+      const maxAttempts = 10; // Try for up to 5 seconds
+    
+      const interval = setInterval(() => {
+        if (ReactPannellum.getCurrentScene() === currentScene) {
+          clearInterval(interval); // Stop checking once the scene is fully loaded
+          console.log("Scene loaded: Adding hotspots...");
+          addHotspot(); // Now safe to add hotspots
+        }
+    
+        attempts++;
+        if (attempts > maxAttempts) {
+          clearInterval(interval); // Stop after max attempts
+          console.warn("Hotspots could not be added: Scene loading took too long.");
+        }
+      }, 500); // Check every 500ms
     };
+    
 
     let checkSceneInterval = setInterval(() => {
       if (ReactPannellum.getCurrentScene()) {
