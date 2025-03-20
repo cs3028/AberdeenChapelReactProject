@@ -56,6 +56,13 @@ function Panorama() {
     roodScreenPopupVisible,
     warMemorialPopupVisible,
     smallPulpitPopupVisible,
+    graffitiPopupVisible,
+    choirStallsPopupVisible,
+    largePulpitPopupVisible,
+    elphinstoneGravePopupVisible,
+    chapelCeilingPopupVisible,
+    maryPopupVisible,
+    anteChapelPopupVisible,
   ]);
 
   
@@ -84,7 +91,7 @@ function Panorama() {
             return;
         }
     
-        // 🔥 Fix: Convert the array to an object lookup
+        //Convert the array to an object lookup
         let sceneMap = Object.assign({}, ...availableScenes);  // Merges array of objects into one object
     
         console.log("Scene Map:", sceneMap); // Debugging output
@@ -183,7 +190,7 @@ function Panorama() {
             type: "equirectangular",
             imageSource: "/images/sanctuary.jpg",
           })
-        }, 1000); // 1-second delay to make sure Pannellum is initialized
+        }, 2000); // 1-second delay to make sure Pannellum is initialized
       }, []);
       
 
@@ -479,7 +486,7 @@ function Panorama() {
           } else {
             console.log("Hotspots successfully added!");
           }
-        }, 1000);
+        }, 2000);
     };
 
     const ensureHotspotsLoad = () => {
@@ -498,7 +505,7 @@ function Panorama() {
           clearInterval(interval); // Stop after max attempts
           console.warn("Hotspots could not be added: Scene loading took too long.");
         }
-      }, 500); // Check every 500ms
+      }, 1000); // Check every 500ms
     };
     
 
@@ -507,7 +514,7 @@ function Panorama() {
         clearInterval(checkSceneInterval); // Stop checking once scene is detected
         ensureHotspotsLoad();
       }
-    }, 500); // Check every 500ms
+    }, 1000); // Check every 500ms
   
     return () => clearInterval(checkSceneInterval);
 
