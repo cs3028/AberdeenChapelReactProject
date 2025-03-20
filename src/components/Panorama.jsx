@@ -473,12 +473,22 @@ function Panorama() {
         }
     };
 
-    // Wait for the scene to load before adding hotspots
-    setTimeout(() => {
+    const ensureHotspotsLoad = () => {
+      setTimeout(() => {
         addHotspot();
-    }, 1500); // Small delay to ensure Pannellum loads
-console.log(currentScene)
-    }, [currentScene]);
+      }, 1000); // Slight delay to make sure Pannellum is fully initialized
+    };
+
+    let checkSceneInterval = setInterval(() => {
+      if (ReactPannellum.getCurrentScene()) {
+        clearInterval(checkSceneInterval); // Stop checking once scene is detected
+        ensureHotspotsLoad();
+      }
+    }, 500); // Check every 500ms
+  
+    return () => clearInterval(checkSceneInterval);
+
+  }, [currentScene]);
 
   const style = {
     width: "100%",
