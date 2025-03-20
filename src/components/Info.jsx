@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 
 function Info() {
   const images = [
-    "/images/chapel_1.jpg",
-    "/images/inside.jpg",
-    "/images/right.jpg",
+    "/images/chapel1M.png",
+    "/images/chapel2M.png",
+    "/images/chapel3M.png",
   ];
 
   //button to start the tour (just a link to the panorma page)
