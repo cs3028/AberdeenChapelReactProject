@@ -476,7 +476,7 @@ function Panorama() {
     // Wait for the scene to load before adding hotspots
     setTimeout(() => {
         addHotspot();
-    }, 500); // Small delay to ensure Pannellum loads
+    }, 1500); // Small delay to ensure Pannellum loads
 console.log(currentScene)
     }, [currentScene]);
 
