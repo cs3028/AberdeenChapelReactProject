@@ -48,6 +48,7 @@ useEffect(() => {
                 <li><a href="#alumni" onClick={closeMenu}>Alumni & Giving</a></li>
                 <li><a href="#business" onClick={closeMenu}>Business</a></li>
                 <li><a href="#quicklinks" onClick={closeMenu}>Quick Links</a></li>
+                <li><a href="/login" onClick={closeMenu}>Login</a></li>
             </ul>
             
             <div className="navbar-search">
