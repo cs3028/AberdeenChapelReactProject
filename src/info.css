@@ -68,7 +68,7 @@ body {
 
 
 .menu-icon {
-  position: none;
+  position: absolute;
   display: none;
   top: 20px;
   right: 20px;
