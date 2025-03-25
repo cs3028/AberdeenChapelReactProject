@@ -18,8 +18,9 @@ import Mary from './components/goodbyeMary';
 import StainedGlass from './components/stainedGlass';
 import ChoirStallsPanorama from './components/choirStallsPanorama'
 import SanctuaryPanorama from './components/sanctuaryPanorama';
-
-
+import Login from "./components/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Dashboard from "./components/Dashboard";
 
 
 function App() {
@@ -158,6 +159,23 @@ function App() {
             </Layout>
            }
           />
+            <Route path="/login" element={
+                <Layout>
+                    <Login />
+                </Layout>
+            }
+            />
+            {/* login page - no layout, so it’s a clean login screen */}
+            <Route path="/login" element={<Login />} />
+
+            {/* protected route - only logged-in users can see this */}
+            <Route path="/dashboard" element={
+                <ProtectedRoute>
+                    <Layout>
+                        <Dashboard />
+                    </Layout>
+                </ProtectedRoute>
+            }/>
         </Routes>
       </Router>
   );
