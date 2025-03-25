@@ -16,11 +16,11 @@ import ElphinstoneGrave from './components/elphinstoneGrave';
 import ChapelCeiling from './components/chapelCeiling';
 import Mary from './components/goodbyeMary';
 import StainedGlass from './components/stainedGlass';
+import ChoirStallsPanorama from './components/choirStallsPanorama'
+import SanctuaryPanorama from './components/sanctuaryPanorama';
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./components/Dashboard";
-
-
 
 
 function App() {
@@ -139,6 +139,22 @@ function App() {
             <Layout>
 
               <StainedGlass />
+
+            </Layout>
+           }
+          />
+          <Route path="/choirStallsPanorama" element={
+            <Layout>
+
+              <ChoirStallsPanorama />
+
+            </Layout>
+           }
+          />
+          <Route path="/sanctuaryPanorama" element={
+            <Layout>
+
+              <SanctuaryPanorama />
 
             </Layout>
            }
