@@ -15,7 +15,7 @@ app.use(cors({
 }));
 app.use(cookieParser());
 
-const SECRET_KEY = process.env.SECRET_KEY || "super-secure-key";  //
+const SECRET_KEY = process.env.SECRET_KEY || "super-secure-key"; // uncomment this line if
 const validUser = { email: "sid@g.com", password: "bbills" };  // login info
 
 app.post("/login", (req, res) => {

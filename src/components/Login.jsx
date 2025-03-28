@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "./Card";
 import { Input } from "./Input";
 import { Button } from "./Button";
-import { Lock, Mail } from "lucide-react";
 import Footer from './Footer';
 
 const LoginPage = () => {
@@ -56,8 +55,8 @@ const LoginPage = () => {
                 <CardContent>
                     <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
                     <form onSubmit={handleLogin} className="space-y-4">
+                        <label className="block text-sm font-medium text-gray-700">Email</label>
                         <div className="flex items-center border rounded-lg p-2">
-                            <Mail className="mr-2 text-gray-500" />
                             <Input
                                 type="email"
                                 placeholder="Email"
@@ -67,8 +66,8 @@ const LoginPage = () => {
                                 className="flex-1 border-none focus:ring-0"
                             />
                         </div>
+                        <label className="block text-sm font-medium text-gray-700">Password</label>
                         <div className="flex items-center border rounded-lg p-2">
-                            <Lock className="mr-2 text-gray-500" />
                             <Input
                                 type="password"
                                 placeholder="Password"
