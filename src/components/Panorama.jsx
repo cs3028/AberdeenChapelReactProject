@@ -102,8 +102,8 @@ function Panorama() {
               createTooltipFunc: (hotspotDiv) => {
                 hotspotDiv.style.cursor = "pointer";
                 hotspotDiv.onclick = () => {
-                  ReactPannellum.destroy() ;
-                  navigate('/choirStallsPanorama')  ;
+                  hotspotDiv.innerHTML = `<a href="/choirStallsPanorama" class="hotspot-link">Go to Choir Stalls</a>`;
+                  hotspotDiv.style.cursor = "pointer";
                 };
               },
             },
