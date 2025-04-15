@@ -12,96 +12,97 @@ function Panorama() {
     const [elphinstoneGravePopupVisible, setElphinstoneGravePopupVisible] = useState(false);
     const [chapelCeilingPopupVisible, setChapelCeilingPopupVisible] = useState(false);
     const [maryPopupVisible, setMaryPopupVisible] = useState(false);
+    const [directionPopupVisible, setDirectionPopupVisible] = useState(false);
 
   useEffect(() => {
     const addHotspot = () => {
 
     if (ReactPannellum.getCurrentScene() === "firstScene") {
         ReactPannellum.addHotSpot(
-            {
-                pitch: 0,
-                yaw: 180,
-                type: "scene",
-                sceneId: "secondScene",
-                createTooltipFunc: (hotspotDiv) => {
-                hotspotDiv.style.cursor = "pointer";
-                hotspotDiv.onclick = () => {
-                    navigate('/choirStallsPanorama')  ;    ;
-                };
-                },
+        {
+          pitch: 0,
+          yaw: 180,
+          type: "custom",
+          cssClass: "directionHotspot",
+          createTooltipFunc: (hotspotDiv) => {
+            hotspotDiv.style.cursor = "pointer";
+            hotspotDiv.onclick = () => {
+              setDirectionPopupVisible(true);
+            };
+          },
+        },
+      );
+        ReactPannellum.addHotSpot(
+        {
+            pitch: 35,
+            yaw: 300,
+            type: "custom",
+            cssClass: "largePulpitHotspot",
+            createTooltipFunc: (hotspotDiv) => {
+            hotspotDiv.style.cursor = "pointer";
+
+            // Add click event listener
+            hotspotDiv.onclick = () => {
+                
+                setLargePulpitPopupVisible(true);
+            };
             },
-            );
-            ReactPannellum.addHotSpot(
-            {
-                pitch: 35,
-                yaw: 300,
-                type: "custom",
-                cssClass: "largePulpitHotspot",
-                createTooltipFunc: (hotspotDiv) => {
-                hotspotDiv.style.cursor = "pointer";
+        },
+        );
 
-                // Add click event listener
-                hotspotDiv.onclick = () => {
-                    
-                    setLargePulpitPopupVisible(true);
-                };
-                },
+        ReactPannellum.addHotSpot(
+        {
+            pitch: -15,
+            yaw: 350,
+            type: "custom",
+            cssClass: "elphinstoneGraveHotspot",
+            createTooltipFunc: (hotspotDiv) => {
+            hotspotDiv.style.cursor = "pointer";
+
+            // Add click event listener
+            hotspotDiv.onclick = () => {
+                
+                setElphinstoneGravePopupVisible(true);
+            };
             },
-            );
+        },
+        );
 
-            ReactPannellum.addHotSpot(
-            {
-                pitch: -15,
-                yaw: 350,
-                type: "custom",
-                cssClass: "elphinstoneGraveHotspot",
-                createTooltipFunc: (hotspotDiv) => {
-                hotspotDiv.style.cursor = "pointer";
+        ReactPannellum.addHotSpot(
+        {
+            pitch: 40,
+            yaw: 0,
+            type: "custom",
+            cssClass: "chapelCeilingHotspot",
+            createTooltipFunc: (hotspotDiv) => {
+            hotspotDiv.style.cursor = "pointer";
 
-                // Add click event listener
-                hotspotDiv.onclick = () => {
-                    
-                    setElphinstoneGravePopupVisible(true);
-                };
-                },
+            // Add click event listener
+            hotspotDiv.onclick = () => {
+                
+                setChapelCeilingPopupVisible(true);
+            };
             },
-            );
+        },
+        );
 
-            ReactPannellum.addHotSpot(
-            {
-                pitch: 40,
-                yaw: 0,
-                type: "custom",
-                cssClass: "chapelCeilingHotspot",
-                createTooltipFunc: (hotspotDiv) => {
-                hotspotDiv.style.cursor = "pointer";
+        ReactPannellum.addHotSpot(
+        {
+            pitch: 35,
+            yaw: 90,
+            type: "custom",
+            cssClass: "maryHotspot",
+            createTooltipFunc: (hotspotDiv) => {
+            hotspotDiv.style.cursor = "pointer";
 
-                // Add click event listener
-                hotspotDiv.onclick = () => {
-                    
-                    setChapelCeilingPopupVisible(true);
-                };
-                },
+            // Add click event listener
+            hotspotDiv.onclick = () => {
+                
+                setMaryPopupVisible(true);
+            };
             },
-            );
-
-            ReactPannellum.addHotSpot(
-            {
-                pitch: 35,
-                yaw: 90,
-                type: "custom",
-                cssClass: "maryHotspot",
-                createTooltipFunc: (hotspotDiv) => {
-                hotspotDiv.style.cursor = "pointer";
-
-                // Add click event listener
-                hotspotDiv.onclick = () => {
-                    
-                    setMaryPopupVisible(true);
-                };
-                },
-            },
-            );
+        },
+        );
       };
     };
 
@@ -183,6 +184,18 @@ return (
                   <button onClick={() => setMaryPopupVisible(false)}>Close</button>
                 </div>
             </div>
+        </div>
+        )}
+
+      {directionPopupVisible && (
+        <div className="popup">
+          <div className="popup-content">
+            <h2>Back to the Choir Stalls Section</h2>
+            <div className="popup-buttons">
+              <Link to="/choirStallsPanorama" className="info-button">Click to Enter Section</Link>
+              <button onClick={() => setDirectionPopupVisible(false)}>Close</button>
+            </div>
+          </div>
         </div>
         )}
 

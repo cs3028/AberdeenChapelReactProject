@@ -11,6 +11,8 @@ function Panorama() {
   const [graffitiPopupVisible, setGraffitiPopupVisible] = useState(false);
   const [choirStallsPopupVisible, setChoirStallsPopupVisible] = useState(false);
   const [stainedGlassPopupVisible, setStainedGlassPopupVisible] = useState(false);
+  const [anteDirectionPopupVisible, setAnteDirectionPopupVisible] = useState(false);
+  const [sanctuaryDirectionPopupVisible, setSanctuaryDirectionPopupVisible] = useState(false);
 
   useEffect(() => {
     const addHotspot = () => {
@@ -20,12 +22,12 @@ function Panorama() {
             {
               pitch: 180,
               yaw: 2,
-              type: "scene",
-              sceneId: "firstScene",
+              type: "custom",
+              cssClass: "directionHotspot",
               createTooltipFunc: (hotspotDiv) => {
                 hotspotDiv.style.cursor = "pointer";
                 hotspotDiv.onclick = () => {
-                    navigate('/panorama')  ;  ;
+                  setAnteDirectionPopupVisible(true);
                 };
               },
             },
@@ -79,20 +81,20 @@ function Panorama() {
               },
             },
         );
-          ReactPannellum.addHotSpot(
-            {
-              pitch: 180,
-              yaw: 182,
-              type: "scene",
-              sceneId: "thirdScene",
-              createTooltipFunc: (hotspotDiv) => {
-                hotspotDiv.style.cursor = "pointer";
-                hotspotDiv.onclick = () => {
-                    navigate('/sanctuaryPanorama')  ;  ;
-                };
-              },
+        ReactPannellum.addHotSpot(
+          {
+            pitch: 180,
+            yaw: 182,
+            type: "custom",
+            cssClass: "directionHotspot",
+            createTooltipFunc: (hotspotDiv) => {
+              hotspotDiv.style.cursor = "pointer";
+              hotspotDiv.onclick = () => {
+                setSanctuaryDirectionPopupVisible(true);
+              };
             },
-          );
+          },
+        );
       };
     };
 
@@ -165,6 +167,30 @@ return (
             </div>
         </div>
         )}
+      
+    {anteDirectionPopupVisible && (
+        <div className="popup">
+          <div className="popup-content">
+            <h2>Back to the Ante-Chapel Section</h2>
+            <div className="popup-buttons">
+              <Link to="/Panorama" className="info-button">Click to Enter Section</Link>
+              <button onClick={() => setAnteDirectionPopupVisible(false)}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+    {sanctuaryDirectionPopupVisible && (
+        <div className="popup">
+          <div className="popup-content">
+            <h2>Please Enter The Sanctuary Section</h2>
+            <div className="popup-buttons">
+              <Link to="/sanctuaryPanorama" className="info-button">Click to Enter Section</Link>
+              <button onClick={() => setSanctuaryDirectionPopupVisible(false)}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
 
 
   </div>

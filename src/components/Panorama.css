@@ -105,6 +105,16 @@
     cursor: pointer;
 }
 
+.directionHotspot {
+    width: 80px; 
+    height: 80px;
+    background-image: url("upArrow.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
 .stainedGlassHotspot {
     width: 100px; 
     height: 100px;

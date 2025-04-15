@@ -15,6 +15,7 @@ function Panorama() {
   const [warMemorialPopupVisible, setWarMemorialPopupVisible] = useState(false);
   const [smallPulpitPopupVisible, setSmallPulpitPopupVisible] = useState(false);
   const [anteChapelPopupVisible, setAnteChapelPopupVisible] = useState(false);
+  const [directionPopupVisible, setDirectionPopupVisible] = useState(false);
 
   useEffect(() => {
     const addHotspot = () => {
@@ -96,14 +97,13 @@ function Panorama() {
           ReactPannellum.addHotSpot(
             {
               pitch: 0,
-              yaw: 180,
-              type: "scene",
-              sceneId: "secondScene",
+              yaw: 182,
+              type: "custom",
+              cssClass: "directionHotspot",
               createTooltipFunc: (hotspotDiv) => {
                 hotspotDiv.style.cursor = "pointer";
                 hotspotDiv.onclick = () => {
-                  hotspotDiv.innerHTML = `<a href="/choirStallsPanorama" class="hotspot-link">Go to Choir Stalls</a>`;
-                  hotspotDiv.style.cursor = "pointer";
+                  setDirectionPopupVisible(true);
                 };
               },
             },
@@ -200,6 +200,18 @@ return (
             <div className="popup-buttons">
               <Link to="/organ" className="info-button">Learn more</Link>
               <button onClick={() => setOrganPopupVisible(false)}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+    {directionPopupVisible && (
+        <div className="popup">
+          <div className="popup-content">
+            <h2>Please Enter the Choir Stalls Section</h2>
+            <div className="popup-buttons">
+              <Link to="/choirStallsPanorama" className="info-button">Click to Enter Section</Link>
+              <button onClick={() => setDirectionPopupVisible(false)}>Close</button>
             </div>
           </div>
         </div>
