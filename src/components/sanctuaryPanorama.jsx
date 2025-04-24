@@ -13,6 +13,18 @@ function Panorama() {
     const [chapelCeilingPopupVisible, setChapelCeilingPopupVisible] = useState(false);
     const [maryPopupVisible, setMaryPopupVisible] = useState(false);
     const [directionPopupVisible, setDirectionPopupVisible] = useState(false);
+    //Add text to speech
+  const speakText = (text) => {
+    const synth = window.speechSynthesis;
+    synth.cancel(); // Cancel previous speech, if any
+    const utterance = new SpeechSynthesisUtterance(text);
+    synth.speak(utterance);
+  };
+
+  //Stop text to speech
+  const stopSpeech = () => {
+    window.speechSynthesis.cancel();
+  };
 
   useEffect(() => {
     const addHotspot = () => {
@@ -139,10 +151,15 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>The Main Chapel Pulpit</h2>
-                <p>King's College Chapel houses a historically significant pulpit, originally erected in the late 1530s at St Machar's Cathedral. This pulpit, known as Bishop Stewart's Pulpit, was later moved to King's College Chapel, where it remains a notable feature. The pulpit is recognized for its intricate woodwork and serves as a testament to the craftsmanship of the period.</p>
+                <p id = "pulpitParagraph">King's College Chapel houses a historically significant pulpit, originally erected in the late 1530s at St Machar's Cathedral. This pulpit, known as Bishop Stewart's Pulpit, was later moved to King's College Chapel, where it remains a notable feature. The pulpit is recognized for its intricate woodwork and serves as a testament to the craftsmanship of the period.</p>
                 <div className="popup-buttons">
                   <Link to="/largePulpit" className="info-button">Learn more</Link>
-                  <button onClick={() => setLargePulpitPopupVisible(false)}>Close</button>
+                  <button onClick={() => speakText(document.getElementById('pulpitParagraph').textContent)}>Listen To Audio</button>
+                  <button onClick={stopSpeech}>Stop Audio</button>
+                  <button onClick={() => {
+                    setLargePulpitPopupVisible(false);
+                    stopSpeech();
+                    }}>Close</button>
                 </div>
             </div>
         </div>
@@ -152,10 +169,15 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>Elphinstone's Grave</h2>
-                <p>Bishop William Elphinstone, who founded the University of Aberdeen in 1495, was buried inside King's College Chapel upon his death in 1514. His original Renaissance tomb was destroyed during the Reformation. In the early 20th century, a bronze and marble monument was commissioned to commemorate him. Designed by Henry Wilson and completed in 1931, the monument was initially intended for placement inside the chapel. However, due to its size, it was eventually installed outside the main entrance in 1946, where it remains today. ​</p>
+                <p id = "graveParagraph">Bishop William Elphinstone, who founded the University of Aberdeen in 1495, was buried inside King's College Chapel upon his death in 1514. His original Renaissance tomb was destroyed during the Reformation. In the early 20th century, a bronze and marble monument was commissioned to commemorate him. Designed by Henry Wilson and completed in 1931, the monument was initially intended for placement inside the chapel. However, due to its size, it was eventually installed outside the main entrance in 1946, where it remains today. ​</p>
                 <div className="popup-buttons">
                   <Link to="/elphinstoneGrave" className="info-button">Learn more</Link>
-                  <button onClick={() => setElphinstoneGravePopupVisible(false)}>Close</button>
+                  <button onClick={() => speakText(document.getElementById('graveParagraph').textContent)}>Listen To Audio</button>
+                  <button onClick={stopSpeech}>Stop Audio</button>
+                  <button onClick={() => {
+                    setElphinstoneGravePopupVisible(false);
+                    stopSpeech();
+                    }}>Close</button>
                 </div>
             </div>
         </div>
@@ -165,10 +187,15 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>The Chapel Ceiling</h2>
-                <p>King's College Chapel in Aberdeen features a historically significant timber ceiling. This splendid timber ceiling adds to the chapel's architectural beauty and historical significance.</p>
+                <p id = "ceilingParagraph">King's College Chapel in Aberdeen features a historically significant timber ceiling. This splendid timber ceiling adds to the chapel's architectural beauty and historical significance.</p>
                 <div className="popup-buttons">
                   <Link to="/chapelCeiling" className="info-button">Learn more</Link>
-                  <button onClick={() => setChapelCeilingPopupVisible(false)}>Close</button>
+                  <button onClick={() => speakText(document.getElementById('ceilingParagraph').textContent)}>Listen To Audio</button>
+                  <button onClick={stopSpeech}>Stop Audio</button>
+                  <button onClick={() => {
+                    setChapelCeilingPopupVisible(false);
+                    stopSpeech();
+                    }}>Close</button>
                 </div>
             </div>
         </div>
@@ -178,10 +205,15 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>Saying Goodbye to Mary</h2>
-                <p>The chapel is dedicated to the Trinity and the Blessed Virgin Mary in her Nativity, as per its foundation in 1495.</p>
+                <p id = "maryParagraph">The chapel is dedicated to the Trinity and the Blessed Virgin Mary in her Nativity, as per its foundation in 1495.</p>
                 <div className="popup-buttons">
                   <Link to="/mary" className="info-button">Learn more</Link>
-                  <button onClick={() => setMaryPopupVisible(false)}>Close</button>
+                  <button onClick={() => speakText(document.getElementById('maryParagraph').textContent)}>Listen To Audio</button>
+                  <button onClick={stopSpeech}>Stop Audio</button>
+                  <button onClick={() => {
+                    setMaryPopupVisible(false);
+                    stopSpeech();
+                    }}>Close</button>
                 </div>
             </div>
         </div>

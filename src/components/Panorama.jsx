@@ -17,6 +17,19 @@ function Panorama() {
   const [anteChapelPopupVisible, setAnteChapelPopupVisible] = useState(false);
   const [directionPopupVisible, setDirectionPopupVisible] = useState(false);
 
+  //Add text to speech
+  const speakText = (text) => {
+    const synth = window.speechSynthesis;
+    synth.cancel(); // Cancel previous speech, if any
+    const utterance = new SpeechSynthesisUtterance(text);
+    synth.speak(utterance);
+  };
+
+  //Stop text to speech
+  const stopSpeech = () => {
+    window.speechSynthesis.cancel();
+  };
+
   useEffect(() => {
     const addHotspot = () => {
         if (ReactPannellum.getCurrentScene() === "firstScene") {
@@ -114,6 +127,10 @@ function Panorama() {
     // Wait for the scene to load before adding hotspots
     setTimeout(addHotspot, 500); // Small delay to ensure Pannellum loads
 
+    return () => {
+      window.speechSynthesis.cancel(); //Stop text to speech when leaving the page
+    }
+
     }, []);
 
   const style={
@@ -144,10 +161,15 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>The Ante-Chapel</h2>
-                <p>The Antechapel serves as a space to honor University members who lost their lives in World War I and II, with a commemorative window and names displayed around the room. While its structure has remained largely unchanged, it has become smaller due to the addition of the Rood Screen. The Antechapel now welcomes visitors into the Chapel, where services and events continue to be held.</p>
+                <p id = "anteChapelParagraph">The Antechapel serves as a space to honor University members who lost their lives in World War I and II, with a commemorative window and names displayed around the room. While its structure has remained largely unchanged, it has become smaller due to the addition of the Rood Screen. The Antechapel now welcomes visitors into the Chapel, where services and events continue to be held.</p>
                 <div className="popup-buttons">
                   <Link to="/anteChapel" className="info-button">Learn more</Link>
-                  <button onClick={() => setAnteChapelPopupVisible(false)}>Close</button>
+                  <button onClick={() => speakText(document.getElementById('anteChapelParagraph').textContent)}>Listen To Audio</button>
+                  <button onClick={stopSpeech}>Stop Audio</button>
+                  <button onClick={() => {
+                    setAnteChapelPopupVisible(false);
+                    stopSpeech();
+                    }}>Close</button>
                 </div>
             </div>
         </div>
@@ -157,10 +179,15 @@ return (
         <div className="popup">
           <div className="popup-content">
             <h2>The Rood Screen</h2>
-            <p>The Rood Screen, originally a divider between worshipers and the clergy, was moved to align with the current entrance to accommodate changing needs. Initially, the chapel was reserved for King’s College members, with the screen separating students from leadership. After its relocation, the growing student body had to attend services at St. Machar’s, monitored by professors to ensure no one strayed.</p>
+            <p id = "roodScreenParagraph">The Rood Screen, originally a divider between worshipers and the clergy, was moved to align with the current entrance to accommodate changing needs. Initially, the chapel was reserved for King’s College members, with the screen separating students from leadership. After its relocation, the growing student body had to attend services at St. Machar’s, monitored by professors to ensure no one strayed.</p>
             <div className="popup-buttons">
               <Link to="/roodScreen" className="info-button">Learn more</Link>
-              <button onClick={() => setRoodScreenPopupVisible(false)}>Close</button>
+              <button onClick={() => speakText(document.getElementById('roodScreenParagraph').textContent)}>Listen To Audio</button>
+              <button onClick={stopSpeech}>Stop Audio</button>
+              <button onClick={() => {
+                setRoodScreenPopupVisible(false);
+                stopSpeech();
+                }}>Close</button>
             </div>
           </div>
         </div>
@@ -170,10 +197,15 @@ return (
         <div className="popup">
           <div className="popup-content">
             <h2>The War Memorial</h2>
-            <p>The Antechapel of King's College Chapel at the University of Aberdeen serves as the university's war memorial, honoring 524 students and staff who lost their lives in the First and Second World Wars. Their names are inscribed on the panelling around the walls. The War Memorial Window, created by Douglas Strachan in 1920-1921, adds to the commemorative atmosphere.</p>
+            <p id = "warMemParagraph">The Antechapel of King's College Chapel at the University of Aberdeen serves as the university's war memorial, honoring 524 students and staff who lost their lives in the First and Second World Wars. Their names are inscribed on the panelling around the walls. The War Memorial Window, created by Douglas Strachan in 1920-1921, adds to the commemorative atmosphere.</p>
             <div className="popup-buttons">
               <Link to="/warMemorial" className="info-button">Learn more</Link>
-              <button onClick={() => setWarMemorialPopupVisible(false)}>Close</button>
+              <button onClick={() => speakText(document.getElementById('warMemParagraph').textContent)}>Listen To Audio</button>
+              <button onClick={stopSpeech}>Stop Audio</button>
+              <button onClick={() => {
+                setWarMemorialPopupVisible(false);
+                stopSpeech();
+                }}>Close</button>
             </div>
           </div>
         </div>
@@ -183,10 +215,15 @@ return (
         <div className="popup">
           <div className="popup-content">
             <h2>The Small Pulpit</h2>
-            <p>This small wooden structure along the western wall was once one of two pulpits on the upper part of the Rood Screen, used for reading the New Testament Gospels during services. It became obsolete when the organ was introduced, leading to the removal of the pulpits to make space for the instrument.</p>
+            <p id = "smallPulpitParagraph">This small wooden structure along the western wall was once one of two pulpits on the upper part of the Rood Screen, used for reading the New Testament Gospels during services. It became obsolete when the organ was introduced, leading to the removal of the pulpits to make space for the instrument.</p>
             <div className="popup-buttons">
               <Link to="/smallPulpit" className="info-button">Learn more</Link>
-              <button onClick={() => setSmallPulpitPopupVisible(false)}>Close</button>
+              <button onClick={() => speakText(document.getElementById('smallPulpitParagraph').textContent)}>Listen To Audio</button>
+              <button onClick={stopSpeech}>Stop Audio</button>
+              <button onClick={() => {
+                setSmallPulpitPopupVisible(false);
+                stopSpeech();
+                }}>Close</button>
             </div>
           </div>
         </div>
@@ -196,10 +233,15 @@ return (
         <div className="popup">
           <div className="popup-content">
             <h2>The Chapel Organ</h2>
-            <p>King's College Chapel houses a distinguished organ crafted by French master organ builder Bernard Aubertin. Installed in April 2004, this instrument is notable for being the first Aubertin organ in the United Kingdom. .</p>
+            <p id = "organParagraph">King's College Chapel houses a distinguished organ crafted by French master organ builder Bernard Aubertin. Installed in April 2004, this instrument is notable for being the first Aubertin organ in the United Kingdom. .</p>
             <div className="popup-buttons">
               <Link to="/organ" className="info-button">Learn more</Link>
-              <button onClick={() => setOrganPopupVisible(false)}>Close</button>
+              <button onClick={() => speakText(document.getElementById('organParagraph').textContent)}>Listen To Audio</button>
+              <button onClick={stopSpeech}>Stop Audio</button>
+              <button onClick={() => {
+                setOrganPopupVisible(false);
+                stopSpeech();
+                }}>Close</button>
             </div>
           </div>
         </div>
@@ -217,6 +259,6 @@ return (
         </div>
       )}
   </div>
-);
+  );
 };
 export default Panorama;

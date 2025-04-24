@@ -13,6 +13,18 @@ function Panorama() {
   const [stainedGlassPopupVisible, setStainedGlassPopupVisible] = useState(false);
   const [anteDirectionPopupVisible, setAnteDirectionPopupVisible] = useState(false);
   const [sanctuaryDirectionPopupVisible, setSanctuaryDirectionPopupVisible] = useState(false);
+  //Add text to speech
+  const speakText = (text) => {
+    const synth = window.speechSynthesis;
+    synth.cancel(); // Cancel previous speech, if any
+    const utterance = new SpeechSynthesisUtterance(text);
+    synth.speak(utterance);
+  };
+
+  //Stop text to speech
+  const stopSpeech = () => {
+    window.speechSynthesis.cancel();
+  };
 
   useEffect(() => {
     const addHotspot = () => {
@@ -144,10 +156,15 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>Ancient Graffiti Within the Chapel</h2>
-                <p>The choir seats bear graffiti left by students since the early 1600s, reflecting their studies and focus on penmanship. Scribal work was a key discipline, and even their carvings show careful craftsmanship, with faint tracing lines used as guides to ensure precision.</p>
+                <p id = "graffitiParagraph">The choir seats bear graffiti left by students since the early 1600s, reflecting their studies and focus on penmanship. Scribal work was a key discipline, and even their carvings show careful craftsmanship, with faint tracing lines used as guides to ensure precision.</p>
                 <div className="popup-buttons">
                   <Link to="/graffiti" className="info-button">Learn more</Link>
-                  <button onClick={() => setGraffitiPopupVisible(false)}>Close</button>
+                  <button onClick={() => speakText(document.getElementById('graffitiParagraph').textContent)}>Listen To Audio</button>
+                  <button onClick={stopSpeech}>Stop Audio</button>
+                  <button onClick={() => {
+                    setGraffitiPopupVisible(false);
+                    stopSpeech();
+                    }}>Close</button>
                 </div>
             </div>
         </div>
@@ -159,14 +176,19 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>The Choir Stalls Section</h2>
-                <p>In 1497, Bishop Elphinstone envisioned King’s College as a place of continuous song and worship, with daily services led by priests, prebendaries, and choirboys, whose numbers grew over time. The choir seats were originally connected to the Rood Screen and moved when it was relocated. Their original position can still be inferred by observing the window shapes, with an additional section added during the 1800s renovation.</p>
+                <p id = "choirStallParagraph">In 1497, Bishop Elphinstone envisioned King’s College as a place of continuous song and worship, with daily services led by priests, prebendaries, and choirboys, whose numbers grew over time. The choir seats were originally connected to the Rood Screen and moved when it was relocated. Their original position can still be inferred by observing the window shapes, with an additional section added during the 1800s renovation.</p>
                 <div className="popup-buttons">
                   <Link to="/choirStalls" className="info-button">Learn more</Link>
-                  <button onClick={() => setChoirStallsPopupVisible(false)}>Close</button>
-                </div>
+                  <button onClick={() => speakText(document.getElementById('choirStallParagraph').textContent)}>Listen To Audio</button>
+                  <button onClick={stopSpeech}>Stop Audio</button>
+                  <button onClick={() => {
+                    setChoirStallsPopupVisible(false);
+                    stopSpeech();
+                    }}>Close</button>
+                 </div>
             </div>
-        </div>
-        )}
+         </div>
+      )}
       
     {anteDirectionPopupVisible && (
         <div className="popup">
