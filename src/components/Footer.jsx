@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 function Footer() {
   const [isVisible, setIsVisible] = useState(false);
@@ -49,10 +50,7 @@ function Footer() {
             {/* Second section with normal spacing */}
             <div style={normalSpacingStyle}>
               <p>Tel: <span style={highlightStyle}>+44 (0)1224 272000</span></p>
-              <p style={highlightStyle}>Contacts</p>
-              <p style={highlightStyle}>A to Z</p>
-              <p style={highlightStyle}>Maps and Directions</p>
-              <p style={highlightStyle}>Staff Directory</p>
+              <Link to="/login" style={highlightStyle} >Staff Login</Link>
             </div>
           </div>
 

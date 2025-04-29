@@ -179,7 +179,7 @@ return (
         <div className="popup">
           <div className="popup-content">
             <h2>The Rood Screen</h2>
-            <p id = "roodScreenParagraph">The Rood Screen, originally a divider between worshipers and the clergy, was moved to align with the current entrance to accommodate changing needs. Initially, the chapel was reserved for King’s College members, with the screen separating students from leadership. After its relocation, the growing student body had to attend services at St. Machar’s, monitored by professors to ensure no one strayed.</p>
+            <p id = "roodScreenParagraph">The Rood Screen, originally separating the clergy and choir from worshipers in the antechapel, was relocated to align with the current entrance to meet changing needs. Initially, the antechapel served to divide the small student body—then part of a private collegiate chapel linked to King’s College—from chapel leadership. As student numbers grew, the screen’s move meant students now walked to St. Machar’s for services, supervised by professors to prevent straying during the journey.</p>
             <div className="popup-buttons">
               <Link to="/roodScreen" className="info-button">Learn more</Link>
               <button onClick={() => speakText(document.getElementById('roodScreenParagraph').textContent)}>Listen To Audio</button>
@@ -215,7 +215,7 @@ return (
         <div className="popup">
           <div className="popup-content">
             <h2>The Small Pulpit</h2>
-            <p id = "smallPulpitParagraph">This small wooden structure along the western wall was once one of two pulpits on the upper part of the Rood Screen, used for reading the New Testament Gospels during services. It became obsolete when the organ was introduced, leading to the removal of the pulpits to make space for the instrument.</p>
+            <p id = "smallPulpitParagraph">Now seeming oddly placed along the western wall, this small wooden structure was once one of two pulpits atop the Rood Screen. From these, students would read the New Testament Gospels, sharing the word of God from an elevated position during services. Both pulpits were removed to make space when the organ was introduced to the chapel.</p>
             <div className="popup-buttons">
               <Link to="/smallPulpit" className="info-button">Learn more</Link>
               <button onClick={() => speakText(document.getElementById('smallPulpitParagraph').textContent)}>Listen To Audio</button>
@@ -250,7 +250,7 @@ return (
     {directionPopupVisible && (
         <div className="popup">
           <div className="popup-content">
-            <h2>Please Enter the Choir Stalls Section</h2>
+            <h2>Please Enter the Next Section of the Chapel Through the Rood Screen</h2>
             <div className="popup-buttons">
               <Link to="/choirStallsPanorama" className="info-button">Click to Enter Section</Link>
               <button onClick={() => setDirectionPopupVisible(false)}>Close</button>

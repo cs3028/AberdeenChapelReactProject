@@ -67,8 +67,8 @@
 
 /* Close Button (Red) */
 .popup button {
-    padding: 8px 16px;
-    font-size: 16px; /* Match Learn More button size */
+    padding: 6px 14px;
+    font-size: 14px; /* Match Learn More button size */
     background-color: #8A2F2F;
     color: white;
     border: none;
@@ -83,8 +83,8 @@
 
 /* Learn More Button (Grey) */
 .info-button {
-    padding: 8px 16px;
-    font-size: 16px; /* Match Close button size */
+    padding: 6px 14px;
+    font-size: 14px; /* Match Close button size */
     background-color: #ccc;
     color: #000;
     border: none;

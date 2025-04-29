@@ -47,13 +47,9 @@ useEffect(() => {
                 <li><Link to="/panorama" onClick={closeMenu}>Ante-Chapel</Link></li>
                 <li><Link to="/choirStallsPanorama" onClick={closeMenu}>Choir Stalls</Link></li>
                 <li><Link to="/sanctuaryPanorama" onClick={closeMenu}>Sanctuary</Link></li>
-                <li><Link to="/login" onClick={closeMenu}>Login</Link></li>
 
             </ul>
             
-            <div className="navbar-search">
-                <button className="search-button">Search</button>
-            </div>
         </nav>
     );
 };

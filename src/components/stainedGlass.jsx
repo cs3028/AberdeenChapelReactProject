@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from './Footer'; 
 import { useNavigate } from "react-router-dom";
-import "./moreInfo.css";
+import "../info.css";
 
 
 function StainedGlass() {

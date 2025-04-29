@@ -112,6 +112,10 @@ function Panorama() {
 
     // Wait for the scene to load before adding hotspots
     setTimeout(addHotspot, 500); // Small delay to ensure Pannellum loads
+    
+    return () => {
+      window.speechSynthesis.cancel(); //Stop text to speech when leaving the page
+    }
 
     }, []);
 
@@ -176,7 +180,9 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>The Choir Stalls Section</h2>
-                <p id = "choirStallParagraph">In 1497, Bishop Elphinstone envisioned King’s College as a place of continuous song and worship, with daily services led by priests, prebendaries, and choirboys, whose numbers grew over time. The choir seats were originally connected to the Rood Screen and moved when it was relocated. Their original position can still be inferred by observing the window shapes, with an additional section added during the 1800s renovation.</p>
+                <p id = "choirStallParagraph">In 1497, Bishop Elphinstone directed that daily services—including matins, evensong, the Mass of Our Lady, and High Mass—be sung, especially on Sundays and feast days. His vision for King’s College was one of near-continuous song, performed by six priests, eight prebendaries, and four choir boys—numbers that grew over time.
+
+                The choir seats, originally attached to the Rood Screen in the antechapel, moved with it. Their original placement can still be imagined by observing the window shapes—part of the chapel was later expanded during 19th-century renovations.</p>
                 <div className="popup-buttons">
                   <Link to="/choirStalls" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('choirStallParagraph').textContent)}>Listen To Audio</button>
@@ -205,7 +211,7 @@ return (
     {sanctuaryDirectionPopupVisible && (
         <div className="popup">
           <div className="popup-content">
-            <h2>Please Enter The Sanctuary Section</h2>
+            <h2>Please Enter The Sanctuary Section at the End of the Chapel</h2>
             <div className="popup-buttons">
               <Link to="/sanctuaryPanorama" className="info-button">Click to Enter Section</Link>
               <button onClick={() => setSanctuaryDirectionPopupVisible(false)}>Close</button>

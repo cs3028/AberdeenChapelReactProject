@@ -121,6 +121,10 @@ function Panorama() {
     // Wait for the scene to load before adding hotspots
     setTimeout(addHotspot, 500); // Small delay to ensure Pannellum loads
 
+    return () => {
+      window.speechSynthesis.cancel(); //Stop text to speech when leaving the page
+    }
+
     }, []);
 
   const style={
@@ -151,7 +155,7 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>The Main Chapel Pulpit</h2>
-                <p id = "pulpitParagraph">King's College Chapel houses a historically significant pulpit, originally erected in the late 1530s at St Machar's Cathedral. This pulpit, known as Bishop Stewart's Pulpit, was later moved to King's College Chapel, where it remains a notable feature. The pulpit is recognized for its intricate woodwork and serves as a testament to the craftsmanship of the period.</p>
+                <p id = "pulpitParagraph">The pulpit was originally a part of the St. Machar’s Cathedral but was moved here during the 1800s renovation. On it you can see the arms of Bishop William Stewart (d. 1545).</p>
                 <div className="popup-buttons">
                   <Link to="/largePulpit" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('pulpitParagraph').textContent)}>Listen To Audio</button>
@@ -169,7 +173,7 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>Elphinstone's Grave</h2>
-                <p id = "graveParagraph">Bishop William Elphinstone, who founded the University of Aberdeen in 1495, was buried inside King's College Chapel upon his death in 1514. His original Renaissance tomb was destroyed during the Reformation. In the early 20th century, a bronze and marble monument was commissioned to commemorate him. Designed by Henry Wilson and completed in 1931, the monument was initially intended for placement inside the chapel. However, due to its size, it was eventually installed outside the main entrance in 1946, where it remains today. ​</p>
+                <p id = "graveParagraph">What remains today is the original base and cover slab of the tomb Chest. It is made of Black marble which was brought from Tournai in Belgium. This same marble from Tourai can be seen in adjoining grave markers.  The Statue of Bishop Elphinstone and supporting figures were destroyed after the Reformation.​</p>
                 <div className="popup-buttons">
                   <Link to="/elphinstoneGrave" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('graveParagraph').textContent)}>Listen To Audio</button>
@@ -205,7 +209,7 @@ return (
         <div className="popup">
             <div className="popup-content">
                 <h2>Saying Goodbye to Mary</h2>
-                <p id = "maryParagraph">The chapel is dedicated to the Trinity and the Blessed Virgin Mary in her Nativity, as per its foundation in 1495.</p>
+                <p id = "maryParagraph">The piece above the old Library door—now our exit—was a later addition from Germany, contemporary with the chapel’s construction. It became a meaningful final stop for Catholic visitors to pray for safety and health before departing.</p>
                 <div className="popup-buttons">
                   <Link to="/mary" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('maryParagraph').textContent)}>Listen To Audio</button>
