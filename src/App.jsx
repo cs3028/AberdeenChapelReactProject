@@ -21,6 +21,7 @@ import SanctuaryPanorama from './components/sanctuaryPanorama';
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./components/Dashboard";
+import Feedback from "./components/Feedback"; // Add this import
 
 
 function App() {
@@ -29,9 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <Layout>
-
               <Info />
-
             </Layout>
            }
           />
@@ -49,137 +48,115 @@ function App() {
           />
           <Route path="/organ" element={
             <Layout>
-
               <Organ />
-
             </Layout>
            }
           />
           <Route path="/smallPulpit" element={
             <Layout>
-
               <SmallPulpit />
-
             </Layout>
            }
           />
           <Route path="/warMemorial" element={
             <Layout>
-
               <WarMemorial />
-
             </Layout>
            }
           />
           <Route path="/roodScreen" element={
             <Layout>
-
               <RoodScreen />
-
             </Layout>
            }
           />
           <Route path="/anteChapel" element={
             <Layout>
-
               <AnteChapel />
-
             </Layout>
            }
           />
           <Route path="/graffiti" element={
             <Layout>
-
               <Graffiti />
-
             </Layout>
            }
           />
           <Route path="/choirStalls" element={
             <Layout>
-
               <ChoirStalls />
-
             </Layout>
            }
           />
           <Route path="/largePulpit" element={
             <Layout>
-
               <LargePulpit />
-
             </Layout>
            }
           />
           <Route path="/elphinstoneGrave" element={
             <Layout>
-
               <ElphinstoneGrave />
-
             </Layout>
            }
           />
            <Route path="/chapelCeiling" element={
             <Layout>
-
               <ChapelCeiling />
-
             </Layout>
            }
           />
           <Route path="/mary" element={
             <Layout>
-
               <Mary />
-
             </Layout>
            }
           />
           <Route path="/stainedGlass" element={
             <Layout>
-
               <StainedGlass />
-
             </Layout>
            }
           />
           <Route path="/choirStallsPanorama" element={
             <Layout>
-
               <ChoirStallsPanorama />
-
             </Layout>
            }
           />
           <Route path="/sanctuaryPanorama" element={
             <Layout>
-
               <SanctuaryPanorama />
-
             </Layout>
            }
           />
-            <Route path="/login" element={
-                <Layout>
-                    <Login />
-                </Layout>
-            }
-            />
-            {/* login page - no layout, so it’s a clean login screen */}
-            <Route path="/login" element={<Login />} />
+          {/* Add new feedback route */}
+          <Route path="/feedback" element={
+            <Layout>
+              <Feedback />
+            </Layout>
+           }
+          />
+          <Route path="/login" element={
+              <Layout>
+                  <Login />
+              </Layout>
+          }
+          />
+          {/* login page - no layout, so it's a clean login screen */}
+          <Route path="/login" element={<Login />} />
 
-            {/* protected route - only logged-in users can see this */}
-            <Route path="/dashboard" element={
-                <ProtectedRoute>
-                    <Layout>
-                        <Dashboard />
-                    </Layout>
-                </ProtectedRoute>
-            }/>
+          {/* protected route - only logged-in users can see this */}
+          <Route path="/dashboard" element={
+              <ProtectedRoute>
+                  <Layout>
+                      <Dashboard />
+                  </Layout>
+              </ProtectedRoute>
+          }/>
         </Routes>
       </Router>
   );
 }
 
 export default App;
-
