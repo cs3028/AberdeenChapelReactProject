@@ -14,14 +14,15 @@ const Feedback = () => {
   useEffect(() => {
     // Your Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyA704j813ziCCIhym2glvxXqIKNnnEVUvM",
-      authDomain: "aberdeenchapel.firebaseapp.com",
-      projectId: "aberdeenchapel",
-      storageBucket: "aberdeenchapel.firebasestorage.app",
-      messagingSenderId: "276599491271",
-      appId: "1:276599491271:web:6cc108281e593dc9060ce2",
-      measurementId: "G-75NH5K9L7N"
+        apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+        authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+        projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+        storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+        appId: process.env.REACT_APP_FIREBASE_APP_ID,
+        measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
     };
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     
