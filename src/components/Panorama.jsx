@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react';
 import ReactPannellum from "react-pannellum";
 import "./Panorama.css"; 
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-
 
 
   
 function Panorama() {
 
-  const navigate = useNavigate();
   const [organPopupVisible, setOrganPopupVisible] = useState(false);
   const [roodScreenPopupVisible, setRoodScreenPopupVisible] = useState(false);
   const [warMemorialPopupVisible, setWarMemorialPopupVisible] = useState(false);
@@ -208,7 +205,7 @@ return (
               <button onClick={stopSpeech}>Stop Audio</button>
               </div>
                 <div className = "popup-close-button">
-                  <button className = "close-button"onClick={() => {
+                  <button className = "close-button" onClick={() => {
                 setWarMemorialPopupVisible(false);
                 stopSpeech();
                 }}>X</button>
@@ -270,5 +267,5 @@ return (
       )}
   </div>
   );
-};
+}
 export default Panorama;

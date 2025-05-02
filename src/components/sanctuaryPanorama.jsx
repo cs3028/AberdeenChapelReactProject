@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react';
 import ReactPannellum from "react-pannellum";
 import "./Panorama.css"; 
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-
   
 function Panorama() {
 
-    const navigate = useNavigate();
     const [largePulpitPopupVisible, setLargePulpitPopupVisible] = useState(false);
     const [elphinstoneGravePopupVisible, setElphinstoneGravePopupVisible] = useState(false);
     const [chapelCeilingPopupVisible, setChapelCeilingPopupVisible] = useState(false);
@@ -115,7 +112,7 @@ function Panorama() {
             },
         },
         );
-      };
+      }
     };
 
     // Wait for the scene to load before adding hotspots
@@ -162,7 +159,7 @@ return (
                   <button onClick={stopSpeech}>Stop Audio</button>
                   </div>
                   <div className="popup-button-close">
-                  <button className = "close-button"onClick={() => {
+                  <button className = "close-button" onClick={() => {
                     setLargePulpitPopupVisible(false);
                     stopSpeech();
                     }}>X</button>
@@ -202,7 +199,7 @@ return (
                   <button onClick={stopSpeech}>Stop Audio</button>
                   </div>
                   <div className="popup-button-close">
-                  <button className = "close-button"onClick={() => {
+                  <button className = "close-button" onClick={() => {
                     setChapelCeilingPopupVisible(false);
                     stopSpeech();
                     }}>X</button>
@@ -246,6 +243,6 @@ return (
 
   </div>
 );
-};
+}
 
 export default Panorama;

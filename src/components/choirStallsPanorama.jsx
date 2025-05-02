@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react';
 import ReactPannellum from "react-pannellum";
 import "./Panorama.css"; 
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-
   
 function Panorama() {
-    
-  const navigate = useNavigate();  
+
   const [graffitiPopupVisible, setGraffitiPopupVisible] = useState(false);
   const [choirStallsPopupVisible, setChoirStallsPopupVisible] = useState(false);
   const [stainedGlassPopupVisible, setStainedGlassPopupVisible] = useState(false);
@@ -107,7 +104,7 @@ function Panorama() {
             },
           },
         );
-      };
+      }
     };
 
     // Wait for the scene to load before adding hotspots
@@ -230,6 +227,6 @@ return (
 
   </div>
 );
-};
+}
 
 export default Panorama;
