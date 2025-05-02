@@ -21,7 +21,7 @@ const Dashboard = () => {
 
     const handleLogout = async () => {
         try {
-            const response = await fetch("http://localhost:5001/logout", {
+            const response = await fetch("https://aberdeenchapelreactproject-6o4n.onrender.com/logout", {
                 method: "POST",
                 credentials: "include"
             });

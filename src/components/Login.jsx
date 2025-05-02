@@ -11,7 +11,9 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:5001/dashboard", { credentials: "include" })
+        fetch("https://aberdeenchapelreactproject-6o4n.onrender.com/dashboard", {
+            credentials: "include"
+        })
             .then((res) => res.json())
             .then((data) => {
                 if (data.success) {
@@ -25,7 +27,7 @@ const LoginPage = () => {
         e.preventDefault();
         console.log("Logging in with", email, password); // Debug log
         try {
-            const response = await fetch("http://localhost:5001/login", {
+            const response = await fetch("https://aberdeenchapelreactproject-6o4n.onrender.com/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
