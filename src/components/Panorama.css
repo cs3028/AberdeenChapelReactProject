@@ -44,7 +44,9 @@
 
 /* Popup Content */
 .popup-content {
+    position : relative;
     text-align: center;
+    
 }
 
 .popup h2 {
@@ -65,7 +67,7 @@
     margin-top: 20px;
 }
 
-/* Close Button (Red) */
+/* audio button */
 .popup button {
     padding: 6px 14px;
     font-size: 14px; /* Match Learn More button size */
@@ -80,6 +82,20 @@
 .popup button:hover {
     background-color: #7a7373;
 }
+/* Close Button */
+.popup .close-button {
+    position: absolute;
+    margin : 0;
+    padding : 6px 8px;
+    top: 0;
+    right: 0;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #8A2F2F; /* Close button color */
+    color: white
+}
+
 
 /* Learn More Button (Grey) */
 .info-button {

@@ -160,10 +160,12 @@ return (
                   <Link to="/largePulpit" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('pulpitParagraph').textContent)}>Listen To Audio</button>
                   <button onClick={stopSpeech}>Stop Audio</button>
-                  <button onClick={() => {
+                  </div>
+                  <div className="popup-button-close">
+                  <button className = "close-button"onClick={() => {
                     setLargePulpitPopupVisible(false);
                     stopSpeech();
-                    }}>Close</button>
+                    }}>X</button>
                 </div>
             </div>
         </div>
@@ -178,10 +180,12 @@ return (
                   <Link to="/elphinstoneGrave" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('graveParagraph').textContent)}>Listen To Audio</button>
                   <button onClick={stopSpeech}>Stop Audio</button>
-                  <button onClick={() => {
+                  </div>
+                  <div className="popup-button-close">
+                  <button className = "close-button" onClick={() => {
                     setElphinstoneGravePopupVisible(false);
                     stopSpeech();
-                    }}>Close</button>
+                    }}>X</button>
                 </div>
             </div>
         </div>
@@ -196,10 +200,12 @@ return (
                   <Link to="/chapelCeiling" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('ceilingParagraph').textContent)}>Listen To Audio</button>
                   <button onClick={stopSpeech}>Stop Audio</button>
-                  <button onClick={() => {
+                  </div>
+                  <div className="popup-button-close">
+                  <button className = "close-button"onClick={() => {
                     setChapelCeilingPopupVisible(false);
                     stopSpeech();
-                    }}>Close</button>
+                    }}>X</button>
                 </div>
             </div>
         </div>
@@ -214,10 +220,12 @@ return (
                   <Link to="/mary" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('maryParagraph').textContent)}>Listen To Audio</button>
                   <button onClick={stopSpeech}>Stop Audio</button>
-                  <button onClick={() => {
+                  </div>
+                  <div className="popup-button-close">
+                  <button className = "close-button" onClick={() => {
                     setMaryPopupVisible(false);
                     stopSpeech();
-                    }}>Close</button>
+                    }}>X</button>
                 </div>
             </div>
         </div>
@@ -229,7 +237,7 @@ return (
             <h2>Back to the Choir Stalls Section</h2>
             <div className="popup-buttons">
               <Link to="/choirStallsPanorama" className="info-button">Click to Enter Section</Link>
-              <button onClick={() => setDirectionPopupVisible(false)}>Close</button>
+              <button onClick={() => setDirectionPopupVisible(false)}>X</button>
             </div>
           </div>
         </div>
