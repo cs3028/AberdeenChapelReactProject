@@ -1,0 +1,231 @@
+/* Custom styles for feedback component to match King's Chapel tour website */
+
+/* Feedback button - matching your Tour Start button */
+.feedback-button {
+  background-color: #8A2F2F; /* Maroon color matching your Tour Start button */
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 40px; /* Fully rounded like your Tour Start button */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: auto;
+}
+
+.feedback-button:hover {
+  background-color: #723030; /* Slightly darker maroon on hover */
+}
+
+/* Modal backdrop */
+.modal {
+  font-family: 'Georgia', serif;
+  z-index: 9999;
+}
+
+/* Modal content styling */
+.modal-content {
+  background-color: white;
+  width: 90%;
+  max-width: 420px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Modal header */
+/* Full-screen feedback container */
+.feedback-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f8f8f8; /* Light background color */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 80px; /* Space for header */
+  box-sizing: border-box;
+}
+
+/* Content container */
+.feedback-content {
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+/* Feedback title */
+.feedback-title {
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 30px 0;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+/* Stars container */
+.rating-container {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.rating-container p {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Stars styling */
+.stars {
+  font-size: 32px;
+  color: #ddd;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.stars .selected {
+  color: #ffc107; /* Star gold color */
+}
+
+.stars i:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+/* Feedback text area */
+.feedback-text-container {
+  margin-bottom: 25px;
+}
+
+.feedback-text-container label {
+  display: block;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.feedback-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: none;
+  font-family: sans-serif;
+  font-size: 15px;
+  box-sizing: border-box;
+  min-height: 120px;
+}
+
+.feedback-textarea:focus {
+  outline: none;
+  border-color: #8A2F2F;
+  box-shadow: 0 0 0 2px rgba(138, 47, 47, 0.1);
+}
+
+/* Submit button container */
+.submit-container {
+  text-align: right;
+}
+
+/* Submit button - match your tour start button */
+.submit-button {
+  background-color: #8A2F2F;
+  color: white;
+  font-weight: 600;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 16px;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #723030;
+  transform: translateY(-2px);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Message styles */
+.feedback-message {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.feedback-message.success {
+  color: #2e7d32;
+  background-color: #e8f5e9;
+}
+
+.feedback-message.error {
+  color: #c62828;
+  background-color: #ffebee;
+}
+
+.feedback-message.info {
+  color: #0277bd;
+  background-color: #e1f5fe;
+}
+
+/* Mobile styles */
+@media screen and (max-width: 480px) {
+  .feedback-container {
+    padding: 10px;
+    padding-top: 60px;
+  }
+  
+  .feedback-content {
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .feedback-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .stars {
+    font-size: 28px;
+    gap: 8px;
+  }
+  
+  .submit-button {
+    padding: 10px 25px;
+    font-size: 15px;
+    width: 100%; /* Full width button on mobile */
+  }
+  
+  .submit-container {
+    text-align: center; /* Center button on mobile */
+  }
+  
+  .feedback-textarea {
+    min-height: 100px;
+  }
+}
