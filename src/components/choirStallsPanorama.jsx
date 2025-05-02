@@ -150,7 +150,10 @@ return (
             <p>The three panels depict key moments in the founding of King’s College. The first shows Bishop Elphinstone’s journey to Rome in 1495 to receive permission from Pope Alexander VI. The second illustrates his return and the start of construction in 1500, delayed by the need to secure the foundation with large cut trees. The final panel portrays the dedication of King’s College to James IV of Scotland, the Trinity, and the Virgin Mary, honoring the king’s crucial role in its establishment..</p>
             <div className="popup-buttons">
               <Link to="/stainedGlass" className="info-button">Learn more</Link>
-              <button onClick={() => setStainedGlassPopupVisible(false)}>Close</button>
+              </div>
+              <div className="popup-close-button">
+              <button className = "close-button" onClick={() => setStainedGlassPopupVisible(false)
+              }>X</button>
             </div>
           </div>
         </div>
@@ -165,10 +168,12 @@ return (
                   <Link to="/graffiti" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('graffitiParagraph').textContent)}>Listen To Audio</button>
                   <button onClick={stopSpeech}>Stop Audio</button>
-                  <button onClick={() => {
+                </div>
+                <div className="popup-close-button">
+                  <button className = "close-button" onClick={() => {
                     setGraffitiPopupVisible(false);
                     stopSpeech();
-                    }}>Close</button>
+                    }}>X</button>
                 </div>
             </div>
         </div>
@@ -187,10 +192,12 @@ return (
                   <Link to="/choirStalls" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('choirStallParagraph').textContent)}>Listen To Audio</button>
                   <button onClick={stopSpeech}>Stop Audio</button>
-                  <button onClick={() => {
+                  </div>
+                  <div className="popup-close-button">
+                  <button className = "close-button" onClick={() => {
                     setChoirStallsPopupVisible(false);
                     stopSpeech();
-                    }}>Close</button>
+                    }}>X</button>
                  </div>
             </div>
          </div>
@@ -202,7 +209,7 @@ return (
             <h2>Back to the Ante-Chapel Section</h2>
             <div className="popup-buttons">
               <Link to="/Panorama" className="info-button">Click to Enter Section</Link>
-              <button onClick={() => setAnteDirectionPopupVisible(false)}>Close</button>
+              <button onClick={() => setAnteDirectionPopupVisible(false)}>X</button>
             </div>
           </div>
         </div>
@@ -214,7 +221,7 @@ return (
             <h2>Please Enter The Sanctuary Section at the End of the Chapel</h2>
             <div className="popup-buttons">
               <Link to="/sanctuaryPanorama" className="info-button">Click to Enter Section</Link>
-              <button onClick={() => setSanctuaryDirectionPopupVisible(false)}>Close</button>
+              <button onClick={() => setSanctuaryDirectionPopupVisible(false)}>X</button>
             </div>
           </div>
         </div>
