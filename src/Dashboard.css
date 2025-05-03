@@ -1,0 +1,247 @@
+/* Dashboard.css */
+
+/* Main container */
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  font-family: 'Georgia', serif;
+  color: #333;
+}
+
+/* Dashboard header */
+.dashboard-header {
+  background-color: #8A2F2F;
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Logout button */
+.logout-button {
+  background-color: white;
+  color: #8A2F2F;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+.logout-button:active {
+  transform: translateY(0);
+}
+
+/* Feedback section */
+.feedback-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.feedback-section h2 {
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Loading and error messages */
+.feedback-section p {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.error-message {
+  color: #c62828;
+  background-color: #ffebee;
+  padding: 12px 20px;
+  border-radius: 6px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Feedback list */
+.feedback-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Feedback item */
+.feedback-item {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+  transition: box-shadow 0.3s ease;
+}
+
+.feedback-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Feedback header */
+.feedback-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Rating stars */
+.feedback-rating {
+  font-size: 16px;
+  color: #ffc107;
+  font-weight: 500;
+}
+
+/* Timestamp */
+.feedback-timestamp {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Feedback text */
+.feedback-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+  margin: 15px 0;
+  font-family: sans-serif;
+}
+
+/* URL */
+.feedback-url {
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.feedback-url a {
+  color: #8A2F2F;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.feedback-url a:hover {
+  color: #723030;
+  text-decoration: underline;
+}
+
+/* Empty state */
+.feedback-section p:first-child {
+  font-size: 18px;
+  color: #666;
+  margin-top: 40px;
+}
+
+/* Mobile responsive styles */
+@media screen and (max-width: 768px) {
+  .dashboard-header {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 24px;
+  }
+
+  .logout-button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .feedback-section {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .feedback-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .feedback-item {
+    padding: 15px;
+  }
+
+  .feedback-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .feedback-rating {
+    font-size: 15px;
+  }
+
+  .feedback-timestamp {
+    font-size: 13px;
+  }
+
+  .feedback-text {
+    font-size: 15px;
+  }
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.feedback-section p:first-child {
+  animation: pulse 1.5s infinite;
+}
+
+/* Scrollbar styling for consistency */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8A2F2F;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #723030;
+}
