@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+// import { initializeApp } from 'firebase/app';
+// import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import {collection, addDoc} from 'firebase/firestore';
+import {db} from '../firebaseConfig';
 import '../feedback.css';
 
 const Feedback = () => {
@@ -8,29 +10,28 @@ const Feedback = () => {
   const [feedbackText, setFeedbackText] = useState('');
   const [message, setMessage] = useState({ text: '', type: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [db, setDb] = useState(null);
 
   // Initialize Firebase when component mounts
-  useEffect(() => {
-    const firebaseConfig = {
-        apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-        authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-        projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-        storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-        messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-        appId: process.env.REACT_APP_FIREBASE_APP_ID,
-        measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    
-    // Initialize Firestore
-    const firestore = getFirestore(app);
-    setDb(firestore);
-    
-    console.log("Firebase initialized successfully.");
-  }, []);
+  // useEffect(() => {
+  //   const firebaseConfig = {
+  //       apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  //       authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  //       projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  //       storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  //       messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  //       appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  //       measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+  //   };
+  //
+  //   // Initialize Firebase
+  //   const app = initializeApp(firebaseConfig);
+  //   
+  //   // Initialize Firestore
+  //   const firestore = getFirestore(app);
+  //   setDb(firestore);
+  //   
+  //   console.log("Firebase initialized successfully.");
+  // }, []);
 
   // Handle star hover
   const handleStarHover = (value) => {
@@ -59,10 +60,10 @@ const Feedback = () => {
 
   // Submit feedback
   const handleSubmit = async () => {
-    if (!db) {
-      setMessage({ text: 'Error: Database not connected.', type: 'error' });
-      return;
-    }
+    // if (!db) {
+    //   setMessage({ text: 'Error: Database not connected.', type: 'error' });
+    //   return;
+    // }
     
     if (currentRating === 0) {
       setMessage({ text: 'Please select a star rating.', type: 'error' });
@@ -72,20 +73,17 @@ const Feedback = () => {
     setIsSubmitting(true);
     setMessage({ text: 'Sending feedback...', type: 'info' });
 
+    
+    // rating: currentRating,
+    // text: feedbackText.trim(),
+    // timestamp: new Date(),
+    // url: window.location.href,
     try {
-      const feedbackData = {
-        rating: currentRating,
-        text: feedbackText.trim(),
-        timestamp: new Date(),
-        url: window.location.href,
-      };
-
+      const feedbackData = { /*...*/ };
       // Add to Firestore collection
       await addDoc(collection(db, "feedback"), feedbackData);
-
       console.log("Feedback submitted successfully:", feedbackData);
       setMessage({ text: 'Thank you for your feedback!', type: 'success' });
-
       // Reset form after successful submission
       setTimeout(() => {
         setCurrentRating(0);
@@ -98,6 +96,7 @@ const Feedback = () => {
         text: 'Error submitting feedback. Please try again.', 
         type: 'error' 
       });
+    }finally {
       setIsSubmitting(false);
     }
   };
