@@ -138,12 +138,6 @@ function App() {
             </Layout>
            }
           />
-          <Route path="/login" element={
-              <Layout>
-                  <Login />
-              </Layout>
-          }
-          />
           <Route path="/help" element={
             <Layout>
               <Help/>

@@ -1,0 +1,132 @@
+/* LoginPage.css */
+
+/* Main container - centered and full height */
+.login-page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8; /* Light background color matching feedback */
+  padding: 20px;
+  position: relative;
+  font-family: 'Georgia', serif;
+}
+
+/* Login form card */
+.login-form-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+/* Form heading */
+.login-form-card h2 {
+  color: #333;
+  text-align: center;
+  margin: 0 0 30px 0;
+  font-size: 24px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Input field styling */
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: sans-serif;
+  font-size: 15px;
+  box-sizing: border-box;
+  background-color: white;
+  color: #333;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: #999;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #8A2F2F;
+  box-shadow: 0 0 0 2px rgba(138, 47, 47, 0.1);
+}
+
+/* Submit button styling */
+.submit-button {
+  width: 100%;
+  background-color: #8A2F2F;
+  color: white;
+  font-weight: 600;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #723030;
+  transform: translateY(-2px);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Error message styling */
+.error-message {
+  color: #c62828;
+  background-color: #ffebee;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 480px) {
+  .login-form-card {
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .login-form-card h2 {
+    font-size: 20px;
+  }
+  
+  .submit-button {
+    padding: 10px 25px;
+    font-size: 15px;
+    width: 100%; /* Full width button on mobile */
+  }
+}

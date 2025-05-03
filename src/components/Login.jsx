@@ -1,91 +1,91 @@
-import React, {useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
-import { Card, CardContent } from "./Card";
-import { Input } from "./Input";
-import { Button } from "./Button";
-import Footer from './Footer';
+// src/components/Login.jsx
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebaseConfig'; // 
+import '../LoginPage.css'; // 
 
-const LoginPage = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("")
-    const navigate = useNavigate();
+const Login = () => { // 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(''); // To display login errors
+  const [isLoading, setIsLoading] = useState(false); // To disable button during login
+  const navigate = useNavigate(); // Hook for navigation
 
-    useEffect(() => {
-        fetch("http://localhost:5001/dashboard", { credentials: "include" })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.success) {
-                    navigate("/dashboard"); // redirect if authenticated
-                }
-            })
-            .catch((err) => console.error("Authentication check failed", err));
-    }, [navigate]);
+  const handleLogin = async (event) => {
+    event.preventDefault(); // Prevent default form submission
+    setError(''); // Clear previous errors
+    setIsLoading(true); // Indicate loading
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        console.log("Logging in with", email, password); // Debug log
-        try {
-            const response = await fetch("http://localhost:5001/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify({ email, password }),
-            });
+    if (!email || !password) {
+      setError('Please enter both email and password.');
+      setIsLoading(false);
+      return;
+    }
 
-            console.log("Response received:", response); // Debug log
+    try {
+      // Use the imported 'auth' instance
+      await signInWithEmailAndPassword(auth, email, password);
+      // Login successful!
+      setIsLoading(false);
+      navigate('/dashboard'); // Redirect to admin dashboard route
+    } catch (err) {
+      console.error("Firebase Login Error:", err);
+      
+       if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-email') {
+           setError('Invalid email or password. Please try again.');
+       } else {
+           setError('An unexpected error occurred. Please try again later.');
+       }
+      setIsLoading(false); // Re-enable button
+    }
+  };
 
-            const data = await response.json();
-            console.log("Response data:", data); // Debug log
+  return (
+    <div className="login-page-container">
+      <div className="login-form-card">
+        <h2>Admin Login</h2>
+        <form onSubmit={handleLogin}>
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="form-input"
+              placeholder="admin@example.com"
+              aria-label="Email Input" // Added for accessibility
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="form-input"
+              placeholder="********"
+              aria-label="Password Input" // Added for accessibility
+            />
+          </div>
 
-            if (data.success) {
-                alert("Login successful!");
-                navigate("/dashboard"); // Redirect after successful login
-            } else {
-                alert("Invalid email or password");
-            }
-        } catch (err) {
-            console.error("Login request failed:", err);
-            alert("Server error, please try again later.");
-        }
-    };
+          {error && <p className="error-message" role="alert">{error}</p>} {/* Added role="alert" */}
 
-    return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <Card className="w-full max-w-md p-6 shadow-lg rounded-2xl">
-                <CardContent>
-                    <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
-                    <form onSubmit={handleLogin} className="space-y-4">
-                        <label className="block text-sm font-medium text-gray-700">Email</label>
-                        <div className="flex items-center border rounded-lg p-2">
-                            <Input
-                                type="email"
-                                placeholder="Email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                                className="flex-1 border-none focus:ring-0"
-                            />
-                        </div>
-                        <label className="block text-sm font-medium text-gray-700">Password</label>
-                        <div className="flex items-center border rounded-lg p-2">
-                            <Input
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                className="flex-1 border-none focus:ring-0"
-                            />
-                        </div>
-                        <Button type="submit" className="w-full">Login</Button>
-                    </form>
-                </CardContent>
-            </Card>
-            <div>
-                <Footer />
-            </div>
-        </div>
-    );
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="submit-button"
+          >
+            {isLoading ? 'Logging in...' : 'Login'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
-export default LoginPage;
+export default Login; // Ensure export default uses the correct component name 'Login'
