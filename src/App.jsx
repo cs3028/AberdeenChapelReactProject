@@ -21,7 +21,7 @@ import SanctuaryPanorama from './components/sanctuaryPanorama';
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./components/Dashboard";
-import Feedback from "./components/Feedback"; // Add this import
+import Feedback from "./components/Feedback"; 
 
 
 function App() {

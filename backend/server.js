@@ -21,7 +21,7 @@ const validUser = { email: "sid@g.com", password: "bbills" };  // login info
 app.post("/login", (req, res) => {
     const { email, password } = req.body;
 
-    if (email.trim === validUser.email.trim && password.trim === validUser.password.trim) {
+    if (email.trim() === validUser.email.trim() && password.trim() === validUser.password.trim()) {
         const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: "1d" });  // secure token
 
         res.cookie("token", token, {
