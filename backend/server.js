@@ -10,12 +10,12 @@ const cookieParser = require("cookie-parser");
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:3000",  // allow frontend
+    origin: "https:abdnchapel.dsouza.dev",  // allow frontend
     credentials: true  // Enable cookies
 }));
 app.use(cookieParser());
 
-const SECRET_KEY = process.env.SECRET_KEY || "super-secure-key"; // take out super-secure-key in production
+const SECRET_KEY = process.env.SECRET_KEY; // take out super-secure-key in production
 const validUser = { email: "sid@g.com", password: "bbills" };  // login info
 
 app.post("/login", (req, res) => {
