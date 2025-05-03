@@ -40,6 +40,8 @@ useEffect(() => {
                 <div className="menu-icon-bar"></div>
                 <div className="menu-icon-bar"></div>
                 <div className="menu-icon-bar"></div>
+                <div className="menu-icon-bar"></div>
+                <div className="menu-icon-bar"></div>
             </div>
 
             <ul className={`navbar-links ${isOpen ? "active" : ""}`}>
@@ -48,6 +50,7 @@ useEffect(() => {
                 <li><Link to="/choirStallsPanorama" onClick={closeMenu}>Choir Stalls</Link></li>
                 <li><Link to="/sanctuaryPanorama" onClick={closeMenu}>Sanctuary</Link></li>
                 <li><Link to="/Feedback" onClick = {closeMenu}>Feedback</Link></li>
+                <li><Link to="/help" onClick = {closeMenu}>Help</Link></li>
 
             </ul>
             
