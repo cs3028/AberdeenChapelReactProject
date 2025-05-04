@@ -1,4 +1,19 @@
-# Getting Started with Create React App
+# How to Install
+
+To install, simple enter our folder into a coding environment. Ensure that your system has npm installed
+through the node.js website to allow it to run npm commands and use our React app.
+
+# Installing React Router
+
+To enable effective links between pages, we needed to install React Router which can be downloaded through putting: npm install react-router-dom into the command line.
+
+# Installing React Pannellum
+
+To enable the view and navigation of panoramic images, we needed to install React Pannellum. To install this, simply
+put npm install react-pannellum into the command line.
+
+
+# Getting Started with Create React App (Supplied by React)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -39,32 +54,21 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+# The Purpose of our Application
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Our application was made to solve a big issue, the lack of tourists arriving to the Aberdeen University Chapel.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Testing Our Application
 
-### Code Splitting
+Testing our application is simple, as it says above, through using npm start, the application is run within local host.
+This can be used to see all of our features the same way it would be if its were hosted.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Deployment
 
-### Analyzing the Bundle Size
+To deploy our application, we used a hosting website called Render in which we could link our shared repository
+to host our application without having to worry about pipelines.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Entending Our System
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+In future, if someone were to want to extend our system, we would add them to the shared repository in which they
+could continue to build on top of the application and add useful features and quality of life updates.
