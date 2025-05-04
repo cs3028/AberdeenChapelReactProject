@@ -40,8 +40,6 @@ useEffect(() => {
                 <div className="menu-icon-bar"></div>
                 <div className="menu-icon-bar"></div>
                 <div className="menu-icon-bar"></div>
-                <div className="menu-icon-bar"></div>
-                <div className="menu-icon-bar"></div>
             </div>
 
             <ul className={`navbar-links ${isOpen ? "active" : ""}`}>

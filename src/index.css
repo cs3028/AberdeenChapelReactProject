@@ -19,7 +19,7 @@ code {
   align-items: center;
   background: linear-gradient(90deg, #fff, #fff);
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 0px;
   margin: 10px;
   max-width: 100%; 
   box-sizing: border-box; 
