@@ -23,9 +23,9 @@ const Dashboard = () => {
 
         const querySnapshot = await getDocs(q);
         const feedbackData = querySnapshot.docs.map(doc => ({
-          id: doc.id, // Include the document ID
+          id: doc.id, // include the document id
           ...doc.data(),
-          // Convert Firestore Timestamp to JS Date object if it's not already
+          // convert firestore timestamp to js date object if it's not already
           timestamp: doc.data().timestamp?.toDate ? doc.data().timestamp.toDate() : new Date() // handle potential missing or non-timestamp field
         }));
         setFeedbackList(feedbackData);
@@ -44,23 +44,23 @@ const Dashboard = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate('/login'); // Redirect to login page after logout
+      navigate('/login'); // redirect to login page after logout
     } catch (err) {
       console.error("Logout failed:", err);
-      // Optionally show an error message to the user
+      // optionally show an error message to the user
       setError('Logout failed. Please try again.');
     }
   };
 
-  // Helper function to format dates (optional but nice)
+  // helper function to format dates (optional but nice)
   const formatDate = (date) => {
     if (!date || !(date instanceof Date)) return 'Invalid date';
-    // Example format: May 3, 2025, 12:33 PM (using current time as example)
-    // Locale 'en-GB' uses day/month/year common in the UK
+    // example format: May 3, 2025, 12:33 PM
+    // 'en-GB' uses day/month/year
     return date.toLocaleString('en-GB', {
-      dateStyle: 'medium', // e.g., 3 May 2025
-      timeStyle: 'short',  // e.g., 12:33
-      hour12: true       // Use AM/PM if preferred, set to false for 24-hour
+      dateStyle: 'medium', // 3 May 2025
+      timeStyle: 'short',  // 12:33
+      hour12: true         // AM/PM
     });
   };
 
@@ -92,7 +92,6 @@ const Dashboard = () => {
                 {feedback.text && (
                   <p className="feedback-text">{feedback.text}</p>
                 )}
-                 {/* Optionally display other data like the URL */}
                  {feedback.url && (
                    <p className="feedback-url">Submitted on: <a href={feedback.url} target="_blank" rel="noopener noreferrer">{feedback.url}</a></p>
                  )}
