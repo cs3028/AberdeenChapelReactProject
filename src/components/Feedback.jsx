@@ -9,7 +9,7 @@ const Feedback = () => {
   const [message, setMessage] = useState({ text: '', type: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Handle star hover
+  // handle star hover
   const handleStarHover = (value) => {
     const stars = document.querySelectorAll('.stars i');
     stars.forEach(star => {
@@ -24,17 +24,17 @@ const Feedback = () => {
     });
   };
 
-  // Handle star click
+  // handle star click
   const handleStarClick = (value) => {
     setCurrentRating(value);
   };
 
-  // Handle star mouse out
+  // handle star mouse out
   const handleStarMouseOut = () => {
     handleStarHover(currentRating);
   };
 
-  // Submit feedback
+  // submit feedback
   const handleSubmit = async () => {
     if (currentRating === 0) {
       setMessage({ text: 'Please select a star rating.', type: 'error' });
@@ -52,13 +52,13 @@ const Feedback = () => {
         url: window.location.href,
       };
 
-      // Add to Firestore collection
+      // add to firestore collection
       await addDoc(collection(db, "feedback"), feedbackData);
 
       console.log("Feedback submitted successfully:", feedbackData);
       setMessage({ text: 'Thank you for your feedback!', type: 'success' });
 
-      // Reset form after successful submission
+      // reset form after successful submission
       setTimeout(() => {
         setCurrentRating(0);
         setFeedbackText('');
