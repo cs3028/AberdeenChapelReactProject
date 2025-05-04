@@ -9,9 +9,8 @@ const HelpPage = () => {
     <div className="help-container">
       <main>
         <h1>Help & Support</h1>
-        <p>
-        Welcome to your 360° Guided Tour of our Chapel!
-As you explore, you’ll uncover fascinating insights and answers to common questions—just like having a personal guide by your side.
+        <p>Welcome to our help page for the University Chapel!
+          Below we will describe how to use our app for anybody struggling.
 
 <ul> <li>To move to the next room, simply click on the directional arrow—it will seamlessly guide you forward through the space.</li> <li>To learn more about specific artifacts, click on the blue information icons to reveal interesting facts and historical details.</li> </ul>
         </p>
