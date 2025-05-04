@@ -12,7 +12,7 @@ function Info() {
     "/images/chapel3M.png",
   ];
 
-  //button to start the tour (just a link to the panorma page)
+  // button to start the tour (just a link to the panorama page)
   function StartTour(){
     return(
     <Link to = "/panorama" className = "Start-Tour-Button">Tour Start
@@ -49,7 +49,7 @@ function Info() {
     }
   ];
 
-  // State to store the carousel's opacity
+  // state to store the carousel's opacity
   const [carouselOpacity, setCarouselOpacity] = useState(1);
 
   useEffect(() => {
@@ -70,7 +70,6 @@ function Info() {
 
   return (
     <div className="info-container" style={{ minHeight: '150vh' }}>
-      {/* Top Carousel */}
       <div
         className="carousel-container"
         style={{
@@ -83,7 +82,6 @@ function Info() {
       <div className = "Start-Tour">
       <StartTour/>
       </div>
-      {/*Two-Column Section*/}
       <div className="two-column-section">
         <div className="column">
           <h2>Welcome!</h2>
@@ -97,7 +95,6 @@ function Info() {
         </div>
       </div>  
 
-       {/* New services section */}
        <div className="services-container">
         {services.map((service, i) => (
           <div key={i} className="service-item">

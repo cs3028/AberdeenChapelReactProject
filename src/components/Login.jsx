@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import '../LoginPage.css';
 
-const Login = () => { // 
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');

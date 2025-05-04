@@ -121,11 +121,11 @@ function Panorama() {
         }
     };
 
-    // Wait for the scene to load before adding hotspots
-    setTimeout(addHotspot, 500); // Small delay to ensure Pannellum loads
+    // wait for the scene to load before adding hotspots
+    setTimeout(addHotspot, 500); // small delay to ensure Pannellum loads
 
     return () => {
-      window.speechSynthesis.cancel(); //Stop text to speech when leaving the page
+      window.speechSynthesis.cancel(); // stop text to speech when leaving the page
     }
 
     }, []);
