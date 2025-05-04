@@ -1,45 +1,44 @@
 // src/components/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore'; // Import query and orderBy
+import { collection, getDocs, query, orderBy } from 'firebase/firestore'; // import query and orderBy
 import { signOut } from 'firebase/auth';
-import { db, auth } from '../firebaseConfig'; // Adjust path if needed
-import '../Dashboard.css'; // For styling
+import { db, auth } from '../firebaseConfig'; // adjust path if needed
+import '../Dashboard.css'; // for styling
 
 const Dashboard = () => {
   const [feedbackList, setFeedbackList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Start loading initially
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // Fetch feedback data when the component mounts
   useEffect(() => {
     const fetchFeedback = async () => {
       setIsLoading(true);
-      setError(''); // Clear previous errors
+      setError(''); // clear previous errors
       try {
-        // Create a query to get feedback, ordered by timestamp descending
+        // create a query to get feedback, ordered by timestamp descending
         const feedbackColRef = collection(db, 'feedback');
-        const q = query(feedbackColRef, orderBy('timestamp', 'desc')); // Order by newest first
+        const q = query(feedbackColRef, orderBy('timestamp', 'desc')); // order by newest first
 
         const querySnapshot = await getDocs(q);
         const feedbackData = querySnapshot.docs.map(doc => ({
           id: doc.id, // Include the document ID
           ...doc.data(),
           // Convert Firestore Timestamp to JS Date object if it's not already
-          timestamp: doc.data().timestamp?.toDate ? doc.data().timestamp.toDate() : new Date() // Handle potential missing or non-timestamp field
+          timestamp: doc.data().timestamp?.toDate ? doc.data().timestamp.toDate() : new Date() // handle potential missing or non-timestamp field
         }));
         setFeedbackList(feedbackData);
       } catch (err) {
         console.error("Error fetching feedback:", err);
         setError('Failed to load feedback data. Please try again later.');
       } finally {
-        setIsLoading(false); // Set loading to false whether success or error
+        setIsLoading(false);
       }
     };
 
     fetchFeedback();
-  }, []); // Empty dependency array means this runs once when the component mounts
+  }, []);
 
   // Handle user logout
   const handleLogout = async () => {

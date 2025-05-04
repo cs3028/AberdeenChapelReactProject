@@ -2,20 +2,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebaseConfig'; // 
-import '../LoginPage.css'; // 
+import { auth } from '../firebaseConfig';
+import '../LoginPage.css';
 
 const Login = () => { // 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(''); // To display login errors
-  const [isLoading, setIsLoading] = useState(false); // To disable button during login
-  const navigate = useNavigate(); // Hook for navigation
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
-    event.preventDefault(); // Prevent default form submission
-    setError(''); // Clear previous errors
-    setIsLoading(true); // Indicate loading
+    event.preventDefault();
+    setError('');
+    setIsLoading(true);
 
     if (!email || !password) {
       setError('Please enter both email and password.');
@@ -24,11 +24,9 @@ const Login = () => { //
     }
 
     try {
-      // Use the imported 'auth' instance
       await signInWithEmailAndPassword(auth, email, password);
-      // Login successful!
       setIsLoading(false);
-      navigate('/dashboard'); // Redirect to admin dashboard route
+      navigate('/dashboard');
     } catch (err) {
       console.error("Firebase Login Error:", err);
       
@@ -37,7 +35,7 @@ const Login = () => { //
        } else {
            setError('An unexpected error occurred. Please try again later.');
        }
-      setIsLoading(false); // Re-enable button
+      setIsLoading(false);
     }
   };
 
@@ -56,7 +54,7 @@ const Login = () => { //
               required
               className="form-input"
               placeholder="admin@example.com"
-              aria-label="Email Input" // Added for accessibility
+              aria-label="Email Input"
             />
           </div>
           <div className="form-group">
@@ -69,7 +67,7 @@ const Login = () => { //
               required
               className="form-input"
               placeholder="********"
-              aria-label="Password Input" // Added for accessibility
+              aria-label="Password Input"
             />
           </div>
 
@@ -88,4 +86,4 @@ const Login = () => { //
   );
 };
 
-export default Login; // Ensure export default uses the correct component name 'Login'
+export default Login;
