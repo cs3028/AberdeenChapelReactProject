@@ -5,15 +5,12 @@ import Info from './components/Info';
 import About from './components/About';
 import Organ from './components/Organ';
 import SmallPulpit from './components/SmallPulpit' ;
-import WarMemorial from './components/WarMemorial' ;
 import RoodScreen from './components/RoodScreen' ;
 import Panorama from './components/Panorama';
 import AnteChapel from './components/Ante-Chapel';
 import Graffiti from './components/graffiti';
 import ChoirStalls from './components/ChoirStallsSection';
-import LargePulpit from './components/largePulpit';
 import ElphinstoneGrave from './components/elphinstoneGrave';
-import ChapelCeiling from './components/chapelCeiling';
 import Mary from './components/goodbyeMary';
 import StainedGlass from './components/stainedGlass';
 import ChoirStallsPanorama from './components/choirStallsPanorama'
@@ -59,12 +56,6 @@ function App() {
             </Layout>
            }
           />
-          <Route path="/warMemorial" element={
-            <Layout>
-              <WarMemorial />
-            </Layout>
-           }
-          />
           <Route path="/roodScreen" element={
             <Layout>
               <RoodScreen />
@@ -89,21 +80,9 @@ function App() {
             </Layout>
            }
           />
-          <Route path="/largePulpit" element={
-            <Layout>
-              <LargePulpit />
-            </Layout>
-           }
-          />
           <Route path="/elphinstoneGrave" element={
             <Layout>
               <ElphinstoneGrave />
-            </Layout>
-           }
-          />
-           <Route path="/chapelCeiling" element={
-            <Layout>
-              <ChapelCeiling />
             </Layout>
            }
           />

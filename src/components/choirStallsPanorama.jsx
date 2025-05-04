@@ -141,20 +141,23 @@ return (
 
 
     {stainedGlassPopupVisible && (
-        <div className="popup">
+       <div className="popup">
           <div className="popup-content">
-            <h2>Stained Glass</h2>
-            <p>The three panels depict key moments in the founding of King’s College. The first shows Bishop Elphinstone’s journey to Rome in 1495 to receive permission from Pope Alexander VI. The second illustrates his return and the start of construction in 1500, delayed by the need to secure the foundation with large cut trees. The final panel portrays the dedication of King’s College to James IV of Scotland, the Trinity, and the Virgin Mary, honoring the king’s crucial role in its establishment..</p>
-            <div className="popup-buttons">
-              <Link to="/stainedGlass" className="info-button">Learn more</Link>
+              <h2>Lovely Stained Glass in the Chapel</h2>
+              <p id = "stainedGlassParagraph">The three panels depict key moments in the founding of King’s College. The first shows Bishop Elphinstone’s journey to Rome in 1495 to receive permission from Pope Alexander VI. The second illustrates his return and the start of construction in 1500, delayed by the need to secure the foundation with large cut trees. The final panel portrays the dedication of King’s College to James IV of Scotland, the Trinity, and the Virgin Mary, honoring the king’s crucial role in its establishment</p>
+              <div className="popup-buttons">
+                <button onClick={() => speakText(document.getElementById('stainedGlassParagraph').textContent)}>Listen To Audio</button>
+                <button onClick={stopSpeech}>Stop Audio</button>
               </div>
               <div className="popup-close-button">
-              <button className = "close-button" onClick={() => setStainedGlassPopupVisible(false)
-              }>X</button>
-            </div>
+                <button className = "close-button" onClick={() => {
+                  setStainedGlassPopupVisible(false);
+                  stopSpeech();
+                  }}>X</button>
+              </div>
           </div>
-        </div>
-      )}
+      </div>
+    )}
 
     {graffitiPopupVisible && (
         <div className="popup">
