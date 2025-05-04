@@ -154,7 +154,6 @@ return (
                 <h2>The Main Chapel Pulpit</h2>
                 <p id = "pulpitParagraph">The pulpit was originally a part of the St. Machar’s Cathedral but was moved here during the 1800s renovation. On it you can see the arms of Bishop William Stewart (d. 1545).</p>
                 <div className="popup-buttons">
-                  <Link to="/largePulpit" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('pulpitParagraph').textContent)}>Listen To Audio</button>
                   <button onClick={stopSpeech}>Stop Audio</button>
                   </div>
@@ -194,7 +193,6 @@ return (
                 <h2>The Chapel Ceiling</h2>
                 <p id = "ceilingParagraph">King's College Chapel in Aberdeen features a historically significant timber ceiling. This splendid timber ceiling adds to the chapel's architectural beauty and historical significance.</p>
                 <div className="popup-buttons">
-                  <Link to="/chapelCeiling" className="info-button">Learn more</Link>
                   <button onClick={() => speakText(document.getElementById('ceilingParagraph').textContent)}>Listen To Audio</button>
                   <button onClick={stopSpeech}>Stop Audio</button>
                   </div>

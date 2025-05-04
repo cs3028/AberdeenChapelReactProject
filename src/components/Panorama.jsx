@@ -200,7 +200,6 @@ return (
             <h2>The War Memorial</h2>
             <p id = "warMemParagraph">The Antechapel of King's College Chapel at the University of Aberdeen serves as the university's war memorial, honoring 524 students and staff who lost their lives in the First and Second World Wars. Their names are inscribed on the panelling around the walls. The War Memorial Window, created by Douglas Strachan in 1920-1921, adds to the commemorative atmosphere.</p>
             <div className="popup-buttons">
-              <Link to="/warMemorial" className="info-button">Learn more</Link>
               <button onClick={() => speakText(document.getElementById('warMemParagraph').textContent)}>Listen To Audio</button>
               <button onClick={stopSpeech}>Stop Audio</button>
               </div>
