@@ -12,6 +12,10 @@ To enable effective links between pages, we needed to install React Router which
 To enable the view and navigation of panoramic images, we needed to install React Pannellum. To install this, simply
 put npm install react-pannellum into the command line.
 
+# Install Firebase Functions
+
+To enable communication with our Firebase database simple type npm install firebase into the terminal.
+
 
 # Getting Started with Create React App (Supplied by React)
 
