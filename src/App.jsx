@@ -22,7 +22,7 @@ import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./components/Dashboard";
 import Feedback from "./components/Feedback"; // Add this import
-import Help from "./components/Help";
+import Help from "./components/help";
 
 
 function App() {
