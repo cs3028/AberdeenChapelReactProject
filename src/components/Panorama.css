@@ -29,12 +29,13 @@
 /* Popup Styling */
 .popup {
     position: fixed;
-    top:70%;
+    top:60%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 70%; /* Custom width */
     background: rgba(255, 255, 255, 0.903);
-    padding: 20px;
+    padding-top: 15px;
+    padding:30px;
     border-radius: 30px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     border: 2px solid #C9C9C9;
@@ -46,12 +47,14 @@
 .popup-content {
     position : relative;
     text-align: center;
+    padding-top: 5px;
     
 }
 
 .popup h2 {
     font-size: 24px;
     color: #000;
+    margin-top: 40px;
     margin-bottom: 10px;
 }
 
@@ -86,11 +89,11 @@
 .popup .close-button {
     position: absolute;
     margin : 0;
-    padding : 6px 8px;
-    top: 0;
-    right: 0;
-    border: none;
-    font-size: 20px;
+    padding : 5px 5px;
+    top: 10px;
+    right: 10px;
+    border-radius: 5px;
+    font-size: 14px;
     cursor: pointer;
     background-color: #8A2F2F; /* Close button color */
     color: white
