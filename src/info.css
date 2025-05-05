@@ -61,7 +61,8 @@ body {
 
 .two-column-section .column {
   flex: 1 1 0;
-  min-width: 200px; 
+  min-width: 200px;
+  text-align: center; 
 }
 
 .two-column-section h2 {
@@ -73,6 +74,7 @@ body {
 .two-column-section p {
   line-height: 1.6;
   margin-bottom: 1rem;
+  text-align: center;
   color: #333; 
 }
 
