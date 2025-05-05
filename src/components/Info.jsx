@@ -4,13 +4,25 @@ import "../info.css";
 import Footer from './Footer';
 import { Link } from "react-router-dom";
 
-
 function Info() {
-  const images = [
+  // Images for mobile and desktop
+  const mobileImages = [
     "/images/chapel1M.png",
     "/images/chapel2M.png",
     "/images/chapel3M.png",
   ];
+  
+  const desktopImages = [
+    "/images/Desktop1.png",
+    "/images/Desktop2.png",
+    "/images/Desktop3.png",
+    "/images/Desktop4.png",
+    "/images/Desktop5.png",
+  ];
+  
+  // State to track which set of images to use
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
+  const [images, setImages] = useState(isDesktop ? desktopImages : mobileImages);
 
   // button to start the tour (just a link to the panorama page)
   function StartTour(){
@@ -53,19 +65,34 @@ function Info() {
   const [carouselOpacity, setCarouselOpacity] = useState(1);
 
   useEffect(() => {
+    // Handle scroll for carousel opacity
     const handleScroll = () => {
       const maxScroll = 800;
       const scrolled = window.scrollY;
       let newOpacity = 1 - scrolled / maxScroll;
-
       if (newOpacity < 0.2) {
         newOpacity = 0.2;
       }
       setCarouselOpacity(newOpacity);
     };
 
+    // Handle window resize for responsive images
+    const handleResize = () => {
+      const desktop = window.innerWidth > 768;
+      setIsDesktop(desktop);
+      setImages(desktop ? desktopImages : mobileImages);
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    
+    // Initial check to set the correct images on component mount
+    handleResize();
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
@@ -86,15 +113,13 @@ function Info() {
         <div className="column">
           <h2>Welcome!</h2>
           <p>
-          ‘Good day to you’ or as we say in Doric: ‘Fit Like’. Welcome to the King’s Chapel one of the oldest surviving buildings on our Aberdeen Campus founded in 1495 and began construction in 1500. We are happy to have you today and hope that you will enjoy exploring with our app. As you move around the chapel use your phone to look for areas highlighted by unique links to find out more.
+          'Good day to you' or as we say in Doric: 'Fit Like'. Welcome to the King's Chapel one of the oldest surviving buildings on our Aberdeen Campus founded in 1495 and began construction in 1500. We are happy to have you today and hope that you will enjoy exploring with our app. As you move around the chapel use your phone to look for areas highlighted by unique links to find out more.
           </p>
         </div>
-
         <div className="column">
           
         </div>
       </div>  
-
        <div className="services-container">
         {services.map((service, i) => (
           <div key={i} className="service-item">
@@ -108,27 +133,9 @@ function Info() {
           </div>
         ))}
       </div> 
-
       <Footer /> 
-
-       
-     
     </div>
   );
 }
 
 export default Info;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

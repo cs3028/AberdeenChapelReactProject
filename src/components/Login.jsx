@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import '../LoginPage.css';
+import Navbar from './Navbar'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -38,8 +39,8 @@ const Login = () => {
       setIsLoading(false);
     }
   };
-
   return (
+    <div> < Navbar />
     <div className="login-page-container">
       <div className="login-form-card">
         <h2>Admin Login</h2>
@@ -82,6 +83,7 @@ const Login = () => {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };
